@@ -50,3 +50,14 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+SmartOfficeApplication/SmartOfficeApplication/App.config
+SmartOfficeApplication/.vs/SmartOfficeApplication/v15/Server/sqlite3/storage.ide-wal
+SmartOfficeApplication/.vs/SmartOfficeApplication/v15/Server/sqlite3/storage.ide-shm
+SmartOfficeApplication/.vs/SmartOfficeApplication/v15/Server/sqlite3/storage.ide
+SmartOfficeApplication/.vs/SmartOfficeApplication/v15/Server/sqlite3/db.lock
+SmartOfficeApplication/.vs/SmartOfficeApplication/v15/.suo
+SmartOfficeApplication/SmartOfficeApplication/obj/Debug/DesignTimeResolveAssemblyReferences.cache
+SmartOfficeApplication/SmartOfficeApplication/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+SmartOfficeApplication/SmartOfficeApplication/obj/Debug/SmartOfficeApplication.csproj.CoreCompileInputs.cache
+SmartOfficeApplication/SmartOfficeApplication/obj/Debug/SmartOfficeApplication.csprojAssemblyReference.cache
+SmartOfficeApplication/SmartOfficeApplication/Properties/Settings.settings

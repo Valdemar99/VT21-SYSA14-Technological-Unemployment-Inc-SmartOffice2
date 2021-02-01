@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.tabControlOffice = new System.Windows.Forms.TabControl();
             this.tabPageBuilding = new System.Windows.Forms.TabPage();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.labelListOfBuildings = new System.Windows.Forms.Label();
             this.labelFeedbackForBuildings = new System.Windows.Forms.Label();
             this.listBoxBuildings = new System.Windows.Forms.ListBox();
@@ -100,6 +101,7 @@
             // 
             // tabPageBuilding
             // 
+            this.tabPageBuilding.Controls.Add(this.flowLayoutPanel1);
             this.tabPageBuilding.Controls.Add(this.labelListOfBuildings);
             this.tabPageBuilding.Controls.Add(this.labelFeedbackForBuildings);
             this.tabPageBuilding.Controls.Add(this.listBoxBuildings);
@@ -115,12 +117,20 @@
             this.tabPageBuilding.Controls.Add(this.buttonAddBuilding);
             this.tabPageBuilding.Location = new System.Drawing.Point(4, 23);
             this.tabPageBuilding.Name = "tabPageBuilding";
-            this.tabPageBuilding.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageBuilding.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tabPageBuilding.Size = new System.Drawing.Size(792, 460);
             this.tabPageBuilding.TabIndex = 0;
             this.tabPageBuilding.Text = "Buildings";
             this.tabPageBuilding.UseVisualStyleBackColor = true;
             this.tabPageBuilding.Click += new System.EventHandler(this.tabPageBuilding_Click);
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(278, 293);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(5, 5);
+            this.flowLayoutPanel1.TabIndex = 37;
             // 
             // labelListOfBuildings
             // 
@@ -134,7 +144,8 @@
             // labelFeedbackForBuildings
             // 
             this.labelFeedbackForBuildings.AutoSize = true;
-            this.labelFeedbackForBuildings.Location = new System.Drawing.Point(26, 438);
+            this.labelFeedbackForBuildings.Location = new System.Drawing.Point(26, 172);
+
             this.labelFeedbackForBuildings.Name = "labelFeedbackForBuildings";
             this.labelFeedbackForBuildings.Size = new System.Drawing.Size(81, 14);
             this.labelFeedbackForBuildings.TabIndex = 35;
@@ -147,7 +158,7 @@
             this.listBoxBuildings.ItemHeight = 14;
             this.listBoxBuildings.Location = new System.Drawing.Point(387, 77);
             this.listBoxBuildings.Name = "listBoxBuildings";
-            this.listBoxBuildings.Size = new System.Drawing.Size(362, 298);
+            this.listBoxBuildings.Size = new System.Drawing.Size(362, 284);
             this.listBoxBuildings.TabIndex = 12;
             // 
             // radioButtonEditBuilding
@@ -160,6 +171,7 @@
             this.radioButtonEditBuilding.TabStop = true;
             this.radioButtonEditBuilding.Text = "Edit building";
             this.radioButtonEditBuilding.UseVisualStyleBackColor = true;
+            this.radioButtonEditBuilding.CheckedChanged += new System.EventHandler(this.radioButtonEditBuilding_CheckedChanged_1);
             // 
             // radioButtonAddBuilding
             // 
@@ -171,6 +183,7 @@
             this.radioButtonAddBuilding.TabStop = true;
             this.radioButtonAddBuilding.Text = "Add building";
             this.radioButtonAddBuilding.UseVisualStyleBackColor = true;
+            this.radioButtonAddBuilding.CheckedChanged += new System.EventHandler(this.radioButtonAddBuilding_CheckedChanged_2);
             // 
             // labelOldAddress
             // 
@@ -205,6 +218,7 @@
             this.comboBoxAddressDelete.Name = "comboBoxAddressDelete";
             this.comboBoxAddressDelete.Size = new System.Drawing.Size(187, 22);
             this.comboBoxAddressDelete.TabIndex = 6;
+            this.comboBoxAddressDelete.SelectedIndexChanged += new System.EventHandler(this.comboBoxAddressDelete_SelectedIndexChanged);
             // 
             // labelAddress
             // 
@@ -268,7 +282,7 @@
             this.tabPageOffice.Controls.Add(this.comboBoxOfficeAddress);
             this.tabPageOffice.Location = new System.Drawing.Point(4, 23);
             this.tabPageOffice.Name = "tabPageOffice";
-            this.tabPageOffice.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageOffice.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tabPageOffice.Size = new System.Drawing.Size(792, 460);
             this.tabPageOffice.TabIndex = 1;
             this.tabPageOffice.Text = "Offices";
@@ -299,6 +313,7 @@
             this.dataGridViewOffices.DataSource = this.officeBindingSource;
             this.dataGridViewOffices.Location = new System.Drawing.Point(423, 122);
             this.dataGridViewOffices.Name = "dataGridViewOffices";
+            this.dataGridViewOffices.RowHeadersWidth = 62;
             this.dataGridViewOffices.Size = new System.Drawing.Size(312, 300);
             this.dataGridViewOffices.TabIndex = 33;
             this.dataGridViewOffices.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewOffices_CellContentClick);

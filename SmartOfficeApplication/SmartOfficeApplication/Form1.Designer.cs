@@ -71,9 +71,7 @@
             this.officeNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ventilationSetting = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.temperatureSetting = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this._Smart_Office_2_0DataSet = new SmartOfficeApplication._Smart_Office_2_0DataSet();
             this.officeBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.officeTableAdapter = new SmartOfficeApplication._Smart_Office_2_0DataSetTableAdapters.OfficeTableAdapter();
             this.officeNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buildingAddressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.temperatureSettingDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -83,7 +81,6 @@
             this.tabPageOffice.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOffices)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarTemperature)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this._Smart_Office_2_0DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.officeBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -511,17 +508,14 @@
             // 
             // _Smart_Office_2_0DataSet
             // 
-            this._Smart_Office_2_0DataSet.DataSetName = "_Smart_Office_2_0DataSet";
-            this._Smart_Office_2_0DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // officeBindingSource
             // 
             this.officeBindingSource.DataMember = "Office";
-            this.officeBindingSource.DataSource = this._Smart_Office_2_0DataSet;
+        
             // 
             // officeTableAdapter
             // 
-            this.officeTableAdapter.ClearBeforeFill = true;
             // 
             // officeNumberDataGridViewTextBoxColumn
             // 
@@ -563,7 +557,6 @@
             this.tabPageOffice.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOffices)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarTemperature)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this._Smart_Office_2_0DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.officeBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -613,9 +606,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn officeNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn ventilationSetting;
         private System.Windows.Forms.DataGridViewTextBoxColumn temperatureSetting;
-        private _Smart_Office_2_0DataSet _Smart_Office_2_0DataSet;
         private System.Windows.Forms.BindingSource officeBindingSource;
-        private _Smart_Office_2_0DataSetTableAdapters.OfficeTableAdapter officeTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn officeNumberDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn buildingAddressDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn temperatureSettingDataGridViewTextBoxColumn;

@@ -22,7 +22,8 @@ namespace SmartOfficeApplication
         {
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
-                using (SqlCommand sqlCommand = new SqlCommand("SELECT * FROM BUILDING", sqlConnection));
+                SqlCommand sqlCommand = new SqlCommand("SELECT * FROM BUILDING", sqlConnection);
+                using (sqlCommand)
                 {
                     try
                     {
@@ -76,17 +77,17 @@ namespace SmartOfficeApplication
                         throw e;
                     }
                 }
-    
+
             }
 
         }
-            /*****************.
-            *  Function             removeBuilding
-            *   Description         Method that, if successful, removes a building from the database and the offices that belong to it.
-            *    Parameters         string address
-            *     Returns           
-            ***********/
-        
+        /*****************.
+        *  Function             removeBuilding
+        *   Description         Method that, if successful, removes a building from the database and the offices that belong to it.
+        *    Parameters         string address
+        *     Returns           
+        ***********/
+
         public void RemoveBuilding(string address)
         {
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
@@ -133,226 +134,229 @@ namespace SmartOfficeApplication
 
                 }
 
+            }
         }
-        /*****************.
-          *  Function             editBuilding
-          *   Description         Method that, if successful, edits a building from the database.
-          *    Parameters         string address
-          *     Returns           
-          ***********/
-      
-        public void EditBuilding(string oldAddress, string newAddress)
-        {
-            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            /*****************.
+              *  Function             editBuilding
+              *   Description         Method that, if successful, edits a building from the database.
+              *    Parameters         string address
+              *     Returns           
+              ***********/
+
+            public void EditBuilding(string oldAddress, string newAddress)
             {
-                using (SqlCommand sqlCommand = new SqlCommand("UPDATE Building SET address = '" + newAddress + "' WHERE address = '" + oldAddress + "'", sqlConnection))
+                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
                 {
-                    try
+                    using (SqlCommand sqlCommand = new SqlCommand("UPDATE Building SET address = '" + newAddress + "' WHERE address = '" + oldAddress + "'", sqlConnection))
                     {
-                        sqlConnection.Open();
-                        //int result = - kan användas senare för error handling
-                        sqlCommand.ExecuteNonQuery();
+                        try
+                        {
+                            sqlConnection.Open();
+                            //int result = - kan användas senare för error handling
+                            sqlCommand.ExecuteNonQuery();
 
-                    }
-                    catch (SqlException e)
-                    {
+                        }
+                        catch (SqlException e)
+                        {
 
-                        throw e;
+                            throw e;
 
+                        }
+                        catch (Exception e)
+                        {
+                            throw e;
+                        }
                     }
-                    catch (Exception e)
-                    {
-                        throw e;
-                    }
+
                 }
 
             }
-
-        }
-        /*****************.
-        *  Function             findOffice
-        *   Description         Method that, if successful, returns an sqlDataReader with all associated information from database
-        *    Parameters         string officeNumber, string buildingAddress
-        *     Returns           SqlDataReader
-        ***********/
-
-        public SqlDataReader FindOffice(string officeNumber, string buildingAddress)
-        {
-            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
-            {
-                using (SqlCommand sqlCommand = new SqlCommand("SELECT * FROM Office WHERE buildingAddress = '" + buildingAddress + "' AND officeNumber = '" + officeNumber + "'", sqlConnection)) ;
-                {
-                    try
-                    {
-                        sqlConnection.Open();
-
-                        SqlDataReader dataReader = sqlCommand.ExecuteReader();
-                        return dataReader;
-
-
-                    }
-                    catch (SqlException e)
-                    {
-
-                        throw e;
-
-                    }
-                    catch (Exception e)
-                    {
-                        throw e;
-                    }
-                }
-
-
-            }
-
-        }
-        /*****************.
-            *  Function             GetOffices
+            /*****************.
+            *  Function             findOffice
             *   Description         Method that, if successful, returns an sqlDataReader with all associated information from database
-            *    Parameters         string buildingAddress
+            *    Parameters         string officeNumber, string buildingAddress
             *     Returns           SqlDataReader
-         ***********/
-        public SqlDataReader GetOffices(string buildingAddress)
-        {
-            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            ***********/
+
+            public SqlDataReader FindOffice(string officeNumber, string buildingAddress)
             {
-                using (SqlCommand sqlCommand = new SqlCommand("SELECT * FROM Office WHERE buildingAddress = '" + buildingAddress + "'", sqlConnection)) ;
+                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
                 {
-                    try
+                    SqlCommand sqlCommand = new SqlCommand("SELECT * FROM Office WHERE buildingAddress = '" + buildingAddress + "' AND officeNumber = '" + officeNumber + "'", sqlConnection);
+                    using (sqlCommand) 
                     {
-                        sqlConnection.Open();
-                        SqlDataReader dataReader = sqlCommand.ExecuteReader();
-                        return dataReader;
+                        try
+                        {
+                            sqlConnection.Open();
+
+                            SqlDataReader dataReader = sqlCommand.ExecuteReader();
+                            return dataReader;
 
 
+                        }
+                        catch (SqlException e)
+                        {
+
+                            throw e;
+
+                        }
+                        catch (Exception e)
+                        {
+                            throw e;
+                        }
                     }
-                    catch (SqlException e)
-                    {
 
-                        throw e;
 
-                    }
-                    catch (Exception e)
-                    {
-                        throw e;
-                    }
                 }
 
+            }
+            /*****************.
+                *  Function             GetOffices
+                *   Description         Method that, if successful, returns an sqlDataReader with all associated information from database
+                *    Parameters         string buildingAddress
+                *     Returns           SqlDataReader
+             ***********/
+            public SqlDataReader GetOffices(string buildingAddress)
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+                {
+                    SqlCommand sqlCommand = new SqlCommand("SELECT * FROM Office WHERE buildingAddress = '" + buildingAddress + "'", sqlConnection);
+                    using (sqlCommand) 
+                    {
+                        try
+                        {
+                            sqlConnection.Open();
+                            SqlDataReader dataReader = sqlCommand.ExecuteReader();
+                            return dataReader;
+
+
+                        }
+                        catch (SqlException e)
+                        {
+
+                            throw e;
+
+                        }
+                        catch (Exception e)
+                        {
+                            throw e;
+                        }
+                    }
+
+
+                }
 
             }
 
-        }
+            /*****************.
+                *  Function             AddOffice
+                *   Description         Method that, if successful, adds an office in the database.
+                *    Parameters         string officeNumber, string buildingAddress, int temperatureSetting, string ventilationSetting
+                *     Returns           
+                ***********/
+            public void AddOffice(string officeNumber, string buildingAddress, int temperatureSetting, string ventilationSetting)
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand sqlCommand = new SqlCommand("INSERT INTO Office VALUES(@officeNumber, @buildingAddress, @temperatureSetting, @ventilationSetting)", sqlConnection))
+                    {
+                        sqlCommand.Parameters.AddWithValue("@officeNumber", officeNumber);
+                        sqlCommand.Parameters.AddWithValue("@buildingAddress", buildingAddress);
+                        sqlCommand.Parameters.AddWithValue("@temperatureSetting", temperatureSetting);
+                        sqlCommand.Parameters.AddWithValue("@ventilationSetting", ventilationSetting);
 
-        /*****************.
-            *  Function             AddOffice
-            *   Description         Method that, if successful, adds an office in the database.
-            *    Parameters         string officeNumber, string buildingAddress, int temperatureSetting, string ventilationSetting
+                        try
+                        {
+                            sqlConnection.Open();
+                            //int result = - kan användas senare för error handling
+                            sqlCommand.ExecuteNonQuery();
+
+                        }
+                        catch (SqlException e)
+                        {
+
+                            throw e;
+
+                        }
+                        catch (Exception e)
+                        {
+                            throw e;
+                        }
+                    }
+
+                }
+
+            }
+            /*****************.
+            *  Function             RemoveOffice
+            *   Description         Method that, if successful, removes an office from the database.
+            *    Parameters         string officeNumber, string buildingAddress
             *     Returns           
             ***********/
-        public void AddOffice(string officeNumber, string buildingAddress, int temperatureSetting, string ventilationSetting)
-        {
-            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+
+            public void RemoveOffice(string officeNumber, string buildingAddress)
             {
-                using (SqlCommand sqlCommand = new SqlCommand("INSERT INTO Office VALUES(@officeNumber, @buildingAddress, @temperatureSetting, @ventilationSetting)", sqlConnection))
+                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
                 {
-                    sqlCommand.Parameters.AddWithValue("@officeNumber", officeNumber);
-                    sqlCommand.Parameters.AddWithValue("@buildingAddress", buildingAddress);
-                    sqlCommand.Parameters.AddWithValue("@temperatureSetting", temperatureSetting);
-                    sqlCommand.Parameters.AddWithValue("@ventilationSetting", ventilationSetting);
-
-                    try
+                    using (SqlCommand sqlCommand = new SqlCommand("DELETE FROM Office WHERE buildingAddress = '" + buildingAddress + "' AND officeNumber = '" + officeNumber + "'", sqlConnection))
                     {
-                        sqlConnection.Open();
-                        //int result = - kan användas senare för error handling
-                        sqlCommand.ExecuteNonQuery();
+                        try
+                        {
+                            sqlConnection.Open();
+                            //int result = - kan användas senare för error handling
+                            sqlCommand.ExecuteNonQuery();
 
-                    }
-                    catch (SqlException e)
-                    {
+                        }
+                        catch (SqlException e)
+                        {
 
-                        throw e;
+                            throw e;
 
+                        }
+                        catch (Exception e)
+                        {
+                            throw e;
+                        }
                     }
-                    catch (Exception e)
-                    {
-                        throw e;
-                    }
+
                 }
 
             }
+            /*****************.
+              *  Function             editOffice
+              *   Description         Method that, if successful, edits an office from the database.
+              *    Parameters         string officeNumber, string buildingAddress, string ventilationSetting, int temperatureSetting
+              *     Returns           
+              ***********/
 
-        }
-        /*****************.
-        *  Function             RemoveOffice
-        *   Description         Method that, if successful, removes an office from the database.
-        *    Parameters         string officeNumber, string buildingAddress
-        *     Returns           
-        ***********/
-
-        public void RemoveOffice(string officeNumber, string buildingAddress)
-        {
-            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            public void EditOffice(string officeNumber, string buildingAddress, string ventilationSetting, int temperatureSetting)
             {
-                using (SqlCommand sqlCommand = new SqlCommand("DELETE FROM Office WHERE buildingAddress = '" + buildingAddress + "' AND officeNumber = '" + officeNumber + "'", sqlConnection))
+                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
                 {
-                    try
+                    using (SqlCommand sqlCommand = new SqlCommand("UPDATE Office SET ventilationSetting = '" + ventilationSetting + "', temperatureSetting = " + temperatureSetting + " WHERE officeNumber = '" + officeNumber + "' AND buildingAddress = '" + buildingAddress + "'", sqlConnection))
                     {
-                        sqlConnection.Open();
-                        //int result = - kan användas senare för error handling
-                        sqlCommand.ExecuteNonQuery();
+                        try
+                        {
+                            sqlConnection.Open();
+                            //int result = - kan användas senare för error handling
+                            sqlCommand.ExecuteNonQuery();
 
+                        }
+                        catch (SqlException e)
+                        {
+                            throw e;
+                        }
+                        catch (Exception e)
+                        {
+                            throw e;
+                        }
                     }
-                    catch (SqlException e)
-                    {
 
-                        throw e;
-
-                    }
-                    catch (Exception e)
-                    {
-                        throw e;
-                    }
                 }
 
             }
-
-        }
-        /*****************.
-          *  Function             editOffice
-          *   Description         Method that, if successful, edits an office from the database.
-          *    Parameters         string officeNumber, string buildingAddress, string ventilationSetting, int temperatureSetting
-          *     Returns           
-          ***********/
-
-        public void EditOffice(string officeNumber, string buildingAddress, string ventilationSetting, int temperatureSetting)
-        {
-            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
-            {
-                using (SqlCommand sqlCommand = new SqlCommand("UPDATE Office SET ventilationSetting = '" + ventilationSetting + "', temperatureSetting = " + temperatureSetting + " WHERE officeNumber = '" + officeNumber + "' AND buildingAddress = '" + buildingAddress + "'", sqlConnection))
-                {
-                    try
-                    {
-                        sqlConnection.Open();
-                        //int result = - kan användas senare för error handling
-                        sqlCommand.ExecuteNonQuery();
-
-                    }
-                    catch (SqlException e)
-                    {
-                        throw e;
-                    }
-                    catch (Exception e)
-                    {
-                        throw e;
-                    }
-                }
-
-            }
-
         }
     }
-    
-}
+
 
 

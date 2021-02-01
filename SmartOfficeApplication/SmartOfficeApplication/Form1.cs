@@ -54,35 +54,42 @@ namespace SmartOfficeApplication
            *  Button             addBuilding
            *   Description        button that, if successful, adds a building in the database by checking if the radiobutton radioButtonAddBuilding has been 
                                    selected and then if the textbox has any content. It also checks the database if the address already exists before adding
-                                   it to the database.
+                                   it to the database. Though if radiobutton radioButtonEditBuilding has been selected the address can be altered using the
+                                   combination of combobox(for the old address) and textbox(to insert new address).
            ***********/
         private void buttonAddBuilding_Click(object sender, EventArgs e) //Knappen
         {
             labelFeedbackForBuildings.ResetText(); //return the label to default 
+            string newAddress = textBoxAddress.Text; //retrieves text from textbox
 
            if (radioButtonAddBuilding.Checked == true)
             {
-                string address = textBoxAddress.Text; 
-
-                if (address.Equals(""))
+                if (newAddress.Equals(""))
                 {
                     //Error message if the textbox is empty
                     labelFeedbackForBuildings.Text = "To add a new building, please insert address.";
                 }
                 
                 //if(address !=  )
-                dataAccessLayer.AddBuilding(address);
-                labelFeedbackForBuildings.Text = "The building with address'" + address + "' has been successfully added to database.";
+                dataAccessLayer.AddBuilding(newAddress);
+                labelFeedbackForBuildings.Text = "The building with address'" + newAddress + "' has been successfully added to database.";
             }
 
            if (radioButtonEditBuilding.Checked == true)
             {
+                string oldAddress = comboBoxOldAddress.SelectedItem.ToString();
+
+                //Kolla om den nya addressen redan existerar
+                //felmeddelande om comboboxen inte har några alternativ
+
+                dataAccessLayer.EditBuilding(oldAddress, newAddress);
+                labelFeedbackForBuildings.Text = "The building with address'" + oldAddress + "' has been successfully changed into '" + newAddress + "' within the database.";
 
             }
 
-           else
+            else
             {
-                labelFeedbackForBuildings.Text = "To add a new building, please press the radiobutton add building.";
+                labelFeedbackForBuildings.Text = "To add a new building, please press the radiobutton add building."; //fixa så edit är med
             }
 
         }

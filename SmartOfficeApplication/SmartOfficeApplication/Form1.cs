@@ -72,10 +72,30 @@ namespace SmartOfficeApplication
 
 
         }
+          private void comboBoxAddressDelete_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
+        }
         private void buttonDeleteBuilding_Click(object sender, EventArgs e)
         {
 
+            labelFeedbackForBuildings.ResetText();
+            if (radioButtonAddBuilding.Checked == true)
+            {
+                string address = comboBoxAddressDelete.SelectedItem.ToString();
+                dataAccessLayer.RemoveBuilding(address);
+
+            }
+            labelFeedbackForBuildings.Text = "Building has been removed!";
+        }
+
+        private void radioButtonAddBuilding_CheckedChanged_2(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void radioButtonEditBuilding_CheckedChanged_1(object sender, EventArgs e)
+        {
 
         }
     }

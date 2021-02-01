@@ -131,6 +131,7 @@
             // 
             this.labelFeedbackForBuildings.AutoSize = true;
             this.labelFeedbackForBuildings.Location = new System.Drawing.Point(26, 172);
+
             this.labelFeedbackForBuildings.Name = "labelFeedbackForBuildings";
             this.labelFeedbackForBuildings.Size = new System.Drawing.Size(81, 14);
             this.labelFeedbackForBuildings.TabIndex = 35;

@@ -39,8 +39,8 @@ namespace SmartOfficeApplication
 
         }
 
-        private void newAddress_TextChanged(object sender, EventArgs e) 
-        {}
+
+
 
         private void radioButtonAddBuilding_CheckedChanged_1(object sender, EventArgs e) 
         {
@@ -72,7 +72,12 @@ namespace SmartOfficeApplication
                 //lägg till felmeddelande 
             }
 
+
         }
 
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

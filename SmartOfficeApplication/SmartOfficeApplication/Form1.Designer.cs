@@ -410,6 +410,7 @@
             this.radioButtonAddOffice.TabStop = true;
             this.radioButtonAddOffice.Text = "Add office";
             this.radioButtonAddOffice.UseVisualStyleBackColor = true;
+            this.radioButtonAddOffice.CheckedChanged += new System.EventHandler(this.radioButtonAddOffice_CheckedChanged);
             // 
             // buttonAddOffice
             // 
@@ -500,6 +501,7 @@
             this.comboBoxOfficeAddress.Name = "comboBoxOfficeAddress";
             this.comboBoxOfficeAddress.Size = new System.Drawing.Size(187, 22);
             this.comboBoxOfficeAddress.TabIndex = 9;
+            this.comboBoxOfficeAddress.SelectedIndexChanged += new System.EventHandler(this.comboBoxOfficeAddress_SelectedIndexChanged);
             // 
             // officeNumberDataGridViewTextBoxColumn
             // 

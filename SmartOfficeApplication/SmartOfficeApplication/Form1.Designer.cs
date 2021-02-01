@@ -30,6 +30,7 @@
         {
             this.tabControlOffice = new System.Windows.Forms.TabControl();
             this.tabPageBuilding = new System.Windows.Forms.TabPage();
+
             this.labelFeedbackForBuildings = new System.Windows.Forms.Label();
             this.listBoxBuildings = new System.Windows.Forms.ListBox();
             this.radioButtonEditBuilding = new System.Windows.Forms.RadioButton();
@@ -66,6 +67,7 @@
             this.labelOfficeAddress = new System.Windows.Forms.Label();
             this.comboBoxOfficeAddress = new System.Windows.Forms.ComboBox();
             this.labelListOfBuildings = new System.Windows.Forms.Label();
+
             this.tabControlOffice.SuspendLayout();
             this.tabPageBuilding.SuspendLayout();
             this.tabPageOffice.SuspendLayout();
@@ -92,12 +94,14 @@
             this.tabPageBuilding.Controls.Add(this.radioButtonEditBuilding);
             this.tabPageBuilding.Controls.Add(this.radioButtonAddBuilding);
             this.tabPageBuilding.Controls.Add(this.labelOldAddress);
+
             this.tabPageBuilding.Controls.Add(this.comboBoxOldAddress);
             this.tabPageBuilding.Controls.Add(this.labelAddressDelete);
             this.tabPageBuilding.Controls.Add(this.comboBoxAddressDelete);
             this.tabPageBuilding.Controls.Add(this.labelAddress);
             this.tabPageBuilding.Controls.Add(this.buttonDeleteBuilding);
             this.tabPageBuilding.Controls.Add(this.textBoxAddress);
+
             this.tabPageBuilding.Controls.Add(this.buttonAddBuilding);
             this.tabPageBuilding.Location = new System.Drawing.Point(4, 23);
             this.tabPageBuilding.Name = "tabPageBuilding";
@@ -108,6 +112,7 @@
             this.tabPageBuilding.UseVisualStyleBackColor = true;
             this.tabPageBuilding.Click += new System.EventHandler(this.tabPageBuilding_Click);
             // 
+
             // labelFeedbackForBuildings
             // 
             this.labelFeedbackForBuildings.AutoSize = true;
@@ -165,6 +170,7 @@
             this.comboBoxOldAddress.Name = "comboBoxOldAddress";
             this.comboBoxOldAddress.Size = new System.Drawing.Size(187, 22);
             this.comboBoxOldAddress.TabIndex = 8;
+
             // 
             // labelAddressDelete
             // 
@@ -182,6 +188,7 @@
             this.comboBoxAddressDelete.Name = "comboBoxAddressDelete";
             this.comboBoxAddressDelete.Size = new System.Drawing.Size(187, 22);
             this.comboBoxAddressDelete.TabIndex = 6;
+
             // 
             // labelAddress
             // 
@@ -207,6 +214,7 @@
             this.textBoxAddress.Name = "textBoxAddress";
             this.textBoxAddress.Size = new System.Drawing.Size(187, 21);
             this.textBoxAddress.TabIndex = 3;
+
             // 
             // buttonAddBuilding
             // 

@@ -12,6 +12,8 @@ namespace SmartOfficeApplication
 {
     public partial class Form1 : Form
     {
+        private DataAccessLayer dataAccessLayer;
+
         public Form1()
         {
             InitializeComponent();
@@ -37,22 +39,22 @@ namespace SmartOfficeApplication
 
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
+
+        private void newAddress_TextChanged(object sender, EventArgs e) //Text för den nya addressen
+        {
+
+        }
+        private void radioButtonAddBuilding_CheckedChanged_1(object sender, EventArgs e) //radiobutton "add building"
         {
 
         }
 
-        private void buttonAddBuilding_Click(object sender, EventArgs e)
+        private void radioButtonEditBuilding_CheckedChanged(object sender, EventArgs e) //radiobutton "edit building"
         {
 
         }
 
-        private void radioButton4_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
+        private void buttonAddBuilding_Click(object sender, EventArgs e) //Knappen
         {
 
         }

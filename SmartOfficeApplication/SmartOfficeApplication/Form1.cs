@@ -40,8 +40,6 @@ namespace SmartOfficeApplication
         }
 
 
-
-
         private void radioButtonAddBuilding_CheckedChanged_1(object sender, EventArgs e) 
         {
 
@@ -57,14 +55,14 @@ namespace SmartOfficeApplication
 
            if (radioButtonAddBuilding.Checked == true)
             {
-                string address = newAddress.Text; //skapa felmeddelande för att undvika att lägga till någon som redan finns 
+                string address = textBoxAddress.Text; //skapa felmeddelande för att undvika att lägga till någon som redan finns 
 
                 if (address.Equals(""))
                 {
                     //felmeddelande för att textboxen är tom. 
                 }
                 
-               // if(address != )
+                //if(address !=  )
                 dataAccessLayer.AddBuilding(address);
             }
            else
@@ -75,8 +73,9 @@ namespace SmartOfficeApplication
 
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void buttonDeleteBuilding_Click(object sender, EventArgs e)
         {
+
 
         }
     }

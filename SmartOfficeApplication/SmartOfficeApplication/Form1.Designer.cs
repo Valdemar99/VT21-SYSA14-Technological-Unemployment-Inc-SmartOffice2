@@ -30,7 +30,7 @@
         {
             this.tabControlOffice = new System.Windows.Forms.TabControl();
             this.tabPageBuilding = new System.Windows.Forms.TabPage();
-
+            this.labelListOfBuildings = new System.Windows.Forms.Label();
             this.labelFeedbackForBuildings = new System.Windows.Forms.Label();
             this.listBoxBuildings = new System.Windows.Forms.ListBox();
             this.radioButtonEditBuilding = new System.Windows.Forms.RadioButton();
@@ -66,8 +66,6 @@
             this.comboBoxOfficeNumber = new System.Windows.Forms.ComboBox();
             this.labelOfficeAddress = new System.Windows.Forms.Label();
             this.comboBoxOfficeAddress = new System.Windows.Forms.ComboBox();
-            this.labelListOfBuildings = new System.Windows.Forms.Label();
-
             this.tabControlOffice.SuspendLayout();
             this.tabPageBuilding.SuspendLayout();
             this.tabPageOffice.SuspendLayout();
@@ -94,14 +92,12 @@
             this.tabPageBuilding.Controls.Add(this.radioButtonEditBuilding);
             this.tabPageBuilding.Controls.Add(this.radioButtonAddBuilding);
             this.tabPageBuilding.Controls.Add(this.labelOldAddress);
-
             this.tabPageBuilding.Controls.Add(this.comboBoxOldAddress);
             this.tabPageBuilding.Controls.Add(this.labelAddressDelete);
             this.tabPageBuilding.Controls.Add(this.comboBoxAddressDelete);
             this.tabPageBuilding.Controls.Add(this.labelAddress);
             this.tabPageBuilding.Controls.Add(this.buttonDeleteBuilding);
             this.tabPageBuilding.Controls.Add(this.textBoxAddress);
-
             this.tabPageBuilding.Controls.Add(this.buttonAddBuilding);
             this.tabPageBuilding.Location = new System.Drawing.Point(4, 23);
             this.tabPageBuilding.Name = "tabPageBuilding";
@@ -112,7 +108,15 @@
             this.tabPageBuilding.UseVisualStyleBackColor = true;
             this.tabPageBuilding.Click += new System.EventHandler(this.tabPageBuilding_Click);
             // 
-
+            // labelListOfBuildings
+            // 
+            this.labelListOfBuildings.AutoSize = true;
+            this.labelListOfBuildings.Location = new System.Drawing.Point(384, 35);
+            this.labelListOfBuildings.Name = "labelListOfBuildings";
+            this.labelListOfBuildings.Size = new System.Drawing.Size(157, 14);
+            this.labelListOfBuildings.TabIndex = 36;
+            this.labelListOfBuildings.Text = "List of all building addresses:";
+            // 
             // labelFeedbackForBuildings
             // 
             this.labelFeedbackForBuildings.AutoSize = true;
@@ -170,7 +174,6 @@
             this.comboBoxOldAddress.Name = "comboBoxOldAddress";
             this.comboBoxOldAddress.Size = new System.Drawing.Size(187, 22);
             this.comboBoxOldAddress.TabIndex = 8;
-
             // 
             // labelAddressDelete
             // 
@@ -188,7 +191,6 @@
             this.comboBoxAddressDelete.Name = "comboBoxAddressDelete";
             this.comboBoxAddressDelete.Size = new System.Drawing.Size(187, 22);
             this.comboBoxAddressDelete.TabIndex = 6;
-
             // 
             // labelAddress
             // 
@@ -207,6 +209,7 @@
             this.buttonDeleteBuilding.TabIndex = 4;
             this.buttonDeleteBuilding.Text = "Remove building";
             this.buttonDeleteBuilding.UseVisualStyleBackColor = true;
+            this.buttonDeleteBuilding.Click += new System.EventHandler(this.buttonDeleteBuilding_Click);
             // 
             // textBoxAddress
             // 
@@ -214,7 +217,6 @@
             this.textBoxAddress.Name = "textBoxAddress";
             this.textBoxAddress.Size = new System.Drawing.Size(187, 21);
             this.textBoxAddress.TabIndex = 3;
-
             // 
             // buttonAddBuilding
             // 
@@ -354,7 +356,6 @@
             this.radioButtonEditOffice.TabStop = true;
             this.radioButtonEditOffice.Text = "Edit office";
             this.radioButtonEditOffice.UseVisualStyleBackColor = true;
-            this.radioButtonEditOffice.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
             // 
             // radioButtonAddOffice
             // 
@@ -417,7 +418,6 @@
             this.labelVentilationSetting.Size = new System.Drawing.Size(107, 14);
             this.labelVentilationSetting.TabIndex = 14;
             this.labelVentilationSetting.Text = "Ventilation Setting:";
-            this.labelVentilationSetting.Click += new System.EventHandler(this.label2_Click);
             // 
             // labelOfficeNumber
             // 
@@ -452,15 +452,6 @@
             this.comboBoxOfficeAddress.Name = "comboBoxOfficeAddress";
             this.comboBoxOfficeAddress.Size = new System.Drawing.Size(187, 22);
             this.comboBoxOfficeAddress.TabIndex = 9;
-            // 
-            // labelListOfBuildings
-            // 
-            this.labelListOfBuildings.AutoSize = true;
-            this.labelListOfBuildings.Location = new System.Drawing.Point(384, 35);
-            this.labelListOfBuildings.Name = "labelListOfBuildings";
-            this.labelListOfBuildings.Size = new System.Drawing.Size(157, 14);
-            this.labelListOfBuildings.TabIndex = 36;
-            this.labelListOfBuildings.Text = "List of all building addresses:";
             // 
             // Form1
             // 

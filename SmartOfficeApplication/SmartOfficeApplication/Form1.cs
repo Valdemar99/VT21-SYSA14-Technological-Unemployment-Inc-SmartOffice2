@@ -50,26 +50,40 @@ namespace SmartOfficeApplication
 
         }
 
+        /*****************.
+           *  Button             addBuilding
+           *   Description        button that, if successful, adds a building in the database by checking if the radiobutton radioButtonAddBuilding has been 
+                                   selected and then if the textbox has any content. It also checks the database if the address already exists before adding
+                                   it to the database.
+           ***********/
         private void buttonAddBuilding_Click(object sender, EventArgs e) //Knappen
         {
+            labelFeedbackForBuildings.ResetText(); //return the label to default 
 
            if (radioButtonAddBuilding.Checked == true)
             {
-                string address = textBoxAddress.Text; //skapa felmeddelande för att undvika att lägga till någon som redan finns 
+                string address = textBoxAddress.Text; 
 
                 if (address.Equals(""))
                 {
-                    //felmeddelande för att textboxen är tom. 
+                    //Error message if the textbox is empty
+                    labelFeedbackForBuildings.Text = "To add a new building, please insert address.";
                 }
                 
                 //if(address !=  )
                 dataAccessLayer.AddBuilding(address);
-            }
-           else
-            {
-                //lägg till felmeddelande 
+                labelFeedbackForBuildings.Text = "The building with address'" + address + "' has been successfully added to database.";
             }
 
+           if (radioButtonEditBuilding.Checked == true)
+            {
+
+            }
+
+           else
+            {
+                labelFeedbackForBuildings.Text = "To add a new building, please press the radiobutton add building.";
+            }
 
         }
 

@@ -66,6 +66,7 @@
             this.comboBoxOfficeNumber = new System.Windows.Forms.ComboBox();
             this.labelOfficeAddress = new System.Windows.Forms.Label();
             this.comboBoxOfficeAddress = new System.Windows.Forms.ComboBox();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tabControlOffice.SuspendLayout();
             this.tabPageBuilding.SuspendLayout();
             this.tabPageOffice.SuspendLayout();
@@ -86,6 +87,7 @@
             // 
             // tabPageBuilding
             // 
+            this.tabPageBuilding.Controls.Add(this.flowLayoutPanel1);
             this.tabPageBuilding.Controls.Add(this.labelListOfBuildings);
             this.tabPageBuilding.Controls.Add(this.labelFeedbackForBuildings);
             this.tabPageBuilding.Controls.Add(this.listBoxBuildings);
@@ -120,7 +122,7 @@
             // labelFeedbackForBuildings
             // 
             this.labelFeedbackForBuildings.AutoSize = true;
-            this.labelFeedbackForBuildings.Location = new System.Drawing.Point(26, 438);
+            this.labelFeedbackForBuildings.Location = new System.Drawing.Point(108, 220);
             this.labelFeedbackForBuildings.Name = "labelFeedbackForBuildings";
             this.labelFeedbackForBuildings.Size = new System.Drawing.Size(81, 14);
             this.labelFeedbackForBuildings.TabIndex = 35;
@@ -453,6 +455,13 @@
             this.comboBoxOfficeAddress.Size = new System.Drawing.Size(187, 22);
             this.comboBoxOfficeAddress.TabIndex = 9;
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(417, 451);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(8, 8);
+            this.flowLayoutPanel1.TabIndex = 37;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -512,6 +521,7 @@
         private System.Windows.Forms.Label labelFeedbackForOfficesTab;
         private System.Windows.Forms.Label labelFeedbackForBuildings;
         private System.Windows.Forms.Label labelListOfBuildings;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }
 

@@ -366,7 +366,6 @@
             this.radioButtonAddOffice.TabStop = true;
             this.radioButtonAddOffice.Text = "Add office";
             this.radioButtonAddOffice.UseVisualStyleBackColor = true;
-            this.radioButtonAddOffice.CheckedChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
             // 
             // buttonAddOffice
             // 
@@ -376,7 +375,6 @@
             this.buttonAddOffice.TabIndex = 22;
             this.buttonAddOffice.Text = "Add office";
             this.buttonAddOffice.UseVisualStyleBackColor = true;
-            this.buttonAddOffice.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // labelSelectedTemperature
             // 

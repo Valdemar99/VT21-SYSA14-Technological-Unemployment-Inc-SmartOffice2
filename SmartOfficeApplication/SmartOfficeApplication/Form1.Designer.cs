@@ -72,10 +72,24 @@
             this.comboBoxOfficeNumber = new System.Windows.Forms.ComboBox();
             this.labelOfficeAddress = new System.Windows.Forms.Label();
             this.comboBoxOfficeAddress = new System.Windows.Forms.ComboBox();
+
+            this.buildingAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.officeNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ventilationSetting = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.temperatureSetting = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.officeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.officeNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buildingAddressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.temperatureSettingDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ventilationSettingDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+
             this.tabControlOffice.SuspendLayout();
             this.tabPageBuilding.SuspendLayout();
             this.tabPageOffice.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOffices)).BeginInit();
+
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarTemperature)).BeginInit();
+
             ((System.ComponentModel.ISupportInitialize)(this.officeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarTemperature)).BeginInit();
             this.SuspendLayout();
@@ -550,7 +564,66 @@
             this.comboBoxOfficeAddress.Size = new System.Drawing.Size(278, 30);
             this.comboBoxOfficeAddress.TabIndex = 9;
             // 
-            // Form1
+
+            // buildingAddress
+            // 
+            this.buildingAddress.HeaderText = "Building Address";
+            this.buildingAddress.Name = "buildingAddress";
+            this.buildingAddress.ReadOnly = true;
+            // 
+            // officeNumber
+            // 
+            this.officeNumber.HeaderText = "Office Number";
+            this.officeNumber.Name = "officeNumber";
+            this.officeNumber.ReadOnly = true;
+            // 
+            // ventilationSetting
+            // 
+            this.ventilationSetting.HeaderText = "Ventilation Setting";
+            this.ventilationSetting.Name = "ventilationSetting";
+            this.ventilationSetting.ReadOnly = true;
+            // 
+            // temperatureSetting
+            // 
+            this.temperatureSetting.HeaderText = "Temperature Setting";
+            this.temperatureSetting.Name = "temperatureSetting";
+            this.temperatureSetting.ReadOnly = true;
+            // 
+            // _Smart_Office_2_0DataSet
+            // 
+            // 
+            // officeBindingSource
+            // 
+            this.officeBindingSource.DataMember = "Office";
+            // 
+            // officeTableAdapter
+            // 
+            // 
+            // officeNumberDataGridViewTextBoxColumn
+            // 
+            this.officeNumberDataGridViewTextBoxColumn.DataPropertyName = "officeNumber";
+            this.officeNumberDataGridViewTextBoxColumn.HeaderText = "officeNumber";
+            this.officeNumberDataGridViewTextBoxColumn.Name = "officeNumberDataGridViewTextBoxColumn";
+            // 
+            // buildingAddressDataGridViewTextBoxColumn
+            // 
+            this.buildingAddressDataGridViewTextBoxColumn.DataPropertyName = "buildingAddress";
+            this.buildingAddressDataGridViewTextBoxColumn.HeaderText = "buildingAddress";
+            this.buildingAddressDataGridViewTextBoxColumn.Name = "buildingAddressDataGridViewTextBoxColumn";
+            // 
+            // temperatureSettingDataGridViewTextBoxColumn
+            // 
+            this.temperatureSettingDataGridViewTextBoxColumn.DataPropertyName = "temperatureSetting";
+            this.temperatureSettingDataGridViewTextBoxColumn.HeaderText = "temperatureSetting";
+            this.temperatureSettingDataGridViewTextBoxColumn.Name = "temperatureSettingDataGridViewTextBoxColumn";
+            // 
+            // ventilationSettingDataGridViewTextBoxColumn
+            // 
+            this.ventilationSettingDataGridViewTextBoxColumn.DataPropertyName = "ventilationSetting";
+            this.ventilationSettingDataGridViewTextBoxColumn.HeaderText = "ventilationSetting";
+            this.ventilationSettingDataGridViewTextBoxColumn.Name = "ventilationSettingDataGridViewTextBoxColumn";
+            // 
+
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

@@ -76,9 +76,6 @@ namespace SmartOfficeApplication
             }
         }
                     
-                
-            
-        
 
 
         /*****************.

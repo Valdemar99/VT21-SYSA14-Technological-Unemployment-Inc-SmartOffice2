@@ -44,6 +44,40 @@ namespace SmartOfficeApplication
             }
 
         }
+        /*****************.
+            *  Function             checkIfBuildingExists
+            *   Description         Method that returns true if a building with the specified address already exists in the database.
+            *    Parameters         string address
+            *     Returns           bool
+            ***********/
+
+        public bool checkIfBuildingExists(string address)
+        {
+            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand sqlCommand = new SqlCommand("SELECT FROM Building WHERE address = '" + address + "'", sqlConnection)
+                {
+                    try
+                    {
+                        sqlConnection.Open();
+                        SqlDataReader dataReader = sqlCommand.ExecuteReader();
+                        return dataReader.HasRows;
+                    }
+                    catch (SqlException e)
+                    {
+                        throw e;
+
+                    }
+                    catch (Exception e)
+                    {
+                        throw e;
+                    }
+                }
+                    
+                
+            
+        
+
 
         /*****************.
             *  Function             addBuilding

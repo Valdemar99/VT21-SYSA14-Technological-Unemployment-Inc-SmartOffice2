@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.tabControlOffice = new System.Windows.Forms.TabControl();
             this.tabPageBuilding = new System.Windows.Forms.TabPage();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.labelListOfBuildings = new System.Windows.Forms.Label();
             this.labelFeedbackForBuildings = new System.Windows.Forms.Label();
             this.listBoxBuildings = new System.Windows.Forms.ListBox();
@@ -101,7 +100,6 @@
             // 
             // tabPageBuilding
             // 
-            this.tabPageBuilding.Controls.Add(this.flowLayoutPanel1);
             this.tabPageBuilding.Controls.Add(this.labelListOfBuildings);
             this.tabPageBuilding.Controls.Add(this.labelFeedbackForBuildings);
             this.tabPageBuilding.Controls.Add(this.listBoxBuildings);
@@ -123,14 +121,6 @@
             this.tabPageBuilding.Text = "Buildings";
             this.tabPageBuilding.UseVisualStyleBackColor = true;
             this.tabPageBuilding.Click += new System.EventHandler(this.tabPageBuilding_Click);
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(278, 293);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(5, 5);
-            this.flowLayoutPanel1.TabIndex = 37;
             // 
             // labelListOfBuildings
             // 

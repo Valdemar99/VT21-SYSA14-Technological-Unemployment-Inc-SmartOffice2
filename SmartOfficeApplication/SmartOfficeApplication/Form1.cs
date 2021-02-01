@@ -13,7 +13,7 @@ namespace SmartOfficeApplication
 {
     public partial class Form1 : Form
     {
-        private DataAccessLayer dataAccessLayer = new DataAccessLayer();
+        private DataAccessLayer dataAccessLayer;
 
         public void updateBuildingList() //Update listBoxBuildings with all buildings in the database.
         {
@@ -133,24 +133,21 @@ namespace SmartOfficeApplication
 
         private void buttonViewOffices_Click(object sender, EventArgs e)
         {
-            
-            try
-            {
-                string selectedAddress = comboBoxAddressViewOffices.SelectedValue.ToString();
-                SqlDataReader offices = dataAccessLayer.GetOffices(selectedAddress);
-                DataTable officeTable = new DataTable();
-                officeTable.Load(offices);
-                dataGridViewOffices.DataSource = officeTable;
-            }
-            catch (NullReferenceException exception)
-            {
-                labelFeedbackForOfficesTab.Text = "Please select a valid address to display its offices. If there are no addresses please create one.";
-            }
+            string selectedAddress = comboBoxAddressViewOffices.SelectedValue.ToString();
+            SqlDataReader offices = dataAccessLayer.GetOffices(selectedAddress);
+
         }
 
-        private void trackBarTemperature_Scroll(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
-            labelSelectedTemperature.Text = trackBarTemperature.Value + " °C";
+            // TODO: This line of code loads data into the '_Smart_Office_2_0DataSet.Office' table. You can move, or remove it, as needed.
+            this.officeTableAdapter.Fill(this._Smart_Office_2_0DataSet.Office);
+
+        }
+
+        private void dataGridViewOffices_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

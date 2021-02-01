@@ -141,11 +141,32 @@ namespace SmartOfficeApplication
         private void Form1_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the '_Smart_Office_2_0DataSet.Office' table. You can move, or remove it, as needed.
-            this.officeTableAdapter.Fill(this._Smart_Office_2_0DataSet.Office);
+           
 
         }
 
         private void dataGridViewOffices_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void buttonRemoveOffice_Click(object sender, EventArgs e)
+        {
+            string number = comboBoxOfficeNumberDelete.SelectedItem.ToString();
+            string address = comboBoxOfficeAddressDelete.SelectedItem.ToString();
+            dataAccessLayer.RemoveOffice(number, address);
+            
+            {
+
+            }
+        }
+
+        private void comboBoxOfficeNumberDelete_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxOfficeAddressDelete_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

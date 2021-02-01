@@ -418,7 +418,6 @@
             this.labelVentilationSetting.Size = new System.Drawing.Size(107, 14);
             this.labelVentilationSetting.TabIndex = 14;
             this.labelVentilationSetting.Text = "Ventilation Setting:";
-            this.labelVentilationSetting.Click += new System.EventHandler(this.label2_Click);
             // 
             // labelOfficeNumber
             // 

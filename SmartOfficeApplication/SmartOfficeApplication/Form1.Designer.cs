@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tabControlOffice = new System.Windows.Forms.TabControl();
             this.tabPageBuilding = new System.Windows.Forms.TabPage();
             this.labelListOfBuildings = new System.Windows.Forms.Label();
@@ -66,11 +67,24 @@
             this.comboBoxOfficeNumber = new System.Windows.Forms.ComboBox();
             this.labelOfficeAddress = new System.Windows.Forms.Label();
             this.comboBoxOfficeAddress = new System.Windows.Forms.ComboBox();
+            this.buildingAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.officeNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ventilationSetting = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.temperatureSetting = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._Smart_Office_2_0DataSet = new SmartOfficeApplication._Smart_Office_2_0DataSet();
+            this.officeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.officeTableAdapter = new SmartOfficeApplication._Smart_Office_2_0DataSetTableAdapters.OfficeTableAdapter();
+            this.officeNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buildingAddressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.temperatureSettingDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ventilationSettingDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControlOffice.SuspendLayout();
             this.tabPageBuilding.SuspendLayout();
             this.tabPageOffice.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOffices)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarTemperature)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._Smart_Office_2_0DataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.officeBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControlOffice
@@ -271,11 +285,23 @@
             // 
             // dataGridViewOffices
             // 
+            this.dataGridViewOffices.AutoGenerateColumns = false;
             this.dataGridViewOffices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewOffices.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.buildingAddress,
+            this.officeNumber,
+            this.ventilationSetting,
+            this.temperatureSetting,
+            this.officeNumberDataGridViewTextBoxColumn,
+            this.buildingAddressDataGridViewTextBoxColumn,
+            this.temperatureSettingDataGridViewTextBoxColumn,
+            this.ventilationSettingDataGridViewTextBoxColumn});
+            this.dataGridViewOffices.DataSource = this.officeBindingSource;
             this.dataGridViewOffices.Location = new System.Drawing.Point(423, 122);
             this.dataGridViewOffices.Name = "dataGridViewOffices";
             this.dataGridViewOffices.Size = new System.Drawing.Size(312, 300);
             this.dataGridViewOffices.TabIndex = 33;
+            this.dataGridViewOffices.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewOffices_CellContentClick);
             // 
             // buttonViewOffices
             // 
@@ -285,6 +311,7 @@
             this.buttonViewOffices.TabIndex = 32;
             this.buttonViewOffices.Text = "View offices";
             this.buttonViewOffices.UseVisualStyleBackColor = true;
+            this.buttonViewOffices.Click += new System.EventHandler(this.buttonViewOffices_Click);
             // 
             // labelAddressViewOffices
             // 
@@ -453,6 +480,68 @@
             this.comboBoxOfficeAddress.Size = new System.Drawing.Size(187, 22);
             this.comboBoxOfficeAddress.TabIndex = 9;
             // 
+            // buildingAddress
+            // 
+            this.buildingAddress.HeaderText = "Building Address";
+            this.buildingAddress.Name = "buildingAddress";
+            this.buildingAddress.ReadOnly = true;
+            // 
+            // officeNumber
+            // 
+            this.officeNumber.HeaderText = "Office Number";
+            this.officeNumber.Name = "officeNumber";
+            this.officeNumber.ReadOnly = true;
+            // 
+            // ventilationSetting
+            // 
+            this.ventilationSetting.HeaderText = "Ventilation Setting";
+            this.ventilationSetting.Name = "ventilationSetting";
+            this.ventilationSetting.ReadOnly = true;
+            // 
+            // temperatureSetting
+            // 
+            this.temperatureSetting.HeaderText = "Temperature Setting";
+            this.temperatureSetting.Name = "temperatureSetting";
+            this.temperatureSetting.ReadOnly = true;
+            // 
+            // _Smart_Office_2_0DataSet
+            // 
+            this._Smart_Office_2_0DataSet.DataSetName = "_Smart_Office_2_0DataSet";
+            this._Smart_Office_2_0DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // officeBindingSource
+            // 
+            this.officeBindingSource.DataMember = "Office";
+            this.officeBindingSource.DataSource = this._Smart_Office_2_0DataSet;
+            // 
+            // officeTableAdapter
+            // 
+            this.officeTableAdapter.ClearBeforeFill = true;
+            // 
+            // officeNumberDataGridViewTextBoxColumn
+            // 
+            this.officeNumberDataGridViewTextBoxColumn.DataPropertyName = "officeNumber";
+            this.officeNumberDataGridViewTextBoxColumn.HeaderText = "officeNumber";
+            this.officeNumberDataGridViewTextBoxColumn.Name = "officeNumberDataGridViewTextBoxColumn";
+            // 
+            // buildingAddressDataGridViewTextBoxColumn
+            // 
+            this.buildingAddressDataGridViewTextBoxColumn.DataPropertyName = "buildingAddress";
+            this.buildingAddressDataGridViewTextBoxColumn.HeaderText = "buildingAddress";
+            this.buildingAddressDataGridViewTextBoxColumn.Name = "buildingAddressDataGridViewTextBoxColumn";
+            // 
+            // temperatureSettingDataGridViewTextBoxColumn
+            // 
+            this.temperatureSettingDataGridViewTextBoxColumn.DataPropertyName = "temperatureSetting";
+            this.temperatureSettingDataGridViewTextBoxColumn.HeaderText = "temperatureSetting";
+            this.temperatureSettingDataGridViewTextBoxColumn.Name = "temperatureSettingDataGridViewTextBoxColumn";
+            // 
+            // ventilationSettingDataGridViewTextBoxColumn
+            // 
+            this.ventilationSettingDataGridViewTextBoxColumn.DataPropertyName = "ventilationSetting";
+            this.ventilationSettingDataGridViewTextBoxColumn.HeaderText = "ventilationSetting";
+            this.ventilationSettingDataGridViewTextBoxColumn.Name = "ventilationSettingDataGridViewTextBoxColumn";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -461,6 +550,7 @@
             this.Controls.Add(this.tabControlOffice);
             this.Name = "Form1";
             this.Text = "Smart Office 2.0";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControlOffice.ResumeLayout(false);
             this.tabPageBuilding.ResumeLayout(false);
             this.tabPageBuilding.PerformLayout();
@@ -468,6 +558,8 @@
             this.tabPageOffice.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOffices)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarTemperature)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._Smart_Office_2_0DataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.officeBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -512,6 +604,17 @@
         private System.Windows.Forms.Label labelFeedbackForOfficesTab;
         private System.Windows.Forms.Label labelFeedbackForBuildings;
         private System.Windows.Forms.Label labelListOfBuildings;
+        private System.Windows.Forms.DataGridViewTextBoxColumn buildingAddress;
+        private System.Windows.Forms.DataGridViewTextBoxColumn officeNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ventilationSetting;
+        private System.Windows.Forms.DataGridViewTextBoxColumn temperatureSetting;
+        private _Smart_Office_2_0DataSet _Smart_Office_2_0DataSet;
+        private System.Windows.Forms.BindingSource officeBindingSource;
+        private _Smart_Office_2_0DataSetTableAdapters.OfficeTableAdapter officeTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn officeNumberDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn buildingAddressDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn temperatureSettingDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ventilationSettingDataGridViewTextBoxColumn;
     }
 }
 

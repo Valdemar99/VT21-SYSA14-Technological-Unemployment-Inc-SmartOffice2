@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,16 @@ namespace SmartOfficeApplication
     public partial class Form1 : Form
     {
         private DataAccessLayer dataAccessLayer;
+
+        public void updateBuildingList() //Update listBoxBuildings with all buildings in the database.
+        {
+            listBoxBuildings.Items.Clear();
+            SqlDataReader buildingReader = dataAccessLayer.GetBuildings(); //Fetch data and hold it in buildingList.
+            while (buildingReader.Read())
+            {
+                listBoxBuildings.Items.Add(buildingReader.GetString(0));
+            }
+        }
 
         public Form1()
         {
@@ -76,6 +87,25 @@ namespace SmartOfficeApplication
         private void buttonDeleteBuilding_Click(object sender, EventArgs e)
         {
 
+
+        }
+
+        private void buttonViewOffices_Click(object sender, EventArgs e)
+        {
+            string selectedAddress = comboBoxAddressViewOffices.SelectedValue.ToString();
+            SqlDataReader offices = dataAccessLayer.GetOffices(selectedAddress);
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the '_Smart_Office_2_0DataSet.Office' table. You can move, or remove it, as needed.
+            this.officeTableAdapter.Fill(this._Smart_Office_2_0DataSet.Office);
+
+        }
+
+        private void dataGridViewOffices_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
     }

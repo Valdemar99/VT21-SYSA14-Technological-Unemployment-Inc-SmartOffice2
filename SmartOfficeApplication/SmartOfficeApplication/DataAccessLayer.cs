@@ -55,7 +55,7 @@ namespace SmartOfficeApplication
         {
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
-                using (SqlCommand sqlCommand = new SqlCommand("SELECT FROM Building WHERE address = '" + address + "'", sqlConnection)
+                using (SqlCommand sqlCommand = new SqlCommand("SELECT FROM Building WHERE address = '" + address + "'", sqlConnection))
                 {
                     try
                     {
@@ -73,10 +73,9 @@ namespace SmartOfficeApplication
                         throw e;
                     }
                 }
+            }
+        }
                     
-                
-            
-        
 
 
         /*****************.

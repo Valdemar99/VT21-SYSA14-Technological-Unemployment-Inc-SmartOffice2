@@ -68,33 +68,61 @@ namespace SmartOfficeApplication
                                    it to the database. Though if radiobutton radioButtonEditBuilding has been selected the address can be altered using the
                                    combination of combobox(for the old address) and textbox(to insert new address).
            ***********/
-        private void buttonAddBuilding_Click(object sender, EventArgs e) //Knappen
+        private void buttonAddBuilding_Click(object sender, EventArgs e) 
         {
             labelFeedbackForBuildings.ResetText(); //return the label to default 
             string newAddress = textBoxAddress.Text; //retrieves text from textbox
 
            if (radioButtonAddBuilding.Checked == true)
             {
-                if (newAddress.Equals(""))
+                if (newAddress.Equals(""))//Error message if the textbox is empty
                 {
-                    //Error message if the textbox is empty
                     labelFeedbackForBuildings.Text = "To add a new building, please insert address.";
                 }
-                
-                //if(address !=  )
-                dataAccessLayer.AddBuilding(newAddress);
-                labelFeedbackForBuildings.Text = "The building with address'" + newAddress + "' has been successfully added to database.";
+
+                else
+                {
+                    if (dataAccessLayer.checkIfBuildingExists(newAddress) != true) //Checks if the address doesn't exist in the database, if so, adds a new building
+                    {
+                        dataAccessLayer.AddBuilding(newAddress);
+                        labelFeedbackForBuildings.Text = "The building with address'" + newAddress + "' has been successfully added to database.";
+                    }
+                    if (dataAccessLayer.checkIfBuildingExists(newAddress) == true) // If the address already exists it sends an error message
+                    {
+                        labelFeedbackForBuildings.Text = "This building with inserted address already exists in our database.";
+                    }
+                }
+
             }
 
-           if (radioButtonEditBuilding.Checked == true)
+           if (radioButtonEditBuilding.Checked == true) //If edit building is chosen
             {
                 string oldAddress = comboBoxOldAddress.SelectedItem.ToString();
 
-                //Kolla om den nya addressen redan existerar
-                //felmeddelande om comboboxen inte har några alternativ
+                //Checks if the old address doesn't exist in the database, if so, change to address in new address textbox
+                if (dataAccessLayer.checkIfBuildingExists(oldAddress) == true)
+                {
+                    if (newAddress.Equals(""))//Error message if the textbox is empty
+                    {
+                        labelFeedbackForBuildings.Text = "To edit a new building, please insert the new address.";
+                    }
+                    else
+                    { //Checks if the new address doesn't exist in the database, if so, edits the old address to the new one
+                        if(dataAccessLayer.checkIfBuildingExists(newAddress) != true)
+                        {
+                            dataAccessLayer.EditBuilding(oldAddress, newAddress);
+                            labelFeedbackForBuildings.Text = "The building with address'" + oldAddress + "' has been successfully changed into '" + newAddress + "' within the database.";
 
-                dataAccessLayer.EditBuilding(oldAddress, newAddress);
-                labelFeedbackForBuildings.Text = "The building with address'" + oldAddress + "' has been successfully changed into '" + newAddress + "' within the database.";
+                        }
+                        if (dataAccessLayer.checkIfBuildingExists(newAddress) == true) // If the new address already exists it sends an error message
+                        {
+                            labelFeedbackForBuildings.Text = "This building with inserted new address already exists in our database. Please try another another address.";
+                        }
+
+                    }
+
+
+                }
 
             }
 
@@ -141,7 +169,6 @@ namespace SmartOfficeApplication
         private void Form1_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the '_Smart_Office_2_0DataSet.Office' table. You can move, or remove it, as needed.
-            this.officeTableAdapter.Fill(this._Smart_Office_2_0DataSet.Office);
 
         }
 

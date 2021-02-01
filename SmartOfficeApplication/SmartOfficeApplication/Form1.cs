@@ -218,6 +218,7 @@ namespace SmartOfficeApplication
 
             if (radioButtonAddOffice.Checked == true)
             {
+                comboBoxOfficeNumber.Enabled = false; //disables a choice of office number.
                 if (buildingAddress.Equals(""))//Error message if the textbox is empty
                 {
                     labelFeedbackForOffices.Text = "To add a new office, please insert an address.";
@@ -232,6 +233,7 @@ namespace SmartOfficeApplication
 
             if (radioButtonEditOffice.Checked == true) //If edit building is chosen
             {
+                comboBoxOfficeNumber.Enabled = true; //enables a choice of office number.
                 object officeNumberObject = comboBoxOfficeNumber.SelectedItem;
                 if (buildingAddress.Equals(""))//Error message if no address is chosen
                 {

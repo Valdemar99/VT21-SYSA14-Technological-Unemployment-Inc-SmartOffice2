@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.tabControlOffice = new System.Windows.Forms.TabControl();
             this.tabPageBuilding = new System.Windows.Forms.TabPage();
             this.labelListOfBuildings = new System.Windows.Forms.Label();
@@ -45,13 +44,11 @@
             this.textBoxAddress = new System.Windows.Forms.TextBox();
             this.buttonAddBuilding = new System.Windows.Forms.Button();
             this.tabPageOffice = new System.Windows.Forms.TabPage();
-            this.labelFeedbackForOfficesTab = new System.Windows.Forms.Label();
+            this.labelFeedbackForOffices = new System.Windows.Forms.Label();
             this.dataGridViewOffices = new System.Windows.Forms.DataGridView();
             this.buildingAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.officeNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ventilationSetting = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.temperatureSetting = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.officeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.buttonViewOffices = new System.Windows.Forms.Button();
             this.labelAddressViewOffices = new System.Windows.Forms.Label();
             this.comboBoxAddressViewOffices = new System.Windows.Forms.ComboBox();
@@ -72,13 +69,6 @@
             this.comboBoxOfficeNumber = new System.Windows.Forms.ComboBox();
             this.labelOfficeAddress = new System.Windows.Forms.Label();
             this.comboBoxOfficeAddress = new System.Windows.Forms.ComboBox();
-
-
-            this.buildingAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.officeNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ventilationSetting = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.temperatureSetting = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.officeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.officeNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buildingAddressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.temperatureSettingDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -87,9 +77,6 @@
             this.tabPageBuilding.SuspendLayout();
             this.tabPageOffice.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOffices)).BeginInit();
-
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarTemperature)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.officeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarTemperature)).BeginInit();
             this.SuspendLayout();
             // 
@@ -98,11 +85,10 @@
             this.tabControlOffice.Controls.Add(this.tabPageBuilding);
             this.tabControlOffice.Controls.Add(this.tabPageOffice);
             this.tabControlOffice.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControlOffice.Location = new System.Drawing.Point(0, -2);
-            this.tabControlOffice.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tabControlOffice.Location = new System.Drawing.Point(0, -1);
             this.tabControlOffice.Name = "tabControlOffice";
             this.tabControlOffice.SelectedIndex = 0;
-            this.tabControlOffice.Size = new System.Drawing.Size(1200, 749);
+            this.tabControlOffice.Size = new System.Drawing.Size(800, 487);
             this.tabControlOffice.TabIndex = 0;
             // 
             // tabPageBuilding
@@ -120,12 +106,10 @@
             this.tabPageBuilding.Controls.Add(this.buttonDeleteBuilding);
             this.tabPageBuilding.Controls.Add(this.textBoxAddress);
             this.tabPageBuilding.Controls.Add(this.buttonAddBuilding);
-            this.tabPageBuilding.Location = new System.Drawing.Point(4, 31);
-            this.tabPageBuilding.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tabPageBuilding.Location = new System.Drawing.Point(4, 23);
             this.tabPageBuilding.Name = "tabPageBuilding";
-
-            this.tabPageBuilding.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tabPageBuilding.Size = new System.Drawing.Size(1192, 714);
+            this.tabPageBuilding.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageBuilding.Size = new System.Drawing.Size(792, 460);
             this.tabPageBuilding.TabIndex = 0;
             this.tabPageBuilding.Text = "Buildings";
             this.tabPageBuilding.UseVisualStyleBackColor = true;
@@ -134,21 +118,18 @@
             // labelListOfBuildings
             // 
             this.labelListOfBuildings.AutoSize = true;
-            this.labelListOfBuildings.Location = new System.Drawing.Point(576, 54);
-            this.labelListOfBuildings.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelListOfBuildings.Location = new System.Drawing.Point(384, 35);
             this.labelListOfBuildings.Name = "labelListOfBuildings";
-            this.labelListOfBuildings.Size = new System.Drawing.Size(227, 22);
+            this.labelListOfBuildings.Size = new System.Drawing.Size(157, 14);
             this.labelListOfBuildings.TabIndex = 36;
             this.labelListOfBuildings.Text = "List of all building addresses:";
             // 
             // labelFeedbackForBuildings
             // 
             this.labelFeedbackForBuildings.AutoSize = true;
-
-            this.labelFeedbackForBuildings.Location = new System.Drawing.Point(39, 265);
-            this.labelFeedbackForBuildings.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelFeedbackForBuildings.Location = new System.Drawing.Point(26, 172);
             this.labelFeedbackForBuildings.Name = "labelFeedbackForBuildings";
-            this.labelFeedbackForBuildings.Size = new System.Drawing.Size(118, 22);
+            this.labelFeedbackForBuildings.Size = new System.Drawing.Size(81, 14);
             this.labelFeedbackForBuildings.TabIndex = 35;
             this.labelFeedbackForBuildings.Text = "feedbackLabel";
             // 
@@ -156,20 +137,18 @@
             // 
             this.listBoxBuildings.Enabled = false;
             this.listBoxBuildings.FormattingEnabled = true;
-            this.listBoxBuildings.ItemHeight = 22;
-            this.listBoxBuildings.Location = new System.Drawing.Point(580, 118);
-            this.listBoxBuildings.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.listBoxBuildings.ItemHeight = 14;
+            this.listBoxBuildings.Location = new System.Drawing.Point(387, 77);
             this.listBoxBuildings.Name = "listBoxBuildings";
-            this.listBoxBuildings.Size = new System.Drawing.Size(541, 422);
+            this.listBoxBuildings.Size = new System.Drawing.Size(362, 270);
             this.listBoxBuildings.TabIndex = 12;
             // 
             // radioButtonEditBuilding
             // 
             this.radioButtonEditBuilding.AutoSize = true;
-            this.radioButtonEditBuilding.Location = new System.Drawing.Point(315, 188);
-            this.radioButtonEditBuilding.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.radioButtonEditBuilding.Location = new System.Drawing.Point(210, 122);
             this.radioButtonEditBuilding.Name = "radioButtonEditBuilding";
-            this.radioButtonEditBuilding.Size = new System.Drawing.Size(131, 26);
+            this.radioButtonEditBuilding.Size = new System.Drawing.Size(92, 18);
             this.radioButtonEditBuilding.TabIndex = 11;
             this.radioButtonEditBuilding.TabStop = true;
             this.radioButtonEditBuilding.Text = "Edit building";
@@ -179,10 +158,9 @@
             // radioButtonAddBuilding
             // 
             this.radioButtonAddBuilding.AutoSize = true;
-            this.radioButtonAddBuilding.Location = new System.Drawing.Point(166, 188);
-            this.radioButtonAddBuilding.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.radioButtonAddBuilding.Location = new System.Drawing.Point(111, 122);
             this.radioButtonAddBuilding.Name = "radioButtonAddBuilding";
-            this.radioButtonAddBuilding.Size = new System.Drawing.Size(133, 26);
+            this.radioButtonAddBuilding.Size = new System.Drawing.Size(93, 18);
             this.radioButtonAddBuilding.TabIndex = 10;
             this.radioButtonAddBuilding.TabStop = true;
             this.radioButtonAddBuilding.Text = "Add building";
@@ -192,58 +170,52 @@
             // labelOldAddress
             // 
             this.labelOldAddress.AutoSize = true;
-            this.labelOldAddress.Location = new System.Drawing.Point(39, 54);
-            this.labelOldAddress.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelOldAddress.Location = new System.Drawing.Point(26, 35);
             this.labelOldAddress.Name = "labelOldAddress";
-            this.labelOldAddress.Size = new System.Drawing.Size(104, 22);
+            this.labelOldAddress.Size = new System.Drawing.Size(72, 14);
             this.labelOldAddress.TabIndex = 9;
             this.labelOldAddress.Text = "Old address:";
             // 
             // comboBoxOldAddress
             // 
             this.comboBoxOldAddress.FormattingEnabled = true;
-            this.comboBoxOldAddress.Location = new System.Drawing.Point(166, 49);
-            this.comboBoxOldAddress.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.comboBoxOldAddress.Location = new System.Drawing.Point(111, 32);
             this.comboBoxOldAddress.Name = "comboBoxOldAddress";
-            this.comboBoxOldAddress.Size = new System.Drawing.Size(278, 30);
+            this.comboBoxOldAddress.Size = new System.Drawing.Size(187, 22);
             this.comboBoxOldAddress.TabIndex = 8;
             // 
             // labelAddressDelete
             // 
             this.labelAddressDelete.AutoSize = true;
-            this.labelAddressDelete.Location = new System.Drawing.Point(39, 489);
-            this.labelAddressDelete.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelAddressDelete.Location = new System.Drawing.Point(26, 318);
             this.labelAddressDelete.Name = "labelAddressDelete";
-            this.labelAddressDelete.Size = new System.Drawing.Size(74, 22);
+            this.labelAddressDelete.Size = new System.Drawing.Size(51, 14);
             this.labelAddressDelete.TabIndex = 7;
             this.labelAddressDelete.Text = "Address:";
             // 
             // comboBoxAddressDelete
             // 
             this.comboBoxAddressDelete.FormattingEnabled = true;
-            this.comboBoxAddressDelete.Location = new System.Drawing.Point(166, 485);
-            this.comboBoxAddressDelete.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.comboBoxAddressDelete.Location = new System.Drawing.Point(111, 315);
             this.comboBoxAddressDelete.Name = "comboBoxAddressDelete";
-            this.comboBoxAddressDelete.Size = new System.Drawing.Size(278, 30);
+            this.comboBoxAddressDelete.Size = new System.Drawing.Size(187, 22);
             this.comboBoxAddressDelete.TabIndex = 6;
             this.comboBoxAddressDelete.SelectedIndexChanged += new System.EventHandler(this.comboBoxAddressDelete_SelectedIndexChanged);
             // 
             // labelAddress
             // 
             this.labelAddress.AutoSize = true;
-            this.labelAddress.Location = new System.Drawing.Point(39, 123);
-            this.labelAddress.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelAddress.Location = new System.Drawing.Point(26, 80);
             this.labelAddress.Name = "labelAddress";
-            this.labelAddress.Size = new System.Drawing.Size(74, 22);
+            this.labelAddress.Size = new System.Drawing.Size(51, 14);
             this.labelAddress.TabIndex = 5;
             this.labelAddress.Text = "Address:";
             // 
             // buttonDeleteBuilding
             // 
-            this.buttonDeleteBuilding.Location = new System.Drawing.Point(166, 543);
-            this.buttonDeleteBuilding.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonDeleteBuilding.Location = new System.Drawing.Point(111, 353);
             this.buttonDeleteBuilding.Name = "buttonDeleteBuilding";
-            this.buttonDeleteBuilding.Size = new System.Drawing.Size(189, 35);
+            this.buttonDeleteBuilding.Size = new System.Drawing.Size(126, 23);
             this.buttonDeleteBuilding.TabIndex = 4;
             this.buttonDeleteBuilding.Text = "Remove building";
             this.buttonDeleteBuilding.UseVisualStyleBackColor = true;
@@ -251,18 +223,16 @@
             // 
             // textBoxAddress
             // 
-            this.textBoxAddress.Location = new System.Drawing.Point(166, 118);
-            this.textBoxAddress.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxAddress.Location = new System.Drawing.Point(111, 77);
             this.textBoxAddress.Name = "textBoxAddress";
-            this.textBoxAddress.Size = new System.Drawing.Size(278, 28);
+            this.textBoxAddress.Size = new System.Drawing.Size(187, 21);
             this.textBoxAddress.TabIndex = 3;
             // 
             // buttonAddBuilding
             // 
-            this.buttonAddBuilding.Location = new System.Drawing.Point(166, 225);
-            this.buttonAddBuilding.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonAddBuilding.Location = new System.Drawing.Point(111, 146);
             this.buttonAddBuilding.Name = "buttonAddBuilding";
-            this.buttonAddBuilding.Size = new System.Drawing.Size(189, 35);
+            this.buttonAddBuilding.Size = new System.Drawing.Size(126, 23);
             this.buttonAddBuilding.TabIndex = 0;
             this.buttonAddBuilding.Text = "Add building";
             this.buttonAddBuilding.UseVisualStyleBackColor = true;
@@ -270,7 +240,7 @@
             // 
             // tabPageOffice
             // 
-            this.tabPageOffice.Controls.Add(this.labelFeedbackForOfficesTab);
+            this.tabPageOffice.Controls.Add(this.labelFeedbackForOffices);
             this.tabPageOffice.Controls.Add(this.dataGridViewOffices);
             this.tabPageOffice.Controls.Add(this.buttonViewOffices);
             this.tabPageOffice.Controls.Add(this.labelAddressViewOffices);
@@ -292,65 +262,35 @@
             this.tabPageOffice.Controls.Add(this.comboBoxOfficeNumber);
             this.tabPageOffice.Controls.Add(this.labelOfficeAddress);
             this.tabPageOffice.Controls.Add(this.comboBoxOfficeAddress);
-            this.tabPageOffice.Location = new System.Drawing.Point(4, 31);
-            this.tabPageOffice.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tabPageOffice.Location = new System.Drawing.Point(4, 23);
             this.tabPageOffice.Name = "tabPageOffice";
-            this.tabPageOffice.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tabPageOffice.Size = new System.Drawing.Size(1192, 714);
+            this.tabPageOffice.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageOffice.Size = new System.Drawing.Size(792, 460);
             this.tabPageOffice.TabIndex = 1;
             this.tabPageOffice.Text = "Offices";
             this.tabPageOffice.UseVisualStyleBackColor = true;
             // 
-            // labelFeedbackForOfficesTab
+            // labelFeedbackForOffices
             // 
-            this.labelFeedbackForOfficesTab.AutoSize = true;
-            this.labelFeedbackForOfficesTab.Location = new System.Drawing.Point(39, 674);
-            this.labelFeedbackForOfficesTab.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelFeedbackForOfficesTab.Name = "labelFeedbackForOfficesTab";
-            this.labelFeedbackForOfficesTab.Size = new System.Drawing.Size(118, 22);
-            this.labelFeedbackForOfficesTab.TabIndex = 34;
-            this.labelFeedbackForOfficesTab.Text = "feedbackLabel";
+            this.labelFeedbackForOffices.AutoSize = true;
+            this.labelFeedbackForOffices.Location = new System.Drawing.Point(26, 438);
+            this.labelFeedbackForOffices.Name = "labelFeedbackForOffices";
+            this.labelFeedbackForOffices.Size = new System.Drawing.Size(81, 14);
+            this.labelFeedbackForOffices.TabIndex = 34;
+            this.labelFeedbackForOffices.Text = "feedbackLabel";
             // 
             // dataGridViewOffices
             // 
-            this.dataGridViewOffices.AutoGenerateColumns = false;
             this.dataGridViewOffices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewOffices.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.buildingAddress,
-            this.officeNumber,
             this.ventilationSetting,
             this.temperatureSetting});
-            this.dataGridViewOffices.DataSource = this.officeBindingSource;
-            this.dataGridViewOffices.Location = new System.Drawing.Point(634, 188);
-            this.dataGridViewOffices.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dataGridViewOffices.Location = new System.Drawing.Point(423, 122);
             this.dataGridViewOffices.Name = "dataGridViewOffices";
             this.dataGridViewOffices.RowHeadersWidth = 62;
-            this.dataGridViewOffices.Size = new System.Drawing.Size(468, 462);
+            this.dataGridViewOffices.Size = new System.Drawing.Size(312, 300);
             this.dataGridViewOffices.TabIndex = 33;
-            // 
-            // buildingAddress
-            // 
-            this.buildingAddress.HeaderText = "Building Address";
-            this.buildingAddress.Name = "buildingAddress";
-            this.buildingAddress.ReadOnly = true;
-            // 
-            // officeNumber
-            // 
-            this.officeNumber.HeaderText = "Office Number";
-            this.officeNumber.Name = "officeNumber";
-            this.officeNumber.ReadOnly = true;
-            // 
-            // ventilationSetting
-            // 
-            this.ventilationSetting.HeaderText = "Ventilation Setting";
-            this.ventilationSetting.Name = "ventilationSetting";
-            this.ventilationSetting.ReadOnly = true;
-            // 
-            // temperatureSetting
-            // 
-            this.temperatureSetting.HeaderText = "Temperature Setting";
-            this.temperatureSetting.Name = "temperatureSetting";
-            this.temperatureSetting.ReadOnly = true;
             // 
             // buildingAddress
             // 
@@ -359,14 +299,6 @@
             this.buildingAddress.Name = "buildingAddress";
             this.buildingAddress.ReadOnly = true;
             this.buildingAddress.Width = 150;
-            // 
-            // officeNumber
-            // 
-            this.officeNumber.HeaderText = "Office Number";
-            this.officeNumber.MinimumWidth = 8;
-            this.officeNumber.Name = "officeNumber";
-            this.officeNumber.ReadOnly = true;
-            this.officeNumber.Width = 150;
             // 
             // ventilationSetting
             // 
@@ -384,16 +316,11 @@
             this.temperatureSetting.ReadOnly = true;
             this.temperatureSetting.Width = 150;
             // 
-            // officeBindingSource
-            // 
-            this.officeBindingSource.DataMember = "Office";
-            // 
             // buttonViewOffices
             // 
-            this.buttonViewOffices.Location = new System.Drawing.Point(822, 117);
-            this.buttonViewOffices.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonViewOffices.Location = new System.Drawing.Point(548, 76);
             this.buttonViewOffices.Name = "buttonViewOffices";
-            this.buttonViewOffices.Size = new System.Drawing.Size(189, 35);
+            this.buttonViewOffices.Size = new System.Drawing.Size(126, 23);
             this.buttonViewOffices.TabIndex = 32;
             this.buttonViewOffices.Text = "View offices";
             this.buttonViewOffices.UseVisualStyleBackColor = true;
@@ -402,28 +329,25 @@
             // labelAddressViewOffices
             // 
             this.labelAddressViewOffices.AutoSize = true;
-            this.labelAddressViewOffices.Location = new System.Drawing.Point(630, 58);
-            this.labelAddressViewOffices.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelAddressViewOffices.Location = new System.Drawing.Point(420, 38);
             this.labelAddressViewOffices.Name = "labelAddressViewOffices";
-            this.labelAddressViewOffices.Size = new System.Drawing.Size(74, 22);
+            this.labelAddressViewOffices.Size = new System.Drawing.Size(51, 14);
             this.labelAddressViewOffices.TabIndex = 31;
             this.labelAddressViewOffices.Text = "Address:";
             // 
             // comboBoxAddressViewOffices
             // 
             this.comboBoxAddressViewOffices.FormattingEnabled = true;
-            this.comboBoxAddressViewOffices.Location = new System.Drawing.Point(822, 54);
-            this.comboBoxAddressViewOffices.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.comboBoxAddressViewOffices.Location = new System.Drawing.Point(548, 35);
             this.comboBoxAddressViewOffices.Name = "comboBoxAddressViewOffices";
-            this.comboBoxAddressViewOffices.Size = new System.Drawing.Size(278, 30);
+            this.comboBoxAddressViewOffices.Size = new System.Drawing.Size(187, 22);
             this.comboBoxAddressViewOffices.TabIndex = 30;
             // 
             // buttonRemoveOffice
             // 
-            this.buttonRemoveOffice.Location = new System.Drawing.Point(231, 614);
-            this.buttonRemoveOffice.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonRemoveOffice.Location = new System.Drawing.Point(154, 399);
             this.buttonRemoveOffice.Name = "buttonRemoveOffice";
-            this.buttonRemoveOffice.Size = new System.Drawing.Size(189, 35);
+            this.buttonRemoveOffice.Size = new System.Drawing.Size(126, 23);
             this.buttonRemoveOffice.TabIndex = 29;
             this.buttonRemoveOffice.Text = "Remove office";
             this.buttonRemoveOffice.UseVisualStyleBackColor = true;
@@ -432,50 +356,45 @@
             // labelOfficeNumberDelete
             // 
             this.labelOfficeNumberDelete.AutoSize = true;
-            this.labelOfficeNumberDelete.Location = new System.Drawing.Point(39, 558);
-            this.labelOfficeNumberDelete.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelOfficeNumberDelete.Location = new System.Drawing.Point(26, 363);
             this.labelOfficeNumberDelete.Name = "labelOfficeNumberDelete";
-            this.labelOfficeNumberDelete.Size = new System.Drawing.Size(126, 22);
+            this.labelOfficeNumberDelete.Size = new System.Drawing.Size(85, 14);
             this.labelOfficeNumberDelete.TabIndex = 28;
             this.labelOfficeNumberDelete.Text = "Office Number:";
             // 
             // comboBoxOfficeNumberDelete
             // 
             this.comboBoxOfficeNumberDelete.FormattingEnabled = true;
-            this.comboBoxOfficeNumberDelete.Location = new System.Drawing.Point(231, 554);
-            this.comboBoxOfficeNumberDelete.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.comboBoxOfficeNumberDelete.Location = new System.Drawing.Point(154, 360);
             this.comboBoxOfficeNumberDelete.Name = "comboBoxOfficeNumberDelete";
-            this.comboBoxOfficeNumberDelete.Size = new System.Drawing.Size(278, 30);
+            this.comboBoxOfficeNumberDelete.Size = new System.Drawing.Size(187, 22);
             this.comboBoxOfficeNumberDelete.TabIndex = 27;
             this.comboBoxOfficeNumberDelete.SelectedIndexChanged += new System.EventHandler(this.comboBoxOfficeNumberDelete_SelectedIndexChanged);
             // 
             // labelOfficeAddressDelete
             // 
             this.labelOfficeAddressDelete.AutoSize = true;
-            this.labelOfficeAddressDelete.Location = new System.Drawing.Point(39, 489);
-            this.labelOfficeAddressDelete.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelOfficeAddressDelete.Location = new System.Drawing.Point(26, 318);
             this.labelOfficeAddressDelete.Name = "labelOfficeAddressDelete";
-            this.labelOfficeAddressDelete.Size = new System.Drawing.Size(74, 22);
+            this.labelOfficeAddressDelete.Size = new System.Drawing.Size(51, 14);
             this.labelOfficeAddressDelete.TabIndex = 26;
             this.labelOfficeAddressDelete.Text = "Address:";
             // 
             // comboBoxOfficeAddressDelete
             // 
             this.comboBoxOfficeAddressDelete.FormattingEnabled = true;
-            this.comboBoxOfficeAddressDelete.Location = new System.Drawing.Point(231, 485);
-            this.comboBoxOfficeAddressDelete.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.comboBoxOfficeAddressDelete.Location = new System.Drawing.Point(154, 315);
             this.comboBoxOfficeAddressDelete.Name = "comboBoxOfficeAddressDelete";
-            this.comboBoxOfficeAddressDelete.Size = new System.Drawing.Size(278, 30);
+            this.comboBoxOfficeAddressDelete.Size = new System.Drawing.Size(187, 22);
             this.comboBoxOfficeAddressDelete.TabIndex = 25;
             this.comboBoxOfficeAddressDelete.SelectedIndexChanged += new System.EventHandler(this.comboBoxOfficeAddressDelete_SelectedIndexChanged);
             // 
             // radioButtonEditOffice
             // 
             this.radioButtonEditOffice.AutoSize = true;
-            this.radioButtonEditOffice.Location = new System.Drawing.Point(380, 354);
-            this.radioButtonEditOffice.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.radioButtonEditOffice.Location = new System.Drawing.Point(253, 230);
             this.radioButtonEditOffice.Name = "radioButtonEditOffice";
-            this.radioButtonEditOffice.Size = new System.Drawing.Size(110, 26);
+            this.radioButtonEditOffice.Size = new System.Drawing.Size(77, 18);
             this.radioButtonEditOffice.TabIndex = 24;
             this.radioButtonEditOffice.TabStop = true;
             this.radioButtonEditOffice.Text = "Edit office";
@@ -484,10 +403,9 @@
             // radioButtonAddOffice
             // 
             this.radioButtonAddOffice.AutoSize = true;
-            this.radioButtonAddOffice.Location = new System.Drawing.Point(231, 354);
-            this.radioButtonAddOffice.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.radioButtonAddOffice.Location = new System.Drawing.Point(154, 230);
             this.radioButtonAddOffice.Name = "radioButtonAddOffice";
-            this.radioButtonAddOffice.Size = new System.Drawing.Size(112, 26);
+            this.radioButtonAddOffice.Size = new System.Drawing.Size(78, 18);
             this.radioButtonAddOffice.TabIndex = 23;
             this.radioButtonAddOffice.TabStop = true;
             this.radioButtonAddOffice.Text = "Add office";
@@ -495,31 +413,30 @@
             // 
             // buttonAddOffice
             // 
-            this.buttonAddOffice.Location = new System.Drawing.Point(231, 391);
-            this.buttonAddOffice.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonAddOffice.Location = new System.Drawing.Point(154, 254);
             this.buttonAddOffice.Name = "buttonAddOffice";
-            this.buttonAddOffice.Size = new System.Drawing.Size(189, 35);
+            this.buttonAddOffice.Size = new System.Drawing.Size(126, 23);
             this.buttonAddOffice.TabIndex = 22;
             this.buttonAddOffice.Text = "Add office";
             this.buttonAddOffice.UseVisualStyleBackColor = true;
+            this.buttonAddOffice.Click += new System.EventHandler(this.buttonAddOffice_Click);
             // 
             // labelSelectedTemperature
             // 
             this.labelSelectedTemperature.AutoSize = true;
-            this.labelSelectedTemperature.Location = new System.Drawing.Point(159, 265);
-            this.labelSelectedTemperature.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelSelectedTemperature.Location = new System.Drawing.Point(106, 172);
             this.labelSelectedTemperature.Name = "labelSelectedTemperature";
             this.labelSelectedTemperature.Size = new System.Drawing.Size(0, 14);
-
             this.labelSelectedTemperature.TabIndex = 19;
             // 
             // trackBarTemperature
             // 
-            this.trackBarTemperature.Location = new System.Drawing.Point(154, 172);
+            this.trackBarTemperature.Location = new System.Drawing.Point(154, 159);
+            this.trackBarTemperature.Margin = new System.Windows.Forms.Padding(2);
             this.trackBarTemperature.Maximum = 30;
             this.trackBarTemperature.Minimum = 16;
             this.trackBarTemperature.Name = "trackBarTemperature";
-            this.trackBarTemperature.Size = new System.Drawing.Size(280, 69);
+            this.trackBarTemperature.Size = new System.Drawing.Size(187, 45);
             this.trackBarTemperature.TabIndex = 18;
             this.trackBarTemperature.Value = 20;
             this.trackBarTemperature.Scroll += new System.EventHandler(this.trackBarTemperature_Scroll);
@@ -527,104 +444,62 @@
             // comboBoxVentilationSetting
             // 
             this.comboBoxVentilationSetting.FormattingEnabled = true;
-            this.comboBoxVentilationSetting.Location = new System.Drawing.Point(231, 188);
-            this.comboBoxVentilationSetting.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.comboBoxVentilationSetting.Location = new System.Drawing.Point(154, 122);
             this.comboBoxVentilationSetting.Name = "comboBoxVentilationSetting";
-            this.comboBoxVentilationSetting.Size = new System.Drawing.Size(278, 30);
+            this.comboBoxVentilationSetting.Size = new System.Drawing.Size(187, 22);
             this.comboBoxVentilationSetting.TabIndex = 17;
             // 
             // labelTemperature
             // 
             this.labelTemperature.AutoSize = true;
-            this.labelTemperature.Location = new System.Drawing.Point(39, 265);
-            this.labelTemperature.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelTemperature.Location = new System.Drawing.Point(26, 172);
             this.labelTemperature.Name = "labelTemperature";
-            this.labelTemperature.Size = new System.Drawing.Size(112, 22);
+            this.labelTemperature.Size = new System.Drawing.Size(74, 14);
             this.labelTemperature.TabIndex = 16;
             this.labelTemperature.Text = "Temperature:";
             // 
             // labelVentilationSetting
             // 
             this.labelVentilationSetting.AutoSize = true;
-            this.labelVentilationSetting.Location = new System.Drawing.Point(39, 192);
-            this.labelVentilationSetting.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelVentilationSetting.Location = new System.Drawing.Point(26, 125);
             this.labelVentilationSetting.Name = "labelVentilationSetting";
-            this.labelVentilationSetting.Size = new System.Drawing.Size(156, 22);
+            this.labelVentilationSetting.Size = new System.Drawing.Size(107, 14);
             this.labelVentilationSetting.TabIndex = 14;
             this.labelVentilationSetting.Text = "Ventilation Setting:";
             // 
             // labelOfficeNumber
             // 
             this.labelOfficeNumber.AutoSize = true;
-            this.labelOfficeNumber.Location = new System.Drawing.Point(39, 123);
-            this.labelOfficeNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelOfficeNumber.Location = new System.Drawing.Point(26, 80);
             this.labelOfficeNumber.Name = "labelOfficeNumber";
-            this.labelOfficeNumber.Size = new System.Drawing.Size(126, 22);
+            this.labelOfficeNumber.Size = new System.Drawing.Size(85, 14);
             this.labelOfficeNumber.TabIndex = 13;
             this.labelOfficeNumber.Text = "Office Number:";
             // 
             // comboBoxOfficeNumber
             // 
             this.comboBoxOfficeNumber.FormattingEnabled = true;
-            this.comboBoxOfficeNumber.Location = new System.Drawing.Point(231, 118);
-            this.comboBoxOfficeNumber.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.comboBoxOfficeNumber.Location = new System.Drawing.Point(154, 77);
             this.comboBoxOfficeNumber.Name = "comboBoxOfficeNumber";
-            this.comboBoxOfficeNumber.Size = new System.Drawing.Size(278, 30);
+            this.comboBoxOfficeNumber.Size = new System.Drawing.Size(187, 22);
             this.comboBoxOfficeNumber.TabIndex = 12;
             // 
             // labelOfficeAddress
             // 
             this.labelOfficeAddress.AutoSize = true;
-            this.labelOfficeAddress.Location = new System.Drawing.Point(39, 54);
-            this.labelOfficeAddress.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelOfficeAddress.Location = new System.Drawing.Point(26, 35);
             this.labelOfficeAddress.Name = "labelOfficeAddress";
-            this.labelOfficeAddress.Size = new System.Drawing.Size(74, 22);
+            this.labelOfficeAddress.Size = new System.Drawing.Size(51, 14);
             this.labelOfficeAddress.TabIndex = 10;
             this.labelOfficeAddress.Text = "Address:";
             // 
             // comboBoxOfficeAddress
             // 
             this.comboBoxOfficeAddress.FormattingEnabled = true;
-            this.comboBoxOfficeAddress.Location = new System.Drawing.Point(231, 49);
-            this.comboBoxOfficeAddress.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.comboBoxOfficeAddress.Location = new System.Drawing.Point(154, 32);
             this.comboBoxOfficeAddress.Name = "comboBoxOfficeAddress";
-            this.comboBoxOfficeAddress.Size = new System.Drawing.Size(278, 30);
+            this.comboBoxOfficeAddress.Size = new System.Drawing.Size(187, 22);
             this.comboBoxOfficeAddress.TabIndex = 9;
-            // 
-
-            // buildingAddress
-            // 
-            this.buildingAddress.HeaderText = "Building Address";
-            this.buildingAddress.Name = "buildingAddress";
-            this.buildingAddress.ReadOnly = true;
-            // 
-            // officeNumber
-            // 
-            this.officeNumber.HeaderText = "Office Number";
-            this.officeNumber.Name = "officeNumber";
-            this.officeNumber.ReadOnly = true;
-            // 
-            // ventilationSetting
-            // 
-            this.ventilationSetting.HeaderText = "Ventilation Setting";
-            this.ventilationSetting.Name = "ventilationSetting";
-            this.ventilationSetting.ReadOnly = true;
-            // 
-            // temperatureSetting
-            // 
-            this.temperatureSetting.HeaderText = "Temperature Setting";
-            this.temperatureSetting.Name = "temperatureSetting";
-            this.temperatureSetting.ReadOnly = true;
-            // 
-            // _Smart_Office_2_0DataSet
-            // 
-            // 
-            // officeBindingSource
-            // 
-            this.officeBindingSource.DataMember = "Office";
-            // 
-            // officeTableAdapter
-            // 
             // 
             // officeNumberDataGridViewTextBoxColumn
             // 
@@ -650,12 +525,12 @@
             this.ventilationSettingDataGridViewTextBoxColumn.HeaderText = "ventilationSetting";
             this.ventilationSettingDataGridViewTextBoxColumn.Name = "ventilationSettingDataGridViewTextBoxColumn";
             // 
+            // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1200, 743);
+            this.ClientSize = new System.Drawing.Size(800, 483);
             this.Controls.Add(this.tabControlOffice);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form1";
             this.Text = "Smart Office 2.0";
             this.tabControlOffice.ResumeLayout(false);
@@ -664,7 +539,6 @@
             this.tabPageOffice.ResumeLayout(false);
             this.tabPageOffice.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOffices)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.officeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarTemperature)).EndInit();
             this.ResumeLayout(false);
 
@@ -707,14 +581,12 @@
         private System.Windows.Forms.Label labelAddressViewOffices;
         private System.Windows.Forms.ComboBox comboBoxAddressViewOffices;
         private System.Windows.Forms.DataGridView dataGridViewOffices;
-        private System.Windows.Forms.Label labelFeedbackForOfficesTab;
+        private System.Windows.Forms.Label labelFeedbackForOffices;
         private System.Windows.Forms.Label labelFeedbackForBuildings;
         private System.Windows.Forms.Label labelListOfBuildings;
         private System.Windows.Forms.DataGridViewTextBoxColumn buildingAddress;
-        private System.Windows.Forms.DataGridViewTextBoxColumn officeNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn ventilationSetting;
         private System.Windows.Forms.DataGridViewTextBoxColumn temperatureSetting;
-        private System.Windows.Forms.BindingSource officeBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn officeNumberDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn buildingAddressDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn temperatureSettingDataGridViewTextBoxColumn;

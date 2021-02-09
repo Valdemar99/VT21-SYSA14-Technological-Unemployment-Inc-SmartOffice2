@@ -113,7 +113,6 @@
             this.tabPageBuilding.TabIndex = 0;
             this.tabPageBuilding.Text = "Buildings";
             this.tabPageBuilding.UseVisualStyleBackColor = true;
-            this.tabPageBuilding.Click += new System.EventHandler(this.tabPageBuilding_Click);
             // 
             // labelListOfBuildings
             // 
@@ -153,7 +152,6 @@
             this.radioButtonEditBuilding.TabStop = true;
             this.radioButtonEditBuilding.Text = "Edit building";
             this.radioButtonEditBuilding.UseVisualStyleBackColor = true;
-            this.radioButtonEditBuilding.CheckedChanged += new System.EventHandler(this.radioButtonEditBuilding_CheckedChanged_1);
             // 
             // radioButtonAddBuilding
             // 
@@ -165,7 +163,7 @@
             this.radioButtonAddBuilding.TabStop = true;
             this.radioButtonAddBuilding.Text = "Add building";
             this.radioButtonAddBuilding.UseVisualStyleBackColor = true;
-            this.radioButtonAddBuilding.CheckedChanged += new System.EventHandler(this.radioButtonAddBuilding_CheckedChanged_2);
+            this.radioButtonAddBuilding.CheckedChanged += new System.EventHandler(this.radioButtonAddBuilding_CheckedChanged);
             // 
             // labelOldAddress
             // 
@@ -448,7 +446,8 @@
             this.comboBoxVentilationSetting.Location = new System.Drawing.Point(154, 122);
             this.comboBoxVentilationSetting.Name = "comboBoxVentilationSetting";
             this.comboBoxVentilationSetting.Size = new System.Drawing.Size(187, 22);
-            this.comboBoxVentilationSetting.TabIndex = 17;            // 
+            this.comboBoxVentilationSetting.TabIndex = 17;
+            // 
             // labelTemperature
             // 
             this.labelTemperature.AutoSize = true;

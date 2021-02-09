@@ -24,11 +24,30 @@ namespace SmartOfficeApplication
                 listBoxBuildings.Items.Add(buildingReader.GetString(0));
             }
         }
+        public void UpdateBuildingComboboxes() //Updates all comboboxes with buildings.
+        {
+            comboBoxOfficeAddress.Items.Clear();
+            comboBoxOfficeAddressDelete.Items.Clear();
+            comboBoxAddressViewOffices.Items.Clear();
+            comboBoxOldAddress.Items.Clear();
+            comboBoxAddressDelete.Items.Clear();
+
+            SqlDataReader buildingReader = dataAccessLayer.GetBuildings(); //Fetch data and hold it in buildingList.
+            while (buildingReader.Read())
+            {
+                comboBoxOfficeAddress.Items.Add(buildingReader.GetString(0));
+                comboBoxOfficeAddressDelete.Items.Add(buildingReader.GetString(0));
+                comboBoxAddressViewOffices.Items.Add(buildingReader.GetString(0));
+                comboBoxOldAddress.Items.Add(buildingReader.GetString(0));
+                comboBoxAddressDelete.Items.Add(buildingReader.GetString(0));
+            }
+        }
 
         public Form1()
         {
             InitializeComponent();
             fillVentilationSettingComboBox();
+            UpdateBuildingComboboxes();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -270,12 +289,11 @@ namespace SmartOfficeApplication
 
         private void comboBoxOfficeAddress_SelectedIndexChanged(object sender, EventArgs e) //Updates the office number combobox under the address combobox
         {
-            if (comboBoxOfficeAddress.SelectedIndex != -1) //If an object in the combobox is selected, the combobox with office numbers is updated.
+            if (comboBoxOfficeAddress.SelectedIndex.ToString().Length != 0) //If an object in the combobox is selected, the combobox with office numbers is updated.
             {
                 string selectedAddress = comboBoxOfficeAddress.SelectedItem.ToString();
-                DataTable OfficesOnSelectedAddress = new DataTable();
-                comboBoxOfficeNumber.DisplayMember = "officeNumber";
-                comboBoxOfficeNumber.DataSource = dataAccessLayer.GetOffices(selectedAddress);
+                fillOfficeNumberComboBox(selectedAddress);
+                
             }
             else
             {
@@ -299,6 +317,12 @@ namespace SmartOfficeApplication
         {
             VentilationSetting vS = new VentilationSetting();
             comboBoxVentilationSetting.DataSource = vS.VentilationSettingList.ToList<string>();
+        }
+        private void fillOfficeNumberComboBox(string buildingAddress)
+        {
+            DataTable OfficesOnSelectedAddress = new DataTable();
+            comboBoxOfficeNumber.DisplayMember = "officeNumber";
+            comboBoxOfficeNumber.DataSource = dataAccessLayer.GetOffices(buildingAddress);
         }
     }
 }

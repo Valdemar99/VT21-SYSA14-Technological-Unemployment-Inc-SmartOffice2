@@ -81,7 +81,6 @@
             this.tabPageOffice.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOffices)).BeginInit();
 
-            ((System.ComponentModel.ISupportInitialize)(this.officeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarTemperature)).BeginInit();
             this.SuspendLayout();
             // 
@@ -327,12 +326,6 @@
             this.buildingAddress.Name = "buildingAddress";
             this.buildingAddress.ReadOnly = true;
             // 
-            // officeNumber
-            // 
-            this.officeNumber.HeaderText = "Office Number";
-            this.officeNumber.Name = "officeNumber";
-            this.officeNumber.ReadOnly = true;
-            // 
             // ventilationSetting
             // 
             this.ventilationSetting.HeaderText = "Ventilation Setting";
@@ -345,10 +338,7 @@
             this.temperatureSetting.Name = "temperatureSetting";
             this.temperatureSetting.ReadOnly = true;
             // 
-            // officeBindingSource
-            // 
-            this.officeBindingSource.DataMember = "Office";
-            // 
+    
             // buttonViewOffices
             // 
             this.buttonViewOffices.Location = new System.Drawing.Point(548, 76);

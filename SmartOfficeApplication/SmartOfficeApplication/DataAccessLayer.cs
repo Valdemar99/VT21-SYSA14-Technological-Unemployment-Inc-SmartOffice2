@@ -308,11 +308,12 @@ namespace SmartOfficeApplication
 
             /*****************.
                 *  Function             AddOffice
-                *   Description         Method that, if successful, adds an office in the database.
+                *   Description         Method that, if successful, adds an office in the database. As well as generates a new officeNumber
                 *    Parameters         string officeNumber, string buildingAddress, int temperatureSetting, string ventilationSetting
-                *     Returns           
+                *     Returns           string with officeNumber
                 ***********/
-            public void AddOffice(string buildingAddress, int temperatureSetting, string ventilationSetting)
+
+            public string AddOffice(string buildingAddress, int temperatureSetting, string ventilationSetting)
             {
                 using (SqlConnection sqlConnection = new SqlConnection(connectionString))
                 {
@@ -325,8 +326,14 @@ namespace SmartOfficeApplication
                         try
                         {
                             sqlConnection.Open();
-                            //int result = - kan användas senare för error handling
+
+                            string officeNumber;
+                            SqlCommand sqlCommandGetOffice = new SqlCommand("");
+                            SqlDataReader dataReader = sqlCommandGetOffice.ExecuteReader();
+                            officeNumber = dataReader.ToString(); //converts the generated dataReader with the officeNumber to a string
+                            
                             sqlCommand.ExecuteNonQuery();
+                            return officeNumber;
 
                         }
                         catch (SqlException e)

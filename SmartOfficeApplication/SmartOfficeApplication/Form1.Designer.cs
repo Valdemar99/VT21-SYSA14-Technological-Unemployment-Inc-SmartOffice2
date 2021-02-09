@@ -47,6 +47,7 @@
             this.labelFeedbackForOffices = new System.Windows.Forms.Label();
             this.dataGridViewOffices = new System.Windows.Forms.DataGridView();
             this.buildingAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+
             this.ventilationSetting = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.temperatureSetting = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonViewOffices = new System.Windows.Forms.Button();
@@ -69,14 +70,18 @@
             this.comboBoxOfficeNumber = new System.Windows.Forms.ComboBox();
             this.labelOfficeAddress = new System.Windows.Forms.Label();
             this.comboBoxOfficeAddress = new System.Windows.Forms.ComboBox();
+
             this.officeNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buildingAddressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.temperatureSettingDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ventilationSettingDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+
             this.tabControlOffice.SuspendLayout();
             this.tabPageBuilding.SuspendLayout();
             this.tabPageOffice.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOffices)).BeginInit();
+
+            ((System.ComponentModel.ISupportInitialize)(this.officeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarTemperature)).BeginInit();
             this.SuspendLayout();
             // 
@@ -231,7 +236,7 @@
             this.buttonAddBuilding.Name = "buttonAddBuilding";
             this.buttonAddBuilding.Size = new System.Drawing.Size(126, 23);
             this.buttonAddBuilding.TabIndex = 0;
-            this.buttonAddBuilding.Text = "Add building";
+            this.buttonAddBuilding.Text = "Save";
             this.buttonAddBuilding.UseVisualStyleBackColor = true;
             this.buttonAddBuilding.Click += new System.EventHandler(this.buttonAddBuilding_Click);
             // 
@@ -269,12 +274,14 @@
             // 
             // labelFeedbackForOffices
             // 
+
             this.labelFeedbackForOffices.AutoSize = true;
             this.labelFeedbackForOffices.Location = new System.Drawing.Point(26, 438);
             this.labelFeedbackForOffices.Name = "labelFeedbackForOffices";
             this.labelFeedbackForOffices.Size = new System.Drawing.Size(81, 14);
             this.labelFeedbackForOffices.TabIndex = 34;
             this.labelFeedbackForOffices.Text = "feedbackLabel";
+
             // 
             // dataGridViewOffices
             // 
@@ -283,6 +290,7 @@
             this.buildingAddress,
             this.ventilationSetting,
             this.temperatureSetting});
+
             this.dataGridViewOffices.Location = new System.Drawing.Point(423, 122);
             this.dataGridViewOffices.Name = "dataGridViewOffices";
             this.dataGridViewOffices.RowHeadersWidth = 62;
@@ -312,6 +320,34 @@
             this.temperatureSetting.Name = "temperatureSetting";
             this.temperatureSetting.ReadOnly = true;
             this.temperatureSetting.Width = 150;
+            // 
+            // buildingAddress
+            // 
+            this.buildingAddress.HeaderText = "Building Address";
+            this.buildingAddress.Name = "buildingAddress";
+            this.buildingAddress.ReadOnly = true;
+            // 
+            // officeNumber
+            // 
+            this.officeNumber.HeaderText = "Office Number";
+            this.officeNumber.Name = "officeNumber";
+            this.officeNumber.ReadOnly = true;
+            // 
+            // ventilationSetting
+            // 
+            this.ventilationSetting.HeaderText = "Ventilation Setting";
+            this.ventilationSetting.Name = "ventilationSetting";
+            this.ventilationSetting.ReadOnly = true;
+            // 
+            // temperatureSetting
+            // 
+            this.temperatureSetting.HeaderText = "Temperature Setting";
+            this.temperatureSetting.Name = "temperatureSetting";
+            this.temperatureSetting.ReadOnly = true;
+            // 
+            // officeBindingSource
+            // 
+            this.officeBindingSource.DataMember = "Office";
             // 
             // buttonViewOffices
             // 
@@ -414,7 +450,7 @@
             this.buttonAddOffice.Name = "buttonAddOffice";
             this.buttonAddOffice.Size = new System.Drawing.Size(126, 23);
             this.buttonAddOffice.TabIndex = 22;
-            this.buttonAddOffice.Text = "Add office";
+            this.buttonAddOffice.Text = "Save";
             this.buttonAddOffice.UseVisualStyleBackColor = true;
             this.buttonAddOffice.Click += new System.EventHandler(this.buttonAddOffice_Click);
             // 
@@ -497,6 +533,7 @@
             this.comboBoxOfficeAddress.Name = "comboBoxOfficeAddress";
             this.comboBoxOfficeAddress.Size = new System.Drawing.Size(187, 22);
             this.comboBoxOfficeAddress.TabIndex = 9;
+
             this.comboBoxOfficeAddress.SelectedIndexChanged += new System.EventHandler(this.comboBoxOfficeAddress_SelectedIndexChanged);
             // 
             // officeNumberDataGridViewTextBoxColumn
@@ -522,6 +559,7 @@
             this.ventilationSettingDataGridViewTextBoxColumn.DataPropertyName = "ventilationSetting";
             this.ventilationSettingDataGridViewTextBoxColumn.HeaderText = "ventilationSetting";
             this.ventilationSettingDataGridViewTextBoxColumn.Name = "ventilationSettingDataGridViewTextBoxColumn";
+
             // 
             // Form1
             // 
@@ -537,6 +575,7 @@
             this.tabPageOffice.ResumeLayout(false);
             this.tabPageOffice.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOffices)).EndInit();
+
             ((System.ComponentModel.ISupportInitialize)(this.trackBarTemperature)).EndInit();
             this.ResumeLayout(false);
 

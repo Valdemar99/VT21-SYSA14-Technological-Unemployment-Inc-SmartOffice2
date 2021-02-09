@@ -81,7 +81,6 @@
             this.tabPageOffice.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOffices)).BeginInit();
 
-            ((System.ComponentModel.ISupportInitialize)(this.officeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarTemperature)).BeginInit();
             this.SuspendLayout();
             // 
@@ -329,9 +328,6 @@
             // 
             // officeNumber
             // 
-            this.officeNumber.HeaderText = "Office Number";
-            this.officeNumber.Name = "officeNumber";
-            this.officeNumber.ReadOnly = true;
             // 
             // ventilationSetting
             // 
@@ -347,7 +343,6 @@
             // 
             // officeBindingSource
             // 
-            this.officeBindingSource.DataMember = "Office";
             // 
             // buttonViewOffices
             // 
@@ -452,7 +447,6 @@
             this.buttonAddOffice.TabIndex = 22;
             this.buttonAddOffice.Text = "Save";
             this.buttonAddOffice.UseVisualStyleBackColor = true;
-            this.buttonAddOffice.Click += new System.EventHandler(this.buttonAddOffice_Click);
             // 
             // labelSelectedTemperature
             // 

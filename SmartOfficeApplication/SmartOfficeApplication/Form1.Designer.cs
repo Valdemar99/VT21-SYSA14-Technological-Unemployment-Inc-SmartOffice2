@@ -448,8 +448,7 @@
             this.comboBoxVentilationSetting.Location = new System.Drawing.Point(154, 122);
             this.comboBoxVentilationSetting.Name = "comboBoxVentilationSetting";
             this.comboBoxVentilationSetting.Size = new System.Drawing.Size(187, 22);
-            this.comboBoxVentilationSetting.TabIndex = 17;
-            // 
+            this.comboBoxVentilationSetting.TabIndex = 17;            // 
             // labelTemperature
             // 
             this.labelTemperature.AutoSize = true;

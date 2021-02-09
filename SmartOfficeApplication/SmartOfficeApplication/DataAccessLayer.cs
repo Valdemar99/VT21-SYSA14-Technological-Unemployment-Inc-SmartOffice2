@@ -287,13 +287,12 @@ namespace SmartOfficeApplication
                 *    Parameters         string officeNumber, string buildingAddress, int temperatureSetting, string ventilationSetting
                 *     Returns           
                 ***********/
-            public void AddOffice(string officeNumber, string buildingAddress, int temperatureSetting, string ventilationSetting)
+            public void AddOffice(string buildingAddress, int temperatureSetting, string ventilationSetting)
             {
                 using (SqlConnection sqlConnection = new SqlConnection(connectionString))
                 {
-                    using (SqlCommand sqlCommand = new SqlCommand("INSERT INTO Office VALUES(@officeNumber, @buildingAddress, @temperatureSetting, @ventilationSetting)", sqlConnection))
+                    using (SqlCommand sqlCommand = new SqlCommand("INSERT INTO Office VALUES(@buildingAddress, @temperatureSetting, @ventilationSetting)", sqlConnection))
                     {
-                        sqlCommand.Parameters.AddWithValue("@officeNumber", officeNumber);
                         sqlCommand.Parameters.AddWithValue("@buildingAddress", buildingAddress);
                         sqlCommand.Parameters.AddWithValue("@temperatureSetting", temperatureSetting);
                         sqlCommand.Parameters.AddWithValue("@ventilationSetting", ventilationSetting);

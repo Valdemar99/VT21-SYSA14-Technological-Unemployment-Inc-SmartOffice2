@@ -326,9 +326,6 @@
             this.buildingAddress.Name = "buildingAddress";
             this.buildingAddress.ReadOnly = true;
             // 
-            // officeNumber
-            // 
-            // 
             // ventilationSetting
             // 
             this.ventilationSetting.HeaderText = "Ventilation Setting";
@@ -341,9 +338,7 @@
             this.temperatureSetting.Name = "temperatureSetting";
             this.temperatureSetting.ReadOnly = true;
             // 
-            // officeBindingSource
-            // 
-            // 
+
             // buttonViewOffices
             // 
             this.buttonViewOffices.Location = new System.Drawing.Point(548, 76);

@@ -200,7 +200,7 @@ namespace SmartOfficeApplication
             {
                 buttonAddOffice.Text = "Add office";
                 comboBoxOfficeNumber.Enabled = false; //disables a choice of office number.
-                if (buildingAddress.Equals(""))//Error message if the textbox is empty
+                if (buildingAddress.Equals(""))//Error message if the combobox is empty
                 {
                     labelFeedbackForOffices.Text = "To add a new office, please insert an address.";
                 }
@@ -297,34 +297,6 @@ namespace SmartOfficeApplication
 
             }
         }
-
-        /*****************.
-           *  Button             addOffice
-           *   Description        button that, if successful, adds an office to the database by checking if the radiobutton radioButtonAddOffice has been 
-                                   selected and then if the textbox has any content. It also checks the database if the address already exists before adding
-                                   it to the database. Though if radiobutton radioButtonEditOffice has been selected...
-           *    Returns            string string buildingAddress, int temperatureSetting, string ventilationSetting
-           ***********/
-        private void buttonAddOffice_Click(object sender, EventArgs e)
-        {
-            labelFeedbackForOfficesTab.ResetText(); //return the label to default 
-
-            if (radioButtonAddBuilding.Checked == true)
-            {
-                comboBoxOfficeNumber.Visible = false;
-                
-                //gets the values from the relevant comboboxes
-                string address = comboBoxOfficeAddress.SelectedValue.ToString();
-                int temperature = trackBarTemperature.Value;
-                string ventilation = "1";
-
-                dataAccessLayer.AddOffice(address, temperature, ventilation);
-                labelFeedbackForOfficesTab.Text = "The Office '" + officeNumber + "' at address'" + address + "' has been successfully added to database.";
-                  
-            }
-
-        }
-
     }
 }
 

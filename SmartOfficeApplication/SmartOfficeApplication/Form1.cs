@@ -13,7 +13,7 @@ namespace SmartOfficeApplication
 {
     public partial class Form1 : Form
     {
-        private DataAccessLayer dataAccessLayer;
+        private DataAccessLayer dataAccessLayer = new DataAccessLayer();
 
         public void updateBuildingList() //Update listBoxBuildings with all buildings in the database.
         {
@@ -176,5 +176,33 @@ namespace SmartOfficeApplication
         {
 
         }
+
+        /*****************.
+           *  Button             addOffice
+           *   Description        button that, if successful, adds an office to the database by checking if the radiobutton radioButtonAddOffice has been 
+                                   selected and then if the textbox has any content. It also checks the database if the address already exists before adding
+                                   it to the database. Though if radiobutton radioButtonEditOffice has been selected...
+           *    Returns            string string buildingAddress, int temperatureSetting, string ventilationSetting
+           ***********/
+        private void buttonAddOffice_Click(object sender, EventArgs e)
+        {
+            labelFeedbackForOfficesTab.ResetText(); //return the label to default 
+
+            if (radioButtonAddBuilding.Checked == true)
+            {
+                comboBoxOfficeNumber.Visible = false;
+                
+                //gets the values from the relevant comboboxes
+                string address = comboBoxOfficeAddress.SelectedValue.ToString();
+                int temperature = trackBarTemperature.Value;
+                string ventilation = "1";
+
+                dataAccessLayer.AddOffice(address, temperature, ventilation);
+                labelFeedbackForOfficesTab.Text = "The Office '" + officeNumber + "' at address'" + address + "' has been successfully added to database.";
+                  
+            }
+
+        }
+
     }
 }

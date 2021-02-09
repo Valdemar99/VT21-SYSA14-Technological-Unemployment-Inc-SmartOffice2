@@ -165,10 +165,7 @@ namespace SmartOfficeApplication
             dataAccessLayer.RemoveOffice(number, address);
         }
 
-        private void comboBoxOfficeNumberDelete_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+       
 
         private void comboBoxOfficeAddressDelete_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -250,7 +247,7 @@ namespace SmartOfficeApplication
             if (comboBoxOfficeAddress.SelectedIndex.ToString().Length != 0) //If an object in the combobox is selected, the combobox with office numbers is updated.
             {
                 string selectedAddress = comboBoxOfficeAddress.SelectedItem.ToString();
-                fillOfficeNumberComboBox(selectedAddress);
+                fillOfficeNumberComboBox(selectedAddress, comboBoxOfficeNumber);
                 
             }
             else
@@ -276,11 +273,16 @@ namespace SmartOfficeApplication
             VentilationSetting vS = new VentilationSetting();
             comboBoxVentilationSetting.DataSource = vS.VentilationSettingList.ToList<string>();
         }
-        private void fillOfficeNumberComboBox(string buildingAddress)
+        private void fillOfficeNumberComboBox(string buildingAddress, ComboBox OfficeNumberComboBox)
         {
-            DataTable OfficesOnSelectedAddress = new DataTable();
-            comboBoxOfficeNumber.DisplayMember = "officeNumber";
-            comboBoxOfficeNumber.DataSource = dataAccessLayer.GetOffices(buildingAddress);
+            OfficeNumberComboBox.Items.Clear();
+            SqlDataReader officeReader = dataAccessLayer.GetOffices(buildingAddress); //Fetch data and hold it in buildingList.
+            while (officeReader.Read())
+            {
+                OfficeNumberComboBox.Items.Add(officeReader.GetString(0));
+            }
+            officeReader.Close();
+            dataAccessLayer.CloseConnection();
         }
 
         private void radioButtonAddBuilding_CheckedChanged(object sender, EventArgs e)

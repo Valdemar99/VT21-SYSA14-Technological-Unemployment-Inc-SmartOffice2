@@ -128,9 +128,8 @@
             this.labelFeedbackForBuildings.AutoSize = true;
             this.labelFeedbackForBuildings.Location = new System.Drawing.Point(26, 172);
             this.labelFeedbackForBuildings.Name = "labelFeedbackForBuildings";
-            this.labelFeedbackForBuildings.Size = new System.Drawing.Size(81, 14);
+            this.labelFeedbackForBuildings.Size = new System.Drawing.Size(0, 14);
             this.labelFeedbackForBuildings.TabIndex = 35;
-            this.labelFeedbackForBuildings.Text = "feedbackLabel";
             // 
             // listBoxBuildings
             // 
@@ -367,7 +366,6 @@
             this.comboBoxOfficeNumberDelete.Name = "comboBoxOfficeNumberDelete";
             this.comboBoxOfficeNumberDelete.Size = new System.Drawing.Size(187, 22);
             this.comboBoxOfficeNumberDelete.TabIndex = 27;
-            this.comboBoxOfficeNumberDelete.SelectedIndexChanged += new System.EventHandler(this.comboBoxOfficeNumberDelete_SelectedIndexChanged);
             // 
             // labelOfficeAddressDelete
             // 

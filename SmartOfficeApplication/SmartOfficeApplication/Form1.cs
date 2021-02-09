@@ -15,51 +15,37 @@ namespace SmartOfficeApplication
     {
         private DataAccessLayer dataAccessLayer = new DataAccessLayer();
 
-        public void updateBuildingList() //Update listBoxBuildings with all buildings in the database.
+        public void UpdateBuildingData() //Updates all comboboxes and lists with buildings.
         {
+            comboBoxOfficeAddress.Items.Clear();
+            comboBoxOfficeAddressDelete.Items.Clear();
+            comboBoxAddressViewOffices.Items.Clear();
+            comboBoxOldAddress.Items.Clear();
+            comboBoxAddressDelete.Items.Clear();
+
             listBoxBuildings.Items.Clear();
+
             SqlDataReader buildingReader = dataAccessLayer.GetBuildings(); //Fetch data and hold it in buildingList.
             while (buildingReader.Read())
             {
+                comboBoxOfficeAddress.Items.Add(buildingReader.GetString(0));
+                comboBoxOfficeAddressDelete.Items.Add(buildingReader.GetString(0));
+                comboBoxAddressViewOffices.Items.Add(buildingReader.GetString(0));
+                comboBoxOldAddress.Items.Add(buildingReader.GetString(0));
+                comboBoxAddressDelete.Items.Add(buildingReader.GetString(0));
                 listBoxBuildings.Items.Add(buildingReader.GetString(0));
             }
+            buildingReader.Close();
+            dataAccessLayer.CloseConnection();
         }
 
         public Form1()
         {
             InitializeComponent();
+            fillVentilationSettingComboBox();
+            UpdateBuildingData();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButtonAddBuilding_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPageBuilding_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void radioButtonAddBuilding_CheckedChanged_1(object sender, EventArgs e) 
-        {
-
-        }
-
-        private void radioButtonEditBuilding_CheckedChanged(object sender, EventArgs e) 
-        {
-
-        }
 
         /*****************.
            *  Button             addBuilding
@@ -86,6 +72,7 @@ namespace SmartOfficeApplication
                     {
                         dataAccessLayer.AddBuilding(newAddress);
                         labelFeedbackForBuildings.Text = "The building with address'" + newAddress + "' has been successfully added to database.";
+                        UpdateBuildingData();
                     }
                     if (dataAccessLayer.checkIfBuildingExists(newAddress) == true) // If the address already exists it sends an error message
                     {
@@ -112,6 +99,7 @@ namespace SmartOfficeApplication
                         {
                             dataAccessLayer.EditBuilding(oldAddress, newAddress);
                             labelFeedbackForBuildings.Text = "The building with address'" + oldAddress + "' has been successfully changed into '" + newAddress + "' within the database.";
+                            UpdateBuildingData();
 
                         }
                         if (dataAccessLayer.checkIfBuildingExists(newAddress) == true) // If the new address already exists it sends an error message
@@ -140,41 +128,174 @@ namespace SmartOfficeApplication
         {
 
             labelFeedbackForBuildings.ResetText();
-            if (radioButtonAddBuilding.Checked == true)
+            
+            string address = comboBoxAddressDelete.SelectedItem.ToString();
+            dataAccessLayer.RemoveBuilding(address);
+            dataAccessLayer.CloseConnection();
+
+            labelFeedbackForBuildings.Text = "Building has been removed!";
+            UpdateBuildingData();
+        }
+
+        private void buttonViewOffices_Click(object sender, EventArgs e) //Displays all offices on a selected address. If no address is selected, an error message is displayed in a text label at the bottom of the frame.
+        {
+            try
             {
-                string address = comboBoxAddressDelete.SelectedItem.ToString();
-                dataAccessLayer.RemoveBuilding(address);
+                string selectedAddress = comboBoxAddressViewOffices.SelectedValue.ToString();
+                SqlDataReader offices = dataAccessLayer.GetOffices(selectedAddress);
+                DataTable officeTable = new DataTable();
+                officeTable.Load(offices);
+                dataGridViewOffices.DataSource = officeTable;
+            }
+            catch (NullReferenceException exception)
+            {
+                labelFeedbackForOffices.Text = "Please select a valid address to display its offices. If there are no addresses please create one.";
+            }
+        }
+
+        private void trackBarTemperature_Scroll(object sender, EventArgs e)
+        {
+            labelSelectedTemperature.Text = trackBarTemperature.Value + " °C";
+        }
+
+        private void buttonRemoveOffice_Click(object sender, EventArgs e)
+        {
+            string number = comboBoxOfficeNumberDelete.SelectedItem.ToString();
+            string address = comboBoxOfficeAddressDelete.SelectedItem.ToString();
+            dataAccessLayer.RemoveOffice(number, address);
+        }
+
+       
+
+        private void comboBoxOfficeAddressDelete_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxOfficeAddressDelete.SelectedIndex != -1) //If an object in the combobox is selected, the combobox with office numbers is updated.
+            {
+                string selectedAddress = comboBoxOfficeAddressDelete.SelectedItem.ToString();
+                DataTable OfficesOnSelectedAddress = new DataTable();
+                comboBoxOfficeNumberDelete.DisplayMember = "officeNumber";
+                comboBoxOfficeNumberDelete.DataSource = dataAccessLayer.GetOffices(selectedAddress);
+            }
+            else
+            {
+                comboBoxOfficeNumberDelete.Items.Clear();
+            }
+        }
+        /*****************.
+           *  Button             addOffice
+           *   Description        button that, if successful, adds an office in the database by checking if the radiobutton radioButtonAddOffice has been 
+                                   selected and then if the textbox has any content. It also automatically allocates an office number.
+                                   Though if radiobutton radioButtonEditBuilding has been selected the address can be altered using the
+                                   combination of comboboxes for selecting a building address, office number, ventilation setting and temperature setting.
+                                   TO-DO: office numbers should be autogenerated from the SQL side of the application.
+           ***********/
+        private void buttonAddOffice_Click(object sender, EventArgs e)
+        {
+            labelFeedbackForOffices.ResetText(); //return the label to default 
+            string buildingAddress = comboBoxOfficeAddress.SelectedItem.ToString(); //retrieves address
+            string ventilationSetting = comboBoxVentilationSetting.SelectedItem.ToString(); //retrieves ventilation setting
+            int temperatureSetting = trackBarTemperature.Value;
+
+            if (radioButtonAddOffice.Checked == true)
+            {
+                buttonAddOffice.Text = "Add office";
+                comboBoxOfficeNumber.Enabled = false; //disables a choice of office number.
+                if (buildingAddress.Equals(""))//Error message if the textbox is empty
+                {
+                    labelFeedbackForOffices.Text = "To add a new office, please insert an address.";
+                }
+                else if (ventilationSetting.Equals(""))
+                {
+                    labelFeedbackForOffices.Text = "To add a new office, please choose a ventilation setting.";
+                }
+                dataAccessLayer.AddOffice(buildingAddress, temperatureSetting, ventilationSetting);
+                labelFeedbackForOffices.Text = "The office with address'" + buildingAddress + "' has been successfully added to database.";
+            }
+
+            else if (radioButtonEditOffice.Checked == true) //If edit building is chosen
+            {
+                buttonAddOffice.Text = "Edit office";
+                comboBoxOfficeNumber.Enabled = true; //enables a choice of office number.
+                object officeNumberObject = comboBoxOfficeNumber.SelectedItem;
+                if (buildingAddress.Equals(""))//Error message if no address is chosen
+                {
+                    labelFeedbackForOffices.Text = "To edit this office, please insert an address.";
+                }
+                else if (ventilationSetting.Equals("")) //Error message if no ventilation setting is chosen
+                {
+                    labelFeedbackForOffices.Text = "To edit this office, please choose a ventilation setting.";
+                }
+                else if (officeNumberObject == null) //Error message if no office number is chosen
+                {
+                    labelFeedbackForOffices.Text = "To edit an office, please choose an office number.";
+                }
+                else
+                {
+                    string officeNumberToEdit = officeNumberObject.ToString();
+                    dataAccessLayer.EditOffice(officeNumberToEdit, buildingAddress, ventilationSetting, temperatureSetting);
+                    labelFeedbackForOffices.Text = "The office with address'" + buildingAddress + "' and office number '" + officeNumberToEdit + "' has been successfully edited.";
+                }
+            }
+            else
+            {
+                labelFeedbackForOffices.Text = "To add a new office, please press the radiobutton add office."; //fixa så edit är med
+            }
+        }
+
+        private void comboBoxOfficeAddress_SelectedIndexChanged(object sender, EventArgs e) //Updates the office number combobox under the address combobox
+        {
+            if (comboBoxOfficeAddress.SelectedIndex.ToString().Length != 0) //If an object in the combobox is selected, the combobox with office numbers is updated.
+            {
+                string selectedAddress = comboBoxOfficeAddress.SelectedItem.ToString();
+                fillOfficeNumberComboBox(selectedAddress, comboBoxOfficeNumber);
+                
+            }
+            else
+            {
+                comboBoxOfficeNumber.Items.Clear();
+            }
+        }
+
+        private void radioButtonAddOffice_CheckedChanged(object sender, EventArgs e) //Changes the text on the button from "Edit office" to "Add office" or vice versa depending on the selected radio button.
+        {
+            if(radioButtonAddOffice.Checked)
+            {
+                buttonAddOffice.Text = "Add office";
+            }
+            else
+            {
+                buttonAddOffice.Text = "Edit office";
+            }
+        }
+
+        private void fillVentilationSettingComboBox()
+        {
+            VentilationSetting vS = new VentilationSetting();
+            comboBoxVentilationSetting.DataSource = vS.VentilationSettingList.ToList<string>();
+        }
+        private void fillOfficeNumberComboBox(string buildingAddress, ComboBox OfficeNumberComboBox)
+        {
+            OfficeNumberComboBox.Items.Clear();
+            SqlDataReader officeReader = dataAccessLayer.GetOffices(buildingAddress); //Fetch data and hold it in buildingList.
+            while (officeReader.Read())
+            {
+                OfficeNumberComboBox.Items.Add(officeReader.GetString(0));
+            }
+            officeReader.Close();
+            dataAccessLayer.CloseConnection();
+        }
+
+        private void radioButtonAddBuilding_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonAddBuilding.Checked)
+            {
+                buttonAddBuilding.Text = "Add building";
+            }
+            else
+            {
+                buttonAddBuilding.Text = "Edit building";
 
             }
-            labelFeedbackForBuildings.Text = "Building has been removed!";
-        }
-
-        private void radioButtonAddBuilding_CheckedChanged_2(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void radioButtonEditBuilding_CheckedChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void buttonViewOffices_Click(object sender, EventArgs e)
-        {
-            string selectedAddress = comboBoxAddressViewOffices.SelectedValue.ToString();
-            SqlDataReader offices = dataAccessLayer.GetOffices(selectedAddress);
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            // TODO: This line of code loads data into the '_Smart_Office_2_0DataSet.Office' table. You can move, or remove it, as needed.
-
-        }
-
-        private void dataGridViewOffices_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         /*****************.
@@ -206,3 +327,4 @@ namespace SmartOfficeApplication
 
     }
 }
+

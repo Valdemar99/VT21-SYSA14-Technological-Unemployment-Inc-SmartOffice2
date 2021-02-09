@@ -9,7 +9,21 @@ namespace SmartOfficeApplication
 {
     class DataAccessLayer
     {
+        private SqlConnection sqlConnection;
         private string connectionString = "Server=localhost;Database=Smart Office 2.0;User Id = user2.0; Password = losen";
+
+        public SqlConnection SqlConnection { get => SqlConnection; set => SqlConnection = value; }
+
+        /*****************.
+            *  Function             closeConnection()
+            *   Description         Method that closes the SqlConnection object of this instance.
+            *    Parameters
+            *     Returns           
+            ***********/
+        public void CloseConnection()
+        {
+            sqlConnection.Close();
+        }
 
         /*****************.
             *  Function             getBuildings
@@ -20,30 +34,28 @@ namespace SmartOfficeApplication
 
         public SqlDataReader GetBuildings()
         {
-            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            sqlConnection = new SqlConnection(connectionString);
+            SqlCommand sqlCommand = new SqlCommand("SELECT * FROM BUILDING", sqlConnection);
+
+            try
             {
-                SqlCommand sqlCommand = new SqlCommand("SELECT * FROM BUILDING", sqlConnection);
-                using (sqlCommand)
-                {
-                    try
-                    {
-                        sqlConnection.Open();
-                        SqlDataReader dataReader = sqlCommand.ExecuteReader();
-                        return dataReader;
-                    } catch (SqlException e) {
+                sqlConnection.Open();
+                SqlDataReader dataReader = sqlCommand.ExecuteReader();
+                return dataReader;
+            } catch (SqlException e) {
 
-                        throw e;
+                throw e;
 
-                    } catch (Exception e)
-                    {
-                        throw e;
-                    }
-                }
-
-
+            } catch (Exception e)
+            {
+                throw e;
             }
 
+
         }
+
+    
+
         /*****************.
             *  Function             checkIfBuildingExists
             *   Description         Method that returns true if a building with the specified address already exists in the database.
@@ -53,9 +65,9 @@ namespace SmartOfficeApplication
 
         public bool checkIfBuildingExists(string address)
         {
-            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            using (sqlConnection = new SqlConnection(connectionString))
             {
-                using (SqlCommand sqlCommand = new SqlCommand("SELECT FROM Building WHERE address = '" + address + "'", sqlConnection))
+                using (SqlCommand sqlCommand = new SqlCommand("SELECT * FROM Building WHERE address = '" + address + "'", sqlConnection))
                 {
                     try
                     {
@@ -145,6 +157,20 @@ namespace SmartOfficeApplication
                         throw e;
                     }
                 }
+            }
+            RemoveAllOfficesFromAddress(address);
+        }
+
+        /*****************.
+        *  Function             RemoveAllOfficesFromAddress
+        *   Description         Method that, if successful, removes all offices from a building.
+        *    Parameters         string address
+        *     Returns           
+        ***********/
+        public void RemoveAllOfficesFromAddress (string address)
+        {
+            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            {
                 using (SqlCommand sqlCommand = new SqlCommand("DELETE FROM Office WHERE buildingAddress = '" + address + "'", sqlConnection))
                 {
                     try
@@ -164,11 +190,10 @@ namespace SmartOfficeApplication
                     {
                         throw e;
                     }
-
                 }
-
             }
         }
+
             /*****************.
               *  Function             editBuilding
               *   Description         Method that, if successful, edits a building from the database.
@@ -287,13 +312,12 @@ namespace SmartOfficeApplication
                 *    Parameters         string officeNumber, string buildingAddress, int temperatureSetting, string ventilationSetting
                 *     Returns           
                 ***********/
-            public void AddOffice(string officeNumber, string buildingAddress, int temperatureSetting, string ventilationSetting)
+            public void AddOffice(string buildingAddress, int temperatureSetting, string ventilationSetting)
             {
                 using (SqlConnection sqlConnection = new SqlConnection(connectionString))
                 {
-                    using (SqlCommand sqlCommand = new SqlCommand("INSERT INTO Office VALUES(@officeNumber, @buildingAddress, @temperatureSetting, @ventilationSetting)", sqlConnection))
+                    using (SqlCommand sqlCommand = new SqlCommand("INSERT INTO Office VALUES(@buildingAddress, @temperatureSetting, @ventilationSetting)", sqlConnection))
                     {
-                        sqlCommand.Parameters.AddWithValue("@officeNumber", officeNumber);
                         sqlCommand.Parameters.AddWithValue("@buildingAddress", buildingAddress);
                         sqlCommand.Parameters.AddWithValue("@temperatureSetting", temperatureSetting);
                         sqlCommand.Parameters.AddWithValue("@ventilationSetting", ventilationSetting);

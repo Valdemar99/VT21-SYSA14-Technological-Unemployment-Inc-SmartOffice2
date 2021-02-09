@@ -113,7 +113,6 @@
             this.tabPageBuilding.TabIndex = 0;
             this.tabPageBuilding.Text = "Buildings";
             this.tabPageBuilding.UseVisualStyleBackColor = true;
-            this.tabPageBuilding.Click += new System.EventHandler(this.tabPageBuilding_Click);
             // 
             // labelListOfBuildings
             // 
@@ -129,9 +128,8 @@
             this.labelFeedbackForBuildings.AutoSize = true;
             this.labelFeedbackForBuildings.Location = new System.Drawing.Point(26, 172);
             this.labelFeedbackForBuildings.Name = "labelFeedbackForBuildings";
-            this.labelFeedbackForBuildings.Size = new System.Drawing.Size(81, 14);
+            this.labelFeedbackForBuildings.Size = new System.Drawing.Size(0, 14);
             this.labelFeedbackForBuildings.TabIndex = 35;
-            this.labelFeedbackForBuildings.Text = "feedbackLabel";
             // 
             // listBoxBuildings
             // 
@@ -153,7 +151,6 @@
             this.radioButtonEditBuilding.TabStop = true;
             this.radioButtonEditBuilding.Text = "Edit building";
             this.radioButtonEditBuilding.UseVisualStyleBackColor = true;
-            this.radioButtonEditBuilding.CheckedChanged += new System.EventHandler(this.radioButtonEditBuilding_CheckedChanged_1);
             // 
             // radioButtonAddBuilding
             // 
@@ -165,7 +162,7 @@
             this.radioButtonAddBuilding.TabStop = true;
             this.radioButtonAddBuilding.Text = "Add building";
             this.radioButtonAddBuilding.UseVisualStyleBackColor = true;
-            this.radioButtonAddBuilding.CheckedChanged += new System.EventHandler(this.radioButtonAddBuilding_CheckedChanged_2);
+            this.radioButtonAddBuilding.CheckedChanged += new System.EventHandler(this.radioButtonAddBuilding_CheckedChanged);
             // 
             // labelOldAddress
             // 
@@ -369,7 +366,6 @@
             this.comboBoxOfficeNumberDelete.Name = "comboBoxOfficeNumberDelete";
             this.comboBoxOfficeNumberDelete.Size = new System.Drawing.Size(187, 22);
             this.comboBoxOfficeNumberDelete.TabIndex = 27;
-            this.comboBoxOfficeNumberDelete.SelectedIndexChanged += new System.EventHandler(this.comboBoxOfficeNumberDelete_SelectedIndexChanged);
             // 
             // labelOfficeAddressDelete
             // 
@@ -410,6 +406,7 @@
             this.radioButtonAddOffice.TabStop = true;
             this.radioButtonAddOffice.Text = "Add office";
             this.radioButtonAddOffice.UseVisualStyleBackColor = true;
+            this.radioButtonAddOffice.CheckedChanged += new System.EventHandler(this.radioButtonAddOffice_CheckedChanged);
             // 
             // buttonAddOffice
             // 
@@ -500,6 +497,7 @@
             this.comboBoxOfficeAddress.Name = "comboBoxOfficeAddress";
             this.comboBoxOfficeAddress.Size = new System.Drawing.Size(187, 22);
             this.comboBoxOfficeAddress.TabIndex = 9;
+            this.comboBoxOfficeAddress.SelectedIndexChanged += new System.EventHandler(this.comboBoxOfficeAddress_SelectedIndexChanged);
             // 
             // officeNumberDataGridViewTextBoxColumn
             // 

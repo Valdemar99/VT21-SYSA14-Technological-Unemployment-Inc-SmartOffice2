@@ -9,7 +9,10 @@ namespace SmartOfficeApplication
 {
     class DataAccessLayer
     {
+        private SqlConnection sqlConnection;
         private string connectionString = "Server=localhost;Database=Smart Office 2.0;User Id = user2.0; Password = losen";
+
+        public SqlConnection SqlConnection { get => SqlConnection; set => SqlConnection = value; }
 
         /*****************.
             *  Function             getBuildings
@@ -20,7 +23,7 @@ namespace SmartOfficeApplication
 
         public SqlDataReader GetBuildings()
         {
-            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            using (sqlConnection = new SqlConnection(connectionString))
             {
                 SqlCommand sqlCommand = new SqlCommand("SELECT * FROM BUILDING", sqlConnection);
                 using (sqlCommand)
@@ -53,9 +56,9 @@ namespace SmartOfficeApplication
 
         public bool checkIfBuildingExists(string address)
         {
-            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            using (sqlConnection = new SqlConnection(connectionString))
             {
-                using (SqlCommand sqlCommand = new SqlCommand("SELECT FROM Building WHERE address = '" + address + "'", sqlConnection))
+                using (SqlCommand sqlCommand = new SqlCommand("SELECT * FROM Building WHERE address = '" + address + "'", sqlConnection))
                 {
                     try
                     {

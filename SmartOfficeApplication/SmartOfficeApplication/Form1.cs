@@ -179,10 +179,10 @@ namespace SmartOfficeApplication
         }
 
         /*****************.
-                  *  Button             removeBuilding
+                  *  Button             deleteOffice
                   *   Description        button that, if successful, deletes chosen building from the database. This is enabled through alternatives in combobox
                   ***********/
-        private void buttonRemoveOffice_Click(object sender, EventArgs e)
+        private void buttonDeleteOffice_Click(object sender, EventArgs e)
         {
             labelFeedbackForOffices.ResetText();
             labelFeedbackForViewingOffices.ResetText();

@@ -55,7 +55,7 @@
             this.buttonViewOffices = new System.Windows.Forms.Button();
             this.labelAddressViewOffices = new System.Windows.Forms.Label();
             this.comboBoxAddressViewOffices = new System.Windows.Forms.ComboBox();
-            this.buttonRemoveOffice = new System.Windows.Forms.Button();
+            this.buttonDeleteOffice = new System.Windows.Forms.Button();
             this.labelOfficeNumberDelete = new System.Windows.Forms.Label();
             this.comboBoxOfficeNumberDelete = new System.Windows.Forms.ComboBox();
             this.labelOfficeAddressDelete = new System.Windows.Forms.Label();
@@ -258,7 +258,7 @@
             this.tabPageOffice.Controls.Add(this.buttonViewOffices);
             this.tabPageOffice.Controls.Add(this.labelAddressViewOffices);
             this.tabPageOffice.Controls.Add(this.comboBoxAddressViewOffices);
-            this.tabPageOffice.Controls.Add(this.buttonRemoveOffice);
+            this.tabPageOffice.Controls.Add(this.buttonDeleteOffice);
             this.tabPageOffice.Controls.Add(this.labelOfficeNumberDelete);
             this.tabPageOffice.Controls.Add(this.comboBoxOfficeNumberDelete);
             this.tabPageOffice.Controls.Add(this.labelOfficeAddressDelete);
@@ -374,15 +374,15 @@
             this.comboBoxAddressViewOffices.Size = new System.Drawing.Size(187, 22);
             this.comboBoxAddressViewOffices.TabIndex = 30;
             // 
-            // buttonRemoveOffice
+            // buttonDeleteOffice
             // 
-            this.buttonRemoveOffice.Location = new System.Drawing.Point(154, 399);
-            this.buttonRemoveOffice.Name = "buttonRemoveOffice";
-            this.buttonRemoveOffice.Size = new System.Drawing.Size(126, 23);
-            this.buttonRemoveOffice.TabIndex = 29;
-            this.buttonRemoveOffice.Text = "Remove office";
-            this.buttonRemoveOffice.UseVisualStyleBackColor = true;
-            this.buttonRemoveOffice.Click += new System.EventHandler(this.buttonRemoveOffice_Click);
+            this.buttonDeleteOffice.Location = new System.Drawing.Point(154, 399);
+            this.buttonDeleteOffice.Name = "buttonDeleteOffice";
+            this.buttonDeleteOffice.Size = new System.Drawing.Size(126, 23);
+            this.buttonDeleteOffice.TabIndex = 29;
+            this.buttonDeleteOffice.Text = "Remove office";
+            this.buttonDeleteOffice.UseVisualStyleBackColor = true;
+            this.buttonDeleteOffice.Click += new System.EventHandler(this.buttonDeleteOffice_Click);
             // 
             // labelOfficeNumberDelete
             // 
@@ -604,7 +604,7 @@
         private System.Windows.Forms.Label labelVentilationSetting;
         private System.Windows.Forms.Label labelOfficeNumber;
         private System.Windows.Forms.ComboBox comboBoxOfficeNumber;
-        private System.Windows.Forms.Button buttonRemoveOffice;
+        private System.Windows.Forms.Button buttonDeleteOffice;
         private System.Windows.Forms.Label labelOfficeNumberDelete;
         private System.Windows.Forms.ComboBox comboBoxOfficeNumberDelete;
         private System.Windows.Forms.Label labelOfficeAddressDelete;

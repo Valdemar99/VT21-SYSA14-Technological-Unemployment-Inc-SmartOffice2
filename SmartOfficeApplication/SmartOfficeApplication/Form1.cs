@@ -69,18 +69,18 @@ namespace SmartOfficeApplication
 
                 else
                 {
-                    if (dataAccessLayer.checkIfBuildingExists(newAddress) != true) //Checks if the address doesn't exist in the database, if so, adds a new building
-                    {
-                        dataAccessLayer.AddBuilding(newAddress);
-                        labelFeedbackForBuildings.Text = "The building with address'" + newAddress + "' has been successfully added to database.";
-                        UpdateBuildingData();
-                    }
                     if (dataAccessLayer.checkIfBuildingExists(newAddress) == true) // If the address already exists it sends an error message
                     {
                         labelFeedbackForBuildings.Text = "This building with inserted address already exists in our database.";
                     }
+                    if (dataAccessLayer.checkIfBuildingExists(newAddress) != true) //Checks if the address doesn't exist in the database, if so, adds a new building
+                    {
+                        dataAccessLayer.AddBuilding(newAddress);
+                        labelFeedbackForBuildings.Text = "The building with address'" + newAddress + "'\nhas been successfully added to database.";
+                        UpdateBuildingData();
+                    }
+                    
                 }
-
             }
 
            if (radioButtonEditBuilding.Checked == true) //If edit building is chosen
@@ -95,7 +95,13 @@ namespace SmartOfficeApplication
                         labelFeedbackForBuildings.Text = "To edit a new building, please insert the new address.";
                     }
                     else
-                    { //Checks if the new address doesn't exist in the database, if so, edits the old address to the new one
+                    { //Checks if the new address doesn't exist in the database, if so, edits the old address to the new one 
+
+                        if (dataAccessLayer.checkIfBuildingExists(newAddress) == true) // If the new address already exists it sends an error message
+                        {
+                            labelFeedbackForBuildings.Text = "This building with inserted new address already exists in our database. Please try another another address.";
+                        }
+
                         if(dataAccessLayer.checkIfBuildingExists(newAddress) != true)
                         {
                             dataAccessLayer.EditBuilding(oldAddress, newAddress);
@@ -103,21 +109,12 @@ namespace SmartOfficeApplication
                             UpdateBuildingData();
 
                         }
-                        if (dataAccessLayer.checkIfBuildingExists(newAddress) == true) // If the new address already exists it sends an error message
-                        {
-                            labelFeedbackForBuildings.Text = "This building with inserted new address already exists in our database. Please try another another address.";
-                        }
 
                     }
 
 
                 }
 
-            }
-
-            else
-            {
-                labelFeedbackForBuildings.Text = "To add a new building, please press the radiobutton add building."; //fixa så edit är med
             }
 
         }
@@ -129,12 +126,13 @@ namespace SmartOfficeApplication
         {
 
             labelFeedbackForBuildings.ResetText();
-            
+            labelFeedbackForDeletingBuilding.ResetText();
+
             string address = comboBoxAddressDelete.SelectedItem.ToString();
             dataAccessLayer.RemoveBuilding(address);
             dataAccessLayer.CloseConnection();
 
-            labelFeedbackForBuildings.Text = "Building has been removed!";
+            labelFeedbackForDeletingBuilding.Text = "Building has been removed!";
             UpdateBuildingData();
         }
 

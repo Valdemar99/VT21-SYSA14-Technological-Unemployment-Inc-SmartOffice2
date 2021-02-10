@@ -47,7 +47,7 @@ namespace SmartOfficeApplication
             UpdateBuildingData();
             comboBoxOldAddress.Enabled = false;
         }
-
+        
 
         /*****************.
            *  Button             addBuilding
@@ -58,7 +58,9 @@ namespace SmartOfficeApplication
            ***********/
         private void buttonAddBuilding_Click(object sender, EventArgs e) 
         {
-            labelFeedbackForBuildings.ResetText(); //return the label to default 
+             //return the label to default 
+            labelFeedbackForDeletingBuilding.ResetText();
+
             string newAddress = textBoxAddress.Text; //retrieves text from textbox
 
            if (radioButtonAddBuilding.Checked == true)
@@ -86,43 +88,54 @@ namespace SmartOfficeApplication
 
            if (radioButtonEditBuilding.Checked == true) //If edit building is chosen
             {
-                string oldAddress = comboBoxOldAddress.SelectedItem.ToString();
-
-                //Checks if the old address doesn't exist in the database, if so, change to address in new address textbox
-                if (dataAccessLayer.checkIfBuildingExists(oldAddress) == true)
+                try
                 {
-                    if (newAddress.Equals(""))//Error message if the textbox is empty
+                    string oldAddress = comboBoxOldAddress.SelectedItem.ToString();
+                    //Checks if the old address doesn't exist in the database, if so, change to address in new address textbox
+                    if (dataAccessLayer.checkIfBuildingExists(oldAddress) == true)
                     {
-                        labelFeedbackForBuildings.Text = "To edit a new building, please insert the new address.";
-                    }
-                    else
-                    { //Checks if the new address doesn't exist in the database, if so, edits the old address to the new one 
-
-                        if (dataAccessLayer.checkIfBuildingExists(newAddress) == true) // If the new address already exists it sends an error message
+                        if (newAddress.Equals(""))//Error message if the textbox is empty
                         {
-                            labelFeedbackForBuildings.Text = "This building with inserted new address already exists in our database. Please try another another address.";
+                            labelFeedbackForBuildings.Text = "To edit a new building, please insert the new address.";
+                        }
+                        else
+                        { //Checks if the new address doesn't exist in the database, if so, edits the old address to the new one 
+
+                            if (dataAccessLayer.checkIfBuildingExists(newAddress) == true) // If the new address already exists it sends an error message
+                            {
+                                labelFeedbackForBuildings.Text = "This building with inserted new address already exists\n in our database. Please try another another address.";
+                            }
+
+                            if(dataAccessLayer.checkIfBuildingExists(newAddress) != true)
+                            {
+                                dataAccessLayer.EditBuilding(oldAddress, newAddress);
+                                labelFeedbackForBuildings.Text = "The building with address'" + oldAddress + "' has been successfully \nchanged into '" + newAddress + "' within the database.";
+                                UpdateBuildingData();
+
+                            }
+
                         }
 
-                        if(dataAccessLayer.checkIfBuildingExists(newAddress) != true)
-                        {
-                            dataAccessLayer.EditBuilding(oldAddress, newAddress);
-                            labelFeedbackForBuildings.Text = "The building with address'" + oldAddress + "' has been successfully changed into '" + newAddress + "' within the database.";
-                            UpdateBuildingData();
-
-                        }
 
                     }
 
+                } catch(NullReferenceException ex)
+                {
+                    labelFeedbackForBuildings.Text = "Please choose address to edit";
 
                 }
-
             }
-
         }
           private void comboBoxAddressDelete_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
+        /*****************.
+                  *  Button             deleteBuilding
+                  *   Description        button that, if successful, deletes chosen building from the database. 
+                  *                      This is enabled through alternatives in combobox
+                  ***********/
+
         private void buttonDeleteBuilding_Click(object sender, EventArgs e)
         {
 
@@ -137,15 +150,25 @@ namespace SmartOfficeApplication
             UpdateBuildingData();
         }
 
-        private void buttonViewOffices_Click(object sender, EventArgs e) //Displays all offices on a selected address. If no address is selected, an error message is displayed in a text label at the bottom of the frame.
+        /*****************.
+                         *  Button             viewOffices
+                         *   Description        Displays all offices on a selected address. If no address is selected,
+                         *                      an error message is displayed in a text label at the bottom of the frame.
+            ***********/
+        private void buttonViewOffices_Click(object sender, EventArgs e)
+
         {
+            labelFeedbackForOffices.ResetText();
+            labelFeedbackLabelForDeletingOffice.ResetText();
             try
             {
-                string selectedAddress = comboBoxAddressViewOffices.SelectedValue.ToString();
+                string selectedAddress = comboBoxAddressViewOffices.SelectedItem.ToString();
                 SqlDataReader offices = dataAccessLayer.GetOffices(selectedAddress);
                 DataTable officeTable = new DataTable();
                 officeTable.Load(offices);
                 dataGridViewOffices.DataSource = officeTable;
+                offices.Close();
+                dataAccessLayer.CloseConnection();
             }
             catch (NullReferenceException exception)
             {
@@ -158,8 +181,15 @@ namespace SmartOfficeApplication
             labelSelectedTemperature.Text = trackBarTemperature.Value + " °C";
         }
 
-        private void buttonRemoveOffice_Click(object sender, EventArgs e)
+        /*****************.
+                  *  Button             deleteOffice
+                  *   Description        button that, if successful, deletes chosen building from the database. This is enabled through alternatives in combobox
+                  ***********/
+        private void buttonDeleteOffice_Click(object sender, EventArgs e)
         {
+            labelFeedbackForOffices.ResetText();
+            labelFeedbackForViewingOffices.ResetText();
+            
             if (comboBoxOfficeNumberDelete.SelectedIndex != -1)
             {
                 string number = comboBoxOfficeNumberDelete.SelectedItem.ToString();
@@ -182,8 +212,7 @@ namespace SmartOfficeApplication
             }
         }
 
-       
-
+   
         private void comboBoxOfficeAddressDelete_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateOfficeNumberComboBoxes();
@@ -290,7 +319,8 @@ namespace SmartOfficeApplication
 
         private void buttonAddOffice_Click_1(object sender, EventArgs e)
         {
-            labelFeedbackForOffices.Text = "button clicked!"; //return the label to default 
+            labelFeedbackForViewingOffices.ResetText();
+            labelFeedbackLabelForDeletingOffice.ResetText();
 
             string buildingAddress = comboBoxOfficeAddress.SelectedItem.ToString(); //retrieves address
             string ventilationSetting = comboBoxVentilationSetting.SelectedItem.ToString(); //retrieves ventilation setting

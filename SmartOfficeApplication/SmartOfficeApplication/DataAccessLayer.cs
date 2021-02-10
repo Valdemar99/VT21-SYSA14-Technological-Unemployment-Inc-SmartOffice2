@@ -356,7 +356,7 @@ namespace SmartOfficeApplication
 
                     SqlDataReader dataReader = sqlCommandGetOffice.ExecuteReader();
                     if (dataReader.Read())
-                        officeNumber = dataReader.GetString(0);
+                        officeNumber = dataReader.GetString(1);
                     return officeNumber;
                 }
             }

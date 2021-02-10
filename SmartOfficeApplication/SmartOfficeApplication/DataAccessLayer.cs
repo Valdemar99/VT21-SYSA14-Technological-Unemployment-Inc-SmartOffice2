@@ -276,32 +276,24 @@ namespace SmartOfficeApplication
              ***********/
             public SqlDataReader GetOffices(string buildingAddress)
             {
-                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+                sqlConnection = new SqlConnection(connectionString);
+                SqlCommand sqlCommand = new SqlCommand("SELECT * FROM Office WHERE buildingAddress = '" + buildingAddress + "'", sqlConnection);
+
+                try
                 {
-                    SqlCommand sqlCommand = new SqlCommand("SELECT * FROM Office WHERE buildingAddress = '" + buildingAddress + "'", sqlConnection);
-                    using (sqlCommand) 
-                    {
-                        try
-                        {
-                            sqlConnection.Open();
-                            SqlDataReader dataReader = sqlCommand.ExecuteReader();
-                            return dataReader;
+                    sqlConnection.Open();
+                    SqlDataReader dataReader = sqlCommand.ExecuteReader();
+                    return dataReader;
+                }
+                    catch (SqlException e)
+                {
 
+                    throw e;
 
-                        }
-                        catch (SqlException e)
-                        {
-
-                            throw e;
-
-                        }
-                        catch (Exception e)
-                        {
-                            throw e;
-                        }
-                    }
-
-
+                }
+                    catch (Exception e)
+                {
+                    throw e;
                 }
 
             }

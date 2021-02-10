@@ -173,9 +173,7 @@ namespace SmartOfficeApplication
             if (comboBoxOfficeAddressDelete.SelectedIndex != -1) //If an object in the combobox is selected, the combobox with office numbers is updated.
             {
                 string selectedAddress = comboBoxOfficeAddressDelete.SelectedItem.ToString();
-                DataTable OfficesOnSelectedAddress = new DataTable();
-                comboBoxOfficeNumberDelete.DisplayMember = "officeNumber";
-                comboBoxOfficeNumberDelete.DataSource = dataAccessLayer.GetOffices(selectedAddress);
+                FillOfficeNumberComboBox(selectedAddress, comboBoxOfficeNumberDelete);
             }
             else
             {
@@ -246,17 +244,10 @@ namespace SmartOfficeApplication
 
         private void comboBoxOfficeAddress_SelectedIndexChanged(object sender, EventArgs e) //Updates the office number combobox under the address combobox
         {
-            comboBoxOfficeNumber.Items.Clear();
             if (comboBoxOfficeAddress.SelectedItem.ToString() != "") //If an object in the combobox is selected, the combobox with office numbers is updated.
             {
                 string selectedAddress = comboBoxOfficeAddress.SelectedItem.ToString();
-                SqlDataReader officeReader = dataAccessLayer.GetOffices(selectedAddress);
-                while (officeReader.Read())
-                {
-                    comboBoxOfficeNumber.Items.Add(officeReader.GetInt32(1));
-                }
-                officeReader.Close();
-                dataAccessLayer.CloseConnection();
+                FillOfficeNumberComboBox(selectedAddress, comboBoxOfficeNumber);
             }
             else
             {
@@ -281,7 +272,7 @@ namespace SmartOfficeApplication
             VentilationSetting vS = new VentilationSetting();
             comboBoxVentilationSetting.DataSource = vS.VentilationSettingList.ToList<string>();
         }
-        private void fillOfficeNumberComboBox(string buildingAddress, ComboBox officeNumberComboBox)
+        private void FillOfficeNumberComboBox(string buildingAddress, ComboBox officeNumberComboBox)
         {
             //comboBoxOfficeAddress.Items.Clear();
             //comboBoxOfficeAddressDelete.Items.Clear();
@@ -308,7 +299,7 @@ namespace SmartOfficeApplication
             SqlDataReader officeReader = dataAccessLayer.GetOffices(buildingAddress); //Fetch data and hold it in buildingList.
             while (officeReader.Read())
             {
-                officeNumberComboBox.Items.Add(officeReader.GetInt32(1));
+                officeNumberComboBox.Items.Add(officeReader.GetString(1));
             }
             officeReader.Close();
             dataAccessLayer.CloseConnection();

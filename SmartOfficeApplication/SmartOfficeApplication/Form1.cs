@@ -46,7 +46,7 @@ namespace SmartOfficeApplication
             fillVentilationSettingComboBox();
             UpdateBuildingData();
         }
-
+        
 
         /*****************.
            *  Button             addBuilding
@@ -164,11 +164,13 @@ namespace SmartOfficeApplication
         {
             try
             {
-                string selectedAddress = comboBoxAddressViewOffices.SelectedValue.ToString();
+                string selectedAddress = comboBoxAddressViewOffices.SelectedItem.ToString();
                 SqlDataReader offices = dataAccessLayer.GetOffices(selectedAddress);
                 DataTable officeTable = new DataTable();
                 officeTable.Load(offices);
                 dataGridViewOffices.DataSource = officeTable;
+                offices.Close();
+                dataAccessLayer.CloseConnection();
             }
             catch (NullReferenceException exception)
             {

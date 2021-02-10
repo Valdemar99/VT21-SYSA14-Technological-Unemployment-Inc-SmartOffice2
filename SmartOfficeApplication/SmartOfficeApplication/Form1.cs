@@ -102,7 +102,7 @@ namespace SmartOfficeApplication
 
                             if (dataAccessLayer.checkIfBuildingExists(newAddress) == true) // If the new address already exists it sends an error message
                             {
-                                labelFeedbackForBuildings.Text = "This building with inserted new address already exists in our database. \nPlease try another another address.";
+                                labelFeedbackForBuildings.Text = "This building with inserted new address already exists\n in our database. Please try another another address.";
                             }
 
                             if(dataAccessLayer.checkIfBuildingExists(newAddress) != true)
@@ -123,14 +123,7 @@ namespace SmartOfficeApplication
                     labelFeedbackForBuildings.Text = "Please choose address to edit";
 
                 }
-
-
-                
-
-                
-
             }
-
         }
           private void comboBoxAddressDelete_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -162,6 +155,8 @@ namespace SmartOfficeApplication
             ***********/
         private void buttonViewOffices_Click(object sender, EventArgs e)
         {
+            labelFeedbackForOffices.ResetText();
+            labelFeedbackLabelForDeletingOffice.ResetText();
             try
             {
                 string selectedAddress = comboBoxAddressViewOffices.SelectedItem.ToString();
@@ -186,11 +181,14 @@ namespace SmartOfficeApplication
         }
 
         /*****************.
-                  *  Button             removeBuilding
+                  *  Button             deleteOffice
                   *   Description        button that, if successful, deletes chosen building from the database. This is enabled through alternatives in combobox
                   ***********/
-        private void buttonRemoveOffice_Click(object sender, EventArgs e)
+        private void buttonDeleteOffice_Click(object sender, EventArgs e)
         {
+            labelFeedbackForOffices.ResetText();
+            labelFeedbackForViewingOffices.ResetText();
+            
             if (comboBoxOfficeNumberDelete.SelectedIndex != -1)
             {
                 string number = comboBoxOfficeNumberDelete.SelectedItem.ToString();
@@ -213,8 +211,7 @@ namespace SmartOfficeApplication
             }
         }
 
-       
-
+   
         private void comboBoxOfficeAddressDelete_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateOfficeNumberComboBoxes();
@@ -321,7 +318,8 @@ namespace SmartOfficeApplication
 
         private void buttonAddOffice_Click_1(object sender, EventArgs e)
         {
-            labelFeedbackForDeletingBuilding.ResetText();
+            labelFeedbackForViewingOffices.ResetText();
+            labelFeedbackLabelForDeletingOffice.ResetText();
 
             string buildingAddress = comboBoxOfficeAddress.SelectedItem.ToString(); //retrieves address
             string ventilationSetting = comboBoxVentilationSetting.SelectedItem.ToString(); //retrieves ventilation setting

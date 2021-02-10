@@ -51,7 +51,7 @@
             this.buttonViewOffices = new System.Windows.Forms.Button();
             this.labelAddressViewOffices = new System.Windows.Forms.Label();
             this.comboBoxAddressViewOffices = new System.Windows.Forms.ComboBox();
-            this.buttonRemoveOffice = new System.Windows.Forms.Button();
+            this.buttonDeleteOffice = new System.Windows.Forms.Button();
             this.labelOfficeNumberDelete = new System.Windows.Forms.Label();
             this.comboBoxOfficeNumberDelete = new System.Windows.Forms.ComboBox();
             this.labelOfficeAddressDelete = new System.Windows.Forms.Label();
@@ -120,9 +120,9 @@
             this.labelFeedbackForDeletingBuilding.AutoSize = true;
             this.labelFeedbackForDeletingBuilding.Location = new System.Drawing.Point(26, 387);
             this.labelFeedbackForDeletingBuilding.Name = "labelFeedbackForDeletingBuilding";
-            this.labelFeedbackForDeletingBuilding.Size = new System.Drawing.Size(186, 14);
+            this.labelFeedbackForDeletingBuilding.Size = new System.Drawing.Size(10, 14);
             this.labelFeedbackForDeletingBuilding.TabIndex = 37;
-            this.labelFeedbackForDeletingBuilding.Text = "labelFeedbackForDeletingBuilding";
+            this.labelFeedbackForDeletingBuilding.Text = " ";
             // 
             // labelListOfBuildings
             // 
@@ -138,9 +138,9 @@
             this.labelFeedbackForBuildings.AutoSize = true;
             this.labelFeedbackForBuildings.Location = new System.Drawing.Point(26, 172);
             this.labelFeedbackForBuildings.Name = "labelFeedbackForBuildings";
-            this.labelFeedbackForBuildings.Size = new System.Drawing.Size(147, 14);
+            this.labelFeedbackForBuildings.Size = new System.Drawing.Size(10, 14);
             this.labelFeedbackForBuildings.TabIndex = 35;
-            this.labelFeedbackForBuildings.Text = "labelFeedbackForBuildings";
+            this.labelFeedbackForBuildings.Text = " ";
             // 
             // listBoxBuildings
             // 
@@ -255,7 +255,7 @@
             this.tabPageOffice.Controls.Add(this.buttonViewOffices);
             this.tabPageOffice.Controls.Add(this.labelAddressViewOffices);
             this.tabPageOffice.Controls.Add(this.comboBoxAddressViewOffices);
-            this.tabPageOffice.Controls.Add(this.buttonRemoveOffice);
+            this.tabPageOffice.Controls.Add(this.buttonDeleteOffice);
             this.tabPageOffice.Controls.Add(this.labelOfficeNumberDelete);
             this.tabPageOffice.Controls.Add(this.comboBoxOfficeNumberDelete);
             this.tabPageOffice.Controls.Add(this.labelOfficeAddressDelete);
@@ -285,18 +285,18 @@
             this.labelFeedbackForViewingOffices.AutoSize = true;
             this.labelFeedbackForViewingOffices.Location = new System.Drawing.Point(420, 105);
             this.labelFeedbackForViewingOffices.Name = "labelFeedbackForViewingOffices";
-            this.labelFeedbackForViewingOffices.Size = new System.Drawing.Size(176, 14);
+            this.labelFeedbackForViewingOffices.Size = new System.Drawing.Size(10, 14);
             this.labelFeedbackForViewingOffices.TabIndex = 36;
-            this.labelFeedbackForViewingOffices.Text = "feedbackLabelForViewingOffices";
+            this.labelFeedbackForViewingOffices.Text = " ";
             // 
             // labelFeedbackLabelForDeletingOffice
             // 
             this.labelFeedbackLabelForDeletingOffice.AutoSize = true;
             this.labelFeedbackLabelForDeletingOffice.Location = new System.Drawing.Point(26, 438);
             this.labelFeedbackLabelForDeletingOffice.Name = "labelFeedbackLabelForDeletingOffice";
-            this.labelFeedbackLabelForDeletingOffice.Size = new System.Drawing.Size(173, 14);
+            this.labelFeedbackLabelForDeletingOffice.Size = new System.Drawing.Size(10, 14);
             this.labelFeedbackLabelForDeletingOffice.TabIndex = 35;
-            this.labelFeedbackLabelForDeletingOffice.Text = "feedbackLabelForDeletingOffice";
+            this.labelFeedbackLabelForDeletingOffice.Text = " ";
             // 
             // labelFeedbackForOffices
             // 
@@ -334,15 +334,15 @@
             this.comboBoxAddressViewOffices.Size = new System.Drawing.Size(187, 22);
             this.comboBoxAddressViewOffices.TabIndex = 30;
             // 
-            // buttonRemoveOffice
+            // buttonDeleteOffice
             // 
-            this.buttonRemoveOffice.Location = new System.Drawing.Point(154, 399);
-            this.buttonRemoveOffice.Name = "buttonRemoveOffice";
-            this.buttonRemoveOffice.Size = new System.Drawing.Size(126, 23);
-            this.buttonRemoveOffice.TabIndex = 29;
-            this.buttonRemoveOffice.Text = "Remove office";
-            this.buttonRemoveOffice.UseVisualStyleBackColor = true;
-            this.buttonRemoveOffice.Click += new System.EventHandler(this.buttonRemoveOffice_Click);
+            this.buttonDeleteOffice.Location = new System.Drawing.Point(154, 399);
+            this.buttonDeleteOffice.Name = "buttonDeleteOffice";
+            this.buttonDeleteOffice.Size = new System.Drawing.Size(126, 23);
+            this.buttonDeleteOffice.TabIndex = 29;
+            this.buttonDeleteOffice.Text = "Remove office";
+            this.buttonDeleteOffice.UseVisualStyleBackColor = true;
+            this.buttonDeleteOffice.Click += new System.EventHandler(this.buttonDeleteOffice_Click);
             // 
             // labelOfficeNumberDelete
             // 
@@ -572,7 +572,7 @@
         private System.Windows.Forms.Label labelVentilationSetting;
         private System.Windows.Forms.Label labelOfficeNumber;
         private System.Windows.Forms.ComboBox comboBoxOfficeNumber;
-        private System.Windows.Forms.Button buttonRemoveOffice;
+        private System.Windows.Forms.Button buttonDeleteOffice;
         private System.Windows.Forms.Label labelOfficeNumberDelete;
         private System.Windows.Forms.ComboBox comboBoxOfficeNumberDelete;
         private System.Windows.Forms.Label labelOfficeAddressDelete;

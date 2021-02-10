@@ -123,9 +123,9 @@
             this.labelFeedbackForDeletingBuilding.AutoSize = true;
             this.labelFeedbackForDeletingBuilding.Location = new System.Drawing.Point(26, 387);
             this.labelFeedbackForDeletingBuilding.Name = "labelFeedbackForDeletingBuilding";
-            this.labelFeedbackForDeletingBuilding.Size = new System.Drawing.Size(186, 14);
+            this.labelFeedbackForDeletingBuilding.Size = new System.Drawing.Size(10, 14);
             this.labelFeedbackForDeletingBuilding.TabIndex = 37;
-            this.labelFeedbackForDeletingBuilding.Text = "labelFeedbackForDeletingBuilding";
+            this.labelFeedbackForDeletingBuilding.Text = " ";
             // 
             // labelListOfBuildings
             // 
@@ -141,9 +141,9 @@
             this.labelFeedbackForBuildings.AutoSize = true;
             this.labelFeedbackForBuildings.Location = new System.Drawing.Point(26, 172);
             this.labelFeedbackForBuildings.Name = "labelFeedbackForBuildings";
-            this.labelFeedbackForBuildings.Size = new System.Drawing.Size(147, 14);
+            this.labelFeedbackForBuildings.Size = new System.Drawing.Size(10, 14);
             this.labelFeedbackForBuildings.TabIndex = 35;
-            this.labelFeedbackForBuildings.Text = "labelFeedbackForBuildings";
+            this.labelFeedbackForBuildings.Text = " ";
             // 
             // listBoxBuildings
             // 
@@ -288,18 +288,18 @@
             this.labelFeedbackForViewingOffices.AutoSize = true;
             this.labelFeedbackForViewingOffices.Location = new System.Drawing.Point(420, 105);
             this.labelFeedbackForViewingOffices.Name = "labelFeedbackForViewingOffices";
-            this.labelFeedbackForViewingOffices.Size = new System.Drawing.Size(176, 14);
+            this.labelFeedbackForViewingOffices.Size = new System.Drawing.Size(10, 14);
             this.labelFeedbackForViewingOffices.TabIndex = 36;
-            this.labelFeedbackForViewingOffices.Text = "feedbackLabelForViewingOffices";
+            this.labelFeedbackForViewingOffices.Text = " ";
             // 
             // labelFeedbackLabelForDeletingOffice
             // 
             this.labelFeedbackLabelForDeletingOffice.AutoSize = true;
             this.labelFeedbackLabelForDeletingOffice.Location = new System.Drawing.Point(26, 438);
             this.labelFeedbackLabelForDeletingOffice.Name = "labelFeedbackLabelForDeletingOffice";
-            this.labelFeedbackLabelForDeletingOffice.Size = new System.Drawing.Size(173, 14);
+            this.labelFeedbackLabelForDeletingOffice.Size = new System.Drawing.Size(10, 14);
             this.labelFeedbackLabelForDeletingOffice.TabIndex = 35;
-            this.labelFeedbackLabelForDeletingOffice.Text = "feedbackLabelForDeletingOffice";
+            this.labelFeedbackLabelForDeletingOffice.Text = " ";
             // 
             // labelFeedbackForOffices
             // 

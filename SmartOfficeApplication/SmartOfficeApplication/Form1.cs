@@ -14,6 +14,7 @@ namespace SmartOfficeApplication
     public partial class Form1 : Form
     {
         private DataAccessLayer dataAccessLayer = new DataAccessLayer();
+        private ErrorHandler errorHandler = new ErrorHandler();
 
         public void UpdateBuildingData() //Updates all comboboxes and lists with buildings.
         {
@@ -244,7 +245,7 @@ namespace SmartOfficeApplication
 
         private void comboBoxOfficeAddress_SelectedIndexChanged(object sender, EventArgs e) //Updates the office number combobox under the address combobox
         {
-            if (comboBoxOfficeAddress.SelectedIndex.ToString().Length != 0) //If an object in the combobox is selected, the combobox with office numbers is updated.
+            if (comboBoxOfficeAddress.SelectedIndex != -1) //If an object in the combobox is selected, the combobox with office numbers is updated.
             {
                 string selectedAddress = comboBoxOfficeAddress.SelectedItem.ToString();
                 fillOfficeNumberComboBox(selectedAddress, comboBoxOfficeNumber);

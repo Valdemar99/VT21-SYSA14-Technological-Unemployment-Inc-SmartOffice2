@@ -357,7 +357,6 @@ namespace SmartOfficeApplication
                     dataReader.Read();
                     officeNumber = dataReader.GetString(0);
                   
-
                     return officeNumber;
                 }
             }

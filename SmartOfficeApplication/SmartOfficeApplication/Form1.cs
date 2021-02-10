@@ -164,42 +164,33 @@ namespace SmartOfficeApplication
                 string number = comboBoxOfficeNumberDelete.SelectedItem.ToString();
                 string address = comboBoxOfficeAddressDelete.SelectedItem.ToString();
                 dataAccessLayer.RemoveOffice(number, address);
-                FillOfficeNumberComboBox(address, comboBoxOfficeNumberDelete);
+                UpdateOfficeNumberComboBoxes();
+                labelFeedbackLabelForDeletingOffice.Text = "Office deleted.";
+                
             }
             else
             {
-
+                if (comboBoxOfficeNumberDelete.Items.Count > 0)
+                {
+                    labelFeedbackLabelForDeletingOffice.Text = "Please select an office to delete.";
+                }
+                else
+                {
+                    labelFeedbackLabelForDeletingOffice.Text = "No offices left to delete.";
+                }
             }
-            
-
         }
 
        
 
         private void comboBoxOfficeAddressDelete_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxOfficeAddressDelete.SelectedIndex != -1) //If an object in the combobox is selected, the combobox with office numbers is updated.
-            {
-                string selectedAddress = comboBoxOfficeAddressDelete.SelectedItem.ToString();
-                FillOfficeNumberComboBox(selectedAddress, comboBoxOfficeNumberDelete);
-            }
-            else
-            {
-                comboBoxOfficeNumberDelete.Items.Clear();
-            }
+            UpdateOfficeNumberComboBoxes();
         }
 
         private void comboBoxOfficeAddress_SelectedIndexChanged(object sender, EventArgs e) //Updates the office number combobox under the address combobox
         {
-            if (comboBoxOfficeAddress.SelectedItem.ToString() != "") //If an object in the combobox is selected, the combobox with office numbers is updated.
-            {
-                string selectedAddress = comboBoxOfficeAddress.SelectedItem.ToString();
-                FillOfficeNumberComboBox(selectedAddress, comboBoxOfficeNumber);
-            }
-            else
-            {
-                comboBoxOfficeNumber.Items.Clear();
-            }
+            UpdateOfficeNumberComboBoxes();
         }
 
         private void radioButtonAddOffice_CheckedChanged(object sender, EventArgs e) //Changes the text on the button from "Edit office" to "Add office" or vice versa depending on the selected radio button.
@@ -207,10 +198,12 @@ namespace SmartOfficeApplication
             if(radioButtonAddOffice.Checked)
             {
                 buttonAddOffice.Text = "Add office";
+                comboBoxOfficeNumber.Enabled = false;
             }
             else
             {
                 buttonAddOffice.Text = "Edit office";
+                comboBoxOfficeNumber.Enabled = true;
             }
         }
 
@@ -219,28 +212,9 @@ namespace SmartOfficeApplication
             VentilationSetting vS = new VentilationSetting();
             comboBoxVentilationSetting.DataSource = vS.VentilationSettingList.ToList<string>();
         }
+        //Fill an officeNumber ComboBox given a selected building address.
         private void FillOfficeNumberComboBox(string buildingAddress, ComboBox officeNumberComboBox)
         {
-            //comboBoxOfficeAddress.Items.Clear();
-            //comboBoxOfficeAddressDelete.Items.Clear();
-            //comboBoxAddressViewOffices.Items.Clear();
-            //comboBoxOldAddress.Items.Clear();
-            //comboBoxAddressDelete.Items.Clear();
-
-            //listBoxBuildings.Items.Clear();
-
-            //SqlDataReader buildingReader = dataAccessLayer.GetBuildings(); //Fetch data and hold it in buildingList.
-            //while (buildingReader.Read())
-            //{
-            //    comboBoxOfficeAddress.Items.Add(buildingReader.GetString(0));
-            //    comboBoxOfficeAddressDelete.Items.Add(buildingReader.GetString(0));
-            //    comboBoxAddressViewOffices.Items.Add(buildingReader.GetString(0));
-            //    comboBoxOldAddress.Items.Add(buildingReader.GetString(0));
-            //    comboBoxAddressDelete.Items.Add(buildingReader.GetString(0));
-            //    listBoxBuildings.Items.Add(buildingReader.GetString(0));
-            //}
-            //buildingReader.Close();
-            //dataAccessLayer.CloseConnection();
 
             officeNumberComboBox.Items.Clear();
             SqlDataReader officeReader = dataAccessLayer.GetOffices(buildingAddress); //Fetch data and hold it in buildingList.
@@ -252,6 +226,46 @@ namespace SmartOfficeApplication
             dataAccessLayer.CloseConnection();
         }
 
+        //Update all office number comboboxes.
+        private void UpdateOfficeNumberComboBoxes()
+        {
+            if (comboBoxOfficeAddress.SelectedIndex != -1) //If an object in the combobox is selected, the combobox with office numbers is updated.
+            {
+                string selectedAddress = comboBoxOfficeAddress.SelectedItem.ToString();
+                FillOfficeNumberComboBox(selectedAddress, comboBoxOfficeNumber);
+
+            }
+            else
+            {
+                comboBoxOfficeNumber.Items.Clear();
+            }
+            if (comboBoxOfficeAddressDelete.SelectedIndex != -1) //If an object in the combobox is selected, the combobox with office numbers is updated.
+            {
+                string selectedAddress = comboBoxOfficeAddressDelete.SelectedItem.ToString();
+                FillOfficeNumberComboBox(selectedAddress, comboBoxOfficeNumberDelete);
+            }
+            else
+            {
+                comboBoxOfficeNumberDelete.Items.Clear();
+            }
+            if (comboBoxOfficeNumberDelete.Items.Count > 0)
+            {
+                comboBoxOfficeNumberDelete.SelectedIndex = 0;
+            }
+            else
+            {
+                comboBoxOfficeNumberDelete.Text = "";
+            }
+            if (comboBoxOfficeNumber.Items.Count > 0)
+            {
+                comboBoxOfficeNumber.SelectedIndex = 0;
+            }
+            else
+            {
+                comboBoxOfficeNumber.Text = "";
+            }
+        }
+
         private void radioButtonAddBuilding_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButtonAddBuilding.Checked)
@@ -261,7 +275,6 @@ namespace SmartOfficeApplication
             else
             {
                 buttonAddBuilding.Text = "Edit building";
-
             }
         }
 
@@ -284,9 +297,7 @@ namespace SmartOfficeApplication
 
             if (radioButtonAddOffice.Checked == true)
             {
-                labelFeedbackForOffices.Text = "button add clicked!";
-                buttonAddOffice.Text = "Add office";
-                comboBoxOfficeNumber.Enabled = false; //disables a choice of office number.
+                
                 if (buildingAddress.Equals(""))//Error message if the combobox is empty
                 {
                     labelFeedbackForOffices.Text = "To add a new office, please insert an address.";
@@ -299,15 +310,11 @@ namespace SmartOfficeApplication
                 string officeNumber = dataAccessLayer.GetMostRecentOfficeNumber();
                 string feedbackString = "The office with officenumber '" + officeNumber + "'\nand address '" + buildingAddress + "' has been successfully added.";
                 labelFeedbackForOffices.Text = feedbackString;
-
-                string selectedAddress = comboBoxOfficeAddress.SelectedItem.ToString();
-                FillOfficeNumberComboBox(selectedAddress, comboBoxOfficeNumber);
+                UpdateOfficeNumberComboBoxes();
             }
 
             else if (radioButtonEditOffice.Checked == true) //If edit building is chosen
             {
-                buttonAddOffice.Text = "Edit office";
-                comboBoxOfficeNumber.Enabled = true; //enables a choice of office number.
                 object officeNumberObject = comboBoxOfficeNumber.SelectedItem;
                 if (buildingAddress.Equals(""))//Error message if no address is chosen
                 {

@@ -45,6 +45,7 @@ namespace SmartOfficeApplication
             InitializeComponent();
             fillVentilationSettingComboBox();
             UpdateBuildingData();
+            comboBoxOldAddress.Enabled = false;
         }
 
 
@@ -135,8 +136,8 @@ namespace SmartOfficeApplication
             labelFeedbackForDeletingBuilding.Text = "Building has been removed!";
             UpdateBuildingData();
         }
- //Displays all offices on a selected address. If no address is selected, an error message is displayed in a text label at the bottom of the frame.
-        private void buttonViewOffices_Click(object sender, EventArgs e)
+
+        private void buttonViewOffices_Click(object sender, EventArgs e) //Displays all offices on a selected address. If no address is selected, an error message is displayed in a text label at the bottom of the frame.
         {
             try
             {
@@ -148,9 +149,7 @@ namespace SmartOfficeApplication
             }
             catch (NullReferenceException exception)
             {
-                labelFeedbackForViewingOffices.Text = "Please select a valid address to display its offices. " +
-                    "\nIf there are no addresses please create one.";
-
+                labelFeedbackForOffices.Text = "Please select a valid address to display its offices. If there are no addresses please create one.";
             }
         }
 
@@ -334,7 +333,7 @@ namespace SmartOfficeApplication
                 {
                     string officeNumberToEdit = officeNumberObject.ToString();
                     dataAccessLayer.EditOffice(officeNumberToEdit, buildingAddress, ventilationSetting, temperatureSetting);
-                    labelFeedbackForOffices.Text = "The office with address '" + buildingAddress + "' and office number '" + officeNumberToEdit + "'\nhas been successfully edited.";
+                    labelFeedbackForOffices.Text = "The office with address \n'" + buildingAddress + "' and office number '" + officeNumberToEdit + "' has been successfully edited.";
                 }
             }
             else

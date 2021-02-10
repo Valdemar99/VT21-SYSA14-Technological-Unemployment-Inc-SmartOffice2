@@ -308,7 +308,7 @@ namespace SmartOfficeApplication
                 }
                 dataAccessLayer.AddOffice(buildingAddress, temperatureSetting, ventilationSetting);
                 string officeNumber = dataAccessLayer.GetMostRecentOfficeNumber();
-                string feedbackString = "The office with number " + officeNumber + "  and address " + buildingAddress + " has been successfully added to the database.";
+                string feedbackString = "The office with officenumber '" + officeNumber + "'\nand address '" + buildingAddress + "' has been successfully added.";
                 labelFeedbackForOffices.Text = feedbackString;
                 UpdateOfficeNumberComboBoxes();
             }
@@ -332,7 +332,7 @@ namespace SmartOfficeApplication
                 {
                     string officeNumberToEdit = officeNumberObject.ToString();
                     dataAccessLayer.EditOffice(officeNumberToEdit, buildingAddress, ventilationSetting, temperatureSetting);
-                    labelFeedbackForOffices.Text = "The office with address'" + buildingAddress + "' and office number '" + officeNumberToEdit + "' has been successfully edited.";
+                    labelFeedbackForOffices.Text = "The office with address \n'" + buildingAddress + "' and office number '" + officeNumberToEdit + "' has been successfully edited.";
                 }
             }
             else

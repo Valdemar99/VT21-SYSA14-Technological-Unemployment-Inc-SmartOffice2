@@ -14,7 +14,8 @@ namespace SmartOfficeApplication
             if (errorCode == 2627)
             {
                 returnString = ("There already exists a " + objectName + " with this " + keyName + " value.");
-            } else if (errorCode == 0)
+            }
+            else if (errorCode == 0)
             {
                 returnString = ("There is a problem with the connection, please check your internet connection and try again. If the problem persists, contact IT support.");
             }

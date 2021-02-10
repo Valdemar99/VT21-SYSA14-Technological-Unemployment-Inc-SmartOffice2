@@ -30,6 +30,7 @@
         {
             this.tabControlOffice = new System.Windows.Forms.TabControl();
             this.tabPageBuilding = new System.Windows.Forms.TabPage();
+            this.labelFeedbackForDeletingBuilding = new System.Windows.Forms.Label();
             this.labelListOfBuildings = new System.Windows.Forms.Label();
             this.labelFeedbackForBuildings = new System.Windows.Forms.Label();
             this.listBoxBuildings = new System.Windows.Forms.ListBox();
@@ -44,6 +45,8 @@
             this.textBoxAddress = new System.Windows.Forms.TextBox();
             this.buttonAddBuilding = new System.Windows.Forms.Button();
             this.tabPageOffice = new System.Windows.Forms.TabPage();
+            this.labelFeedbackForViewingOffices = new System.Windows.Forms.Label();
+            this.labelFeedbackLabelForDeletingOffice = new System.Windows.Forms.Label();
             this.labelFeedbackForOffices = new System.Windows.Forms.Label();
             this.dataGridViewOffices = new System.Windows.Forms.DataGridView();
             this.buildingAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -73,9 +76,6 @@
             this.buildingAddressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.temperatureSettingDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ventilationSettingDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.labelFeedbackForDeletingBuilding = new System.Windows.Forms.Label();
-            this.labelFeedbackLabelForDeletingOffice = new System.Windows.Forms.Label();
-            this.labelFeedbackForViewingOffices = new System.Windows.Forms.Label();
             this.tabControlOffice.SuspendLayout();
             this.tabPageBuilding.SuspendLayout();
             this.tabPageOffice.SuspendLayout();
@@ -117,6 +117,15 @@
             this.tabPageBuilding.TabIndex = 0;
             this.tabPageBuilding.Text = "Buildings";
             this.tabPageBuilding.UseVisualStyleBackColor = true;
+            // 
+            // labelFeedbackForDeletingBuilding
+            // 
+            this.labelFeedbackForDeletingBuilding.AutoSize = true;
+            this.labelFeedbackForDeletingBuilding.Location = new System.Drawing.Point(26, 387);
+            this.labelFeedbackForDeletingBuilding.Name = "labelFeedbackForDeletingBuilding";
+            this.labelFeedbackForDeletingBuilding.Size = new System.Drawing.Size(186, 14);
+            this.labelFeedbackForDeletingBuilding.TabIndex = 37;
+            this.labelFeedbackForDeletingBuilding.Text = "labelFeedbackForDeletingBuilding";
             // 
             // labelListOfBuildings
             // 
@@ -274,6 +283,24 @@
             this.tabPageOffice.Text = "Offices";
             this.tabPageOffice.UseVisualStyleBackColor = true;
             // 
+            // labelFeedbackForViewingOffices
+            // 
+            this.labelFeedbackForViewingOffices.AutoSize = true;
+            this.labelFeedbackForViewingOffices.Location = new System.Drawing.Point(420, 105);
+            this.labelFeedbackForViewingOffices.Name = "labelFeedbackForViewingOffices";
+            this.labelFeedbackForViewingOffices.Size = new System.Drawing.Size(176, 14);
+            this.labelFeedbackForViewingOffices.TabIndex = 36;
+            this.labelFeedbackForViewingOffices.Text = "feedbackLabelForViewingOffices";
+            // 
+            // labelFeedbackLabelForDeletingOffice
+            // 
+            this.labelFeedbackLabelForDeletingOffice.AutoSize = true;
+            this.labelFeedbackLabelForDeletingOffice.Location = new System.Drawing.Point(26, 438);
+            this.labelFeedbackLabelForDeletingOffice.Name = "labelFeedbackLabelForDeletingOffice";
+            this.labelFeedbackLabelForDeletingOffice.Size = new System.Drawing.Size(173, 14);
+            this.labelFeedbackLabelForDeletingOffice.TabIndex = 35;
+            this.labelFeedbackLabelForDeletingOffice.Text = "feedbackLabelForDeletingOffice";
+            // 
             // labelFeedbackForOffices
             // 
             this.labelFeedbackForOffices.AutoSize = true;
@@ -423,6 +450,7 @@
             this.buttonAddOffice.TabIndex = 22;
             this.buttonAddOffice.Text = "Save";
             this.buttonAddOffice.UseVisualStyleBackColor = true;
+            this.buttonAddOffice.Click += new System.EventHandler(this.buttonAddOffice_Click_1);
             // 
             // labelSelectedTemperature
             // 
@@ -528,33 +556,6 @@
             this.ventilationSettingDataGridViewTextBoxColumn.DataPropertyName = "ventilationSetting";
             this.ventilationSettingDataGridViewTextBoxColumn.HeaderText = "ventilationSetting";
             this.ventilationSettingDataGridViewTextBoxColumn.Name = "ventilationSettingDataGridViewTextBoxColumn";
-            // 
-            // labelFeedbackForDeletingBuilding
-            // 
-            this.labelFeedbackForDeletingBuilding.AutoSize = true;
-            this.labelFeedbackForDeletingBuilding.Location = new System.Drawing.Point(26, 387);
-            this.labelFeedbackForDeletingBuilding.Name = "labelFeedbackForDeletingBuilding";
-            this.labelFeedbackForDeletingBuilding.Size = new System.Drawing.Size(186, 14);
-            this.labelFeedbackForDeletingBuilding.TabIndex = 37;
-            this.labelFeedbackForDeletingBuilding.Text = "labelFeedbackForDeletingBuilding";
-            // 
-            // labelFeedbackLabelForDeletingOffice
-            // 
-            this.labelFeedbackLabelForDeletingOffice.AutoSize = true;
-            this.labelFeedbackLabelForDeletingOffice.Location = new System.Drawing.Point(26, 438);
-            this.labelFeedbackLabelForDeletingOffice.Name = "labelFeedbackLabelForDeletingOffice";
-            this.labelFeedbackLabelForDeletingOffice.Size = new System.Drawing.Size(173, 14);
-            this.labelFeedbackLabelForDeletingOffice.TabIndex = 35;
-            this.labelFeedbackLabelForDeletingOffice.Text = "feedbackLabelForDeletingOffice";
-            // 
-            // labelFeedbackForViewingOffices
-            // 
-            this.labelFeedbackForViewingOffices.AutoSize = true;
-            this.labelFeedbackForViewingOffices.Location = new System.Drawing.Point(420, 105);
-            this.labelFeedbackForViewingOffices.Name = "labelFeedbackForViewingOffices";
-            this.labelFeedbackForViewingOffices.Size = new System.Drawing.Size(176, 14);
-            this.labelFeedbackForViewingOffices.TabIndex = 36;
-            this.labelFeedbackForViewingOffices.Text = "feedbackLabelForViewingOffices";
             // 
             // Form1
             // 

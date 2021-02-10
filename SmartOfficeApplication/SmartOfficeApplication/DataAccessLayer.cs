@@ -305,11 +305,11 @@ namespace SmartOfficeApplication
                 *     Returns           string with officeNumber
                 ***********/
 
-            public string AddOffice(string buildingAddress, int temperatureSetting, string ventilationSetting)
+            public void AddOffice(string buildingAddress, int temperatureSetting, string ventilationSetting)
             {
                 using (SqlConnection sqlConnection = new SqlConnection(connectionString))
                 {
-                    using (SqlCommand sqlCommand = new SqlCommand("INSERT INTO Office VALUES(@buildingAddress, @temperatureSetting, @ventilationSetting)", sqlConnection))
+                    using (SqlCommand sqlCommand = new SqlCommand("INSERT INTO Office (buildingAddress, temperatureSetting, ventilationSetting) VALUES(@buildingAddress, @temperatureSetting, @ventilationSetting) ", sqlConnection))
                     {
                         sqlCommand.Parameters.AddWithValue("@buildingAddress", buildingAddress);
                         sqlCommand.Parameters.AddWithValue("@temperatureSetting", temperatureSetting);
@@ -317,15 +317,8 @@ namespace SmartOfficeApplication
 
                         try
                         {
-                            sqlConnection.Open();
-
-                            string officeNumber;
-                            SqlCommand sqlCommandGetOffice = new SqlCommand("");
-                            SqlDataReader dataReader = sqlCommandGetOffice.ExecuteReader();
-                            officeNumber = dataReader.ToString(); //converts the generated dataReader with the officeNumber to a string
-                            
+                        sqlConnection.Open();
                             sqlCommand.ExecuteNonQuery();
-                            return officeNumber;
 
                         }
                         catch (SqlException e)
@@ -343,14 +336,41 @@ namespace SmartOfficeApplication
                 }
 
             }
-            /*****************.
-            *  Function             RemoveOffice
-            *   Description         Method that, if successful, removes an office from the database.
-            *    Parameters         string officeNumber, string buildingAddress
-            *     Returns           
-            ***********/
+        /********************
+	 * Function			getMostRecentScenarioID
+	 * Description		Method to get the most recent scenario ID. Must be run directly after a row has been added.
+	 * Parameters 		
+	 * Returns			int
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 ********************/
+        public string GetMostRecentOfficeNumber()
+        {
+            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand sqlCommandGetOffice = new SqlCommand("SELECT officeNumber FROM Office WHERE ID IN(SELECT SCOPE_IDENTITY() AS[SCOPE_IDENTITY])", sqlConnection))
+                {
+                    sqlConnection.Open();
 
-            public void RemoveOffice(string officeNumber, string buildingAddress)
+                    string officeNumber = "";
+
+                    SqlDataReader dataReader = sqlCommandGetOffice.ExecuteReader();
+                    if (dataReader.Read())
+                        officeNumber = dataReader.GetString(0);
+                    return officeNumber;
+                }
+            }
+        }
+        
+
+    /*****************.
+    *  Function             RemoveOffice
+    *   Description         Method that, if successful, removes an office from the database.
+    *    Parameters         string officeNumber, string buildingAddress
+    *     Returns           
+    ***********/
+
+    public void RemoveOffice(string officeNumber, string buildingAddress)
             {
                 using (SqlConnection sqlConnection = new SqlConnection(connectionString))
                 {

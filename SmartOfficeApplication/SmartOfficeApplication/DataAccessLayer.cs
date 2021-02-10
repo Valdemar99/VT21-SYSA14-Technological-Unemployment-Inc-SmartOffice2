@@ -317,7 +317,7 @@ namespace SmartOfficeApplication
 
                         try
                         {
-                        sqlConnection.Open();
+                            sqlConnection.Open();
                             sqlCommand.ExecuteNonQuery();
 
                         }
@@ -348,15 +348,16 @@ namespace SmartOfficeApplication
         {
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
-                using (SqlCommand sqlCommandGetOffice = new SqlCommand("SELECT officeNumber FROM Office WHERE ID IN(SELECT SCOPE_IDENTITY() AS[SCOPE_IDENTITY])", sqlConnection))
+                using (SqlCommand sqlCommandGetOffice = new SqlCommand("SELECT officeNumber FROM Office WHERE ID = (SELECT MAX(ID) FROM Office)", sqlConnection))
                 {
                     sqlConnection.Open();
-
-                    string officeNumber = "";
+                    string officeNumber;
 
                     SqlDataReader dataReader = sqlCommandGetOffice.ExecuteReader();
-                    if (dataReader.Read())
-                        officeNumber = dataReader.GetString(0);
+                    dataReader.Read();
+                    officeNumber = dataReader.GetString(0);
+                  
+
                     return officeNumber;
                 }
             }

@@ -210,7 +210,6 @@ namespace SmartOfficeApplication
                         try
                         {
                             sqlConnection.Open();
-                            //int result = - kan användas senare för error handling
                             sqlCommand.ExecuteNonQuery();
 
                         }

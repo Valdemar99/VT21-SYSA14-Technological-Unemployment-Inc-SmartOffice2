@@ -261,7 +261,7 @@ namespace SmartOfficeApplication
             SqlDataReader officeReader = dataAccessLayer.GetOffices(buildingAddress); //Fetch data and hold it in buildingList.
             while (officeReader.Read())
             {
-                officeNumberComboBox.Items.Add(officeReader.GetString(1));
+                officeNumberComboBox.Items.Add(officeReader.GetString(0));
             }
             officeReader.Close();
             dataAccessLayer.CloseConnection();

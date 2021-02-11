@@ -31,11 +31,11 @@
             this.comboBoxTables = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBoxColumns = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.dataGridViewTablesOfInterest = new System.Windows.Forms.DataGridView();
             this.buttonRefresh = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTablesOfInterest)).BeginInit();
+            this.dataGridViewColumns = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewColumns)).BeginInit();
             this.SuspendLayout();
             // 
             // comboBoxTables
@@ -45,6 +45,7 @@
             this.comboBoxTables.Name = "comboBoxTables";
             this.comboBoxTables.Size = new System.Drawing.Size(171, 21);
             this.comboBoxTables.TabIndex = 0;
+            this.comboBoxTables.SelectedIndexChanged += new System.EventHandler(this.comboBoxTables_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -64,13 +65,13 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "This table has ... rows";
             // 
-            // listBox1
+            // listBoxColumns
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(534, 56);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(238, 355);
-            this.listBox1.TabIndex = 3;
+            this.listBoxColumns.FormattingEnabled = true;
+            this.listBoxColumns.Location = new System.Drawing.Point(534, 56);
+            this.listBoxColumns.Name = "listBoxColumns";
+            this.listBoxColumns.Size = new System.Drawing.Size(238, 355);
+            this.listBoxColumns.TabIndex = 3;
             // 
             // label3
             // 
@@ -80,14 +81,6 @@
             this.label3.Size = new System.Drawing.Size(47, 13);
             this.label3.TabIndex = 4;
             this.label3.Text = "Columns";
-            // 
-            // dataGridViewTablesOfInterest
-            // 
-            this.dataGridViewTablesOfInterest.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewTablesOfInterest.Location = new System.Drawing.Point(37, 127);
-            this.dataGridViewTablesOfInterest.Name = "dataGridViewTablesOfInterest";
-            this.dataGridViewTablesOfInterest.Size = new System.Drawing.Size(449, 284);
-            this.dataGridViewTablesOfInterest.TabIndex = 5;
             // 
             // buttonRefresh
             // 
@@ -99,21 +92,29 @@
             this.buttonRefresh.UseVisualStyleBackColor = true;
             this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
             // 
+            // dataGridViewColumns
+            // 
+            this.dataGridViewColumns.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewColumns.Location = new System.Drawing.Point(37, 127);
+            this.dataGridViewColumns.Name = "dataGridViewColumns";
+            this.dataGridViewColumns.Size = new System.Drawing.Size(449, 284);
+            this.dataGridViewColumns.TabIndex = 5;
+            // 
             // FormForMetadata
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.buttonRefresh);
-            this.Controls.Add(this.dataGridViewTablesOfInterest);
+            this.Controls.Add(this.dataGridViewColumns);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.listBoxColumns);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBoxTables);
             this.Name = "FormForMetadata";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTablesOfInterest)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewColumns)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -124,10 +125,10 @@
         private System.Windows.Forms.ComboBox comboBoxTables;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBoxColumns;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridView dataGridViewTablesOfInterest;
         private System.Windows.Forms.Button buttonRefresh;
+        private System.Windows.Forms.DataGridView dataGridViewColumns;
     }
 }
 

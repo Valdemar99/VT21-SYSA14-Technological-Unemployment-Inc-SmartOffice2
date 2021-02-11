@@ -273,10 +273,12 @@ namespace SmartOfficeApplication
             if (radioButtonAddBuilding.Checked)
             {
                 buttonAddBuilding.Text = "Add building";
+                comboBoxOldAddress.Enabled = false;
             }
             else
             {
                 buttonAddBuilding.Text = "Edit building";
+                comboBoxOldAddress.Enabled = true;
             }
         }
 

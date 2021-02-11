@@ -45,6 +45,8 @@ namespace SmartOfficeApplication
             InitializeComponent();
             fillVentilationSettingComboBox();
             UpdateBuildingData();
+
+
         }
         
 

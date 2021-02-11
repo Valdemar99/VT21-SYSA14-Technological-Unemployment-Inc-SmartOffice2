@@ -335,21 +335,28 @@ namespace SmartOfficeApplication
 
             if (radioButtonAddOffice.Checked == true)
             {
+                try
+                {
+
+                    if (buildingAddress.Equals(""))//Error message if the combobox is empty
+                    {
+                        labelFeedbackForOffices.Text = "To add a new office, please insert an address.";
+                    }
+                    else if (ventilationSetting.Equals(""))
+                    {
+                        labelFeedbackForOffices.Text = "To add a new office, please choose a ventilation setting.";
+                    }
+                    dataAccessLayer.AddOffice(buildingAddress, temperatureSetting, ventilationSetting);
+                    string officeNumber = dataAccessLayer.GetMostRecentOfficeNumber();
+                    string feedbackString = "The office with officenumber '" + officeNumber + "'\nand address '" + buildingAddress + "' has been successfully added.";
+                    labelFeedbackForOffices.Text = feedbackString;
+                    UpdateOfficeNumberComboBoxes();
+                }
                 
-                if (buildingAddress.Equals(""))//Error message if the combobox is empty
-                {
-                    labelFeedbackForOffices.Text = "To add a new office, please insert an address.";
-                }
-                else if (ventilationSetting.Equals(""))
-                {
-                    labelFeedbackForOffices.Text = "To add a new office, please choose a ventilation setting.";
-                }
-                dataAccessLayer.AddOffice(buildingAddress, temperatureSetting, ventilationSetting);
-                string officeNumber = dataAccessLayer.GetMostRecentOfficeNumber();
-                string feedbackString = "The office with officenumber '" + officeNumber + "'\nand address '" + buildingAddress + "' has been successfully added.";
-                labelFeedbackForOffices.Text = feedbackString;
-                UpdateOfficeNumberComboBoxes();
+                catch (NullReferenceException exception) {
+                labelFeedbackForOffices.Text = "To add a new office, please insert an address.";
             }
+        }
 
             else if (radioButtonEditOffice.Checked == true) //If edit building is chosen
             {

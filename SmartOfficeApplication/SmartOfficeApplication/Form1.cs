@@ -14,7 +14,6 @@ namespace SmartOfficeApplication
     public partial class Form1 : Form
     {
         private DataAccessLayer dataAccessLayer = new DataAccessLayer();
-        private ErrorHandler errorHandler = new ErrorHandler();
 
         public void UpdateBuildingData() //Updates all comboboxes and lists with buildings.
         {
@@ -121,7 +120,7 @@ namespace SmartOfficeApplication
 
                     }
 
-                } catch(NullReferenceException ex)
+                } catch(NullReferenceException)
                 {
                     labelFeedbackForBuildings.Text = "Please choose address to edit";
 
@@ -261,7 +260,7 @@ namespace SmartOfficeApplication
             SqlDataReader officeReader = dataAccessLayer.GetOffices(buildingAddress); //Fetch data and hold it in buildingList.
             while (officeReader.Read())
             {
-                officeNumberComboBox.Items.Add(officeReader.GetString(1));
+                officeNumberComboBox.Items.Add(officeReader.GetString(0));
             }
             officeReader.Close();
             dataAccessLayer.CloseConnection();

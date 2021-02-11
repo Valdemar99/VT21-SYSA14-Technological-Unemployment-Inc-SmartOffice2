@@ -45,6 +45,9 @@ namespace SmartOfficeApplication
             InitializeComponent();
             fillVentilationSettingComboBox();
             UpdateBuildingData();
+
+            comboBoxOldAddress.Enabled = false;
+
         }
         
 
@@ -141,19 +144,30 @@ namespace SmartOfficeApplication
             labelFeedbackForBuildings.ResetText();
             labelFeedbackForDeletingBuilding.ResetText();
 
-            string address = comboBoxAddressDelete.SelectedItem.ToString();
-            dataAccessLayer.RemoveBuilding(address);
-            dataAccessLayer.CloseConnection();
+            try
+            {
+                string address = comboBoxAddressDelete.SelectedItem.ToString();
+                dataAccessLayer.RemoveBuilding(address);
+                dataAccessLayer.CloseConnection();
 
-            labelFeedbackForDeletingBuilding.Text = "Building has been removed!";
-            UpdateBuildingData();
+                labelFeedbackForDeletingBuilding.Text = "Building has been removed!";
+                UpdateBuildingData();
+            }
+            catch (NullReferenceException exception)
+            {
+
+                labelFeedbackForDeletingBuilding.Text = "Please select a valid address to delete this building";
+            }
+
         }
+
         /*****************.
                          *  Button             viewOffices
                          *   Description        Displays all offices on a selected address. If no address is selected,
                          *                      an error message is displayed in a text label at the bottom of the frame.
             ***********/
         private void buttonViewOffices_Click(object sender, EventArgs e)
+
         {
             labelFeedbackForOffices.ResetText();
             labelFeedbackLabelForDeletingOffice.ResetText();
@@ -169,9 +183,7 @@ namespace SmartOfficeApplication
             }
             catch (NullReferenceException exception)
             {
-                labelFeedbackForViewingOffices.Text = "Please select a valid address to display its offices. " +
-                    "\nIf there are no addresses please create one.";
-
+                labelFeedbackForOffices.Text = "Please select a valid address to display its offices. If there are no addresses please create one.";
             }
         }
 
@@ -300,10 +312,12 @@ namespace SmartOfficeApplication
             if (radioButtonAddBuilding.Checked)
             {
                 buttonAddBuilding.Text = "Add building";
+                comboBoxOldAddress.Enabled = false;
             }
             else
             {
                 buttonAddBuilding.Text = "Edit building";
+                comboBoxOldAddress.Enabled = true;
             }
         }
 
@@ -320,28 +334,37 @@ namespace SmartOfficeApplication
         {
             labelFeedbackForViewingOffices.ResetText();
             labelFeedbackLabelForDeletingOffice.ResetText();
-
-            string buildingAddress = comboBoxOfficeAddress.SelectedItem.ToString(); //retrieves address
+            string buildingAddress = "";
+            try
+            {
+                buildingAddress = comboBoxOfficeAddress.SelectedItem.ToString(); //retrieves address
+            }
+            catch (NullReferenceException)
+            {
+                labelFeedbackForOffices.Text = "Please select an address";
+            }
             string ventilationSetting = comboBoxVentilationSetting.SelectedItem.ToString(); //retrieves ventilation setting
             int temperatureSetting = trackBarTemperature.Value;
 
             if (radioButtonAddOffice.Checked == true)
             {
+                try
+                {
+                     if (ventilationSetting.Equals(""))
+                    {
+                        labelFeedbackForOffices.Text = "To add a new office, please choose a ventilation setting.";
+                    }
+                    dataAccessLayer.AddOffice(buildingAddress, temperatureSetting, ventilationSetting);
+                    string officeNumber = dataAccessLayer.GetMostRecentOfficeNumber();
+                    string feedbackString = "The office with officenumber '" + officeNumber + "'\nand address '" + buildingAddress + "' has been successfully added.";
+                    labelFeedbackForOffices.Text = feedbackString;
+                    UpdateOfficeNumberComboBoxes();
+                }
                 
-                if (buildingAddress.Equals(""))//Error message if the combobox is empty
-                {
-                    labelFeedbackForOffices.Text = "To add a new office, please insert an address.";
-                }
-                else if (ventilationSetting.Equals(""))
-                {
-                    labelFeedbackForOffices.Text = "To add a new office, please choose a ventilation setting.";
-                }
-                dataAccessLayer.AddOffice(buildingAddress, temperatureSetting, ventilationSetting);
-                string officeNumber = dataAccessLayer.GetMostRecentOfficeNumber();
-                string feedbackString = "The office with officenumber '" + officeNumber + "'\nand address '" + buildingAddress + "' has been successfully added.";
-                labelFeedbackForOffices.Text = feedbackString;
-                UpdateOfficeNumberComboBoxes();
+                catch (NullReferenceException exception) {
+                labelFeedbackForOffices.Text = "To add a new office, please insert an address.";
             }
+        }
 
             else if (radioButtonEditOffice.Checked == true) //If edit building is chosen
             {
@@ -362,7 +385,7 @@ namespace SmartOfficeApplication
                 {
                     string officeNumberToEdit = officeNumberObject.ToString();
                     dataAccessLayer.EditOffice(officeNumberToEdit, buildingAddress, ventilationSetting, temperatureSetting);
-                    labelFeedbackForOffices.Text = "The office with address '" + buildingAddress + "' and office number '" + officeNumberToEdit + "'\nhas been successfully edited.";
+                    labelFeedbackForOffices.Text = "The office with address \n'" + buildingAddress + "' and office number '" + officeNumberToEdit + "' has been successfully edited.";
                 }
             }
             else

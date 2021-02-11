@@ -337,12 +337,7 @@ namespace SmartOfficeApplication
             {
                 try
                 {
-
-                    if (buildingAddress.Equals(""))//Error message if the combobox is empty
-                    {
-                        labelFeedbackForOffices.Text = "To add a new office, please insert an address.";
-                    }
-                    else if (ventilationSetting.Equals(""))
+                     if (ventilationSetting.Equals(""))
                     {
                         labelFeedbackForOffices.Text = "To add a new office, please choose a ventilation setting.";
                     }

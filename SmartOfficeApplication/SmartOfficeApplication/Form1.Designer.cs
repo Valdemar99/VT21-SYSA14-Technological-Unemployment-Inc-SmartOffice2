@@ -45,6 +45,7 @@
             this.textBoxAddress = new System.Windows.Forms.TextBox();
             this.buttonAddBuilding = new System.Windows.Forms.Button();
             this.tabPageOffice = new System.Windows.Forms.TabPage();
+            this.dataGridViewOffices = new System.Windows.Forms.DataGridView();
             this.labelFeedbackForViewingOffices = new System.Windows.Forms.Label();
             this.labelFeedbackLabelForDeletingOffice = new System.Windows.Forms.Label();
             this.labelFeedbackForOffices = new System.Windows.Forms.Label();
@@ -72,12 +73,11 @@
             this.buildingAddressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.temperatureSettingDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ventilationSettingDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewOffices = new System.Windows.Forms.DataGridView();
             this.tabControlOffice.SuspendLayout();
             this.tabPageBuilding.SuspendLayout();
             this.tabPageOffice.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarTemperature)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOffices)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarTemperature)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControlOffice
@@ -159,13 +159,13 @@
             this.radioButtonEditBuilding.Name = "radioButtonEditBuilding";
             this.radioButtonEditBuilding.Size = new System.Drawing.Size(92, 18);
             this.radioButtonEditBuilding.TabIndex = 11;
-            this.radioButtonEditBuilding.TabStop = true;
             this.radioButtonEditBuilding.Text = "Edit building";
             this.radioButtonEditBuilding.UseVisualStyleBackColor = true;
             // 
             // radioButtonAddBuilding
             // 
             this.radioButtonAddBuilding.AutoSize = true;
+            this.radioButtonAddBuilding.Checked = true;
             this.radioButtonAddBuilding.Location = new System.Drawing.Point(111, 122);
             this.radioButtonAddBuilding.Name = "radioButtonAddBuilding";
             this.radioButtonAddBuilding.Size = new System.Drawing.Size(93, 18);
@@ -186,6 +186,7 @@
             // 
             // comboBoxOldAddress
             // 
+            this.comboBoxOldAddress.Enabled = false;
             this.comboBoxOldAddress.FormattingEnabled = true;
             this.comboBoxOldAddress.Location = new System.Drawing.Point(111, 32);
             this.comboBoxOldAddress.Name = "comboBoxOldAddress";
@@ -279,6 +280,14 @@
             this.tabPageOffice.TabIndex = 1;
             this.tabPageOffice.Text = "Offices";
             this.tabPageOffice.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewOffices
+            // 
+            this.dataGridViewOffices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewOffices.Location = new System.Drawing.Point(423, 136);
+            this.dataGridViewOffices.Name = "dataGridViewOffices";
+            this.dataGridViewOffices.Size = new System.Drawing.Size(312, 246);
+            this.dataGridViewOffices.TabIndex = 37;
             // 
             // labelFeedbackForViewingOffices
             // 
@@ -386,13 +395,13 @@
             this.radioButtonEditOffice.Name = "radioButtonEditOffice";
             this.radioButtonEditOffice.Size = new System.Drawing.Size(77, 18);
             this.radioButtonEditOffice.TabIndex = 24;
-            this.radioButtonEditOffice.TabStop = true;
             this.radioButtonEditOffice.Text = "Edit office";
             this.radioButtonEditOffice.UseVisualStyleBackColor = true;
             // 
             // radioButtonAddOffice
             // 
             this.radioButtonAddOffice.AutoSize = true;
+            this.radioButtonAddOffice.Checked = true;
             this.radioButtonAddOffice.Location = new System.Drawing.Point(154, 230);
             this.radioButtonAddOffice.Name = "radioButtonAddOffice";
             this.radioButtonAddOffice.Size = new System.Drawing.Size(78, 18);
@@ -469,6 +478,7 @@
             // 
             // comboBoxOfficeNumber
             // 
+            this.comboBoxOfficeNumber.Enabled = false;
             this.comboBoxOfficeNumber.FormattingEnabled = true;
             this.comboBoxOfficeNumber.Location = new System.Drawing.Point(154, 77);
             this.comboBoxOfficeNumber.Name = "comboBoxOfficeNumber";
@@ -517,14 +527,6 @@
             this.ventilationSettingDataGridViewTextBoxColumn.HeaderText = "ventilationSetting";
             this.ventilationSettingDataGridViewTextBoxColumn.Name = "ventilationSettingDataGridViewTextBoxColumn";
             // 
-            // dataGridViewOffices
-            // 
-            this.dataGridViewOffices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewOffices.Location = new System.Drawing.Point(423, 136);
-            this.dataGridViewOffices.Name = "dataGridViewOffices";
-            this.dataGridViewOffices.Size = new System.Drawing.Size(312, 246);
-            this.dataGridViewOffices.TabIndex = 37;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -538,8 +540,8 @@
             this.tabPageBuilding.PerformLayout();
             this.tabPageOffice.ResumeLayout(false);
             this.tabPageOffice.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarTemperature)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOffices)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarTemperature)).EndInit();
             this.ResumeLayout(false);
 
         }

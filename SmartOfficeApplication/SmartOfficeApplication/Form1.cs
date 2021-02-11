@@ -45,7 +45,9 @@ namespace SmartOfficeApplication
             InitializeComponent();
             fillVentilationSettingComboBox();
             UpdateBuildingData();
+
             comboBoxOldAddress.Enabled = false;
+
         }
         
 
@@ -141,12 +143,13 @@ namespace SmartOfficeApplication
 
             labelFeedbackForBuildings.ResetText();
             labelFeedbackForDeletingBuilding.ResetText();
-            
+
             try
             {
                 string address = comboBoxAddressDelete.SelectedItem.ToString();
                 dataAccessLayer.RemoveBuilding(address);
                 dataAccessLayer.CloseConnection();
+
                 labelFeedbackForDeletingBuilding.Text = "Building has been removed!";
                 UpdateBuildingData();
             }
@@ -155,6 +158,7 @@ namespace SmartOfficeApplication
 
                 labelFeedbackForDeletingBuilding.Text = "Please select a valid address to delete this building";
             }
+
         }
 
         /*****************.
@@ -308,10 +312,12 @@ namespace SmartOfficeApplication
             if (radioButtonAddBuilding.Checked)
             {
                 buttonAddBuilding.Text = "Add building";
+                comboBoxOldAddress.Enabled = false;
             }
             else
             {
                 buttonAddBuilding.Text = "Edit building";
+                comboBoxOldAddress.Enabled = true;
             }
         }
 
@@ -328,8 +334,15 @@ namespace SmartOfficeApplication
         {
             labelFeedbackForViewingOffices.ResetText();
             labelFeedbackLabelForDeletingOffice.ResetText();
-
-            string buildingAddress = comboBoxOfficeAddress.SelectedItem.ToString(); //retrieves address
+            string buildingAddress = "";
+            try
+            {
+                buildingAddress = comboBoxOfficeAddress.SelectedItem.ToString(); //retrieves address
+            }
+            catch (NullReferenceException)
+            {
+                labelFeedbackForOffices.Text = "Please select an address";
+            }
             string ventilationSetting = comboBoxVentilationSetting.SelectedItem.ToString(); //retrieves ventilation setting
             int temperatureSetting = trackBarTemperature.Value;
 

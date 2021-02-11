@@ -14,7 +14,6 @@ namespace SmartOfficeApplication
     public partial class Form1 : Form
     {
         private DataAccessLayer dataAccessLayer = new DataAccessLayer();
-        private ErrorHandler errorHandler = new ErrorHandler();
 
         public void UpdateBuildingData() //Updates all comboboxes and lists with buildings.
         {
@@ -121,7 +120,7 @@ namespace SmartOfficeApplication
 
                     }
 
-                } catch(NullReferenceException ex)
+                } catch(NullReferenceException)
                 {
                     labelFeedbackForBuildings.Text = "Please choose address to edit";
 

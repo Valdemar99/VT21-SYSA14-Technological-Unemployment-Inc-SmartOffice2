@@ -45,6 +45,8 @@ namespace SmartOfficeApplication
             InitializeComponent();
             fillVentilationSettingComboBox();
             UpdateBuildingData();
+
+
         }
         
 
@@ -140,13 +142,20 @@ namespace SmartOfficeApplication
 
             labelFeedbackForBuildings.ResetText();
             labelFeedbackForDeletingBuilding.ResetText();
+            try
+            {
+                string address = comboBoxAddressDelete.SelectedItem.ToString();
+                dataAccessLayer.RemoveBuilding(address);
+                dataAccessLayer.CloseConnection();
 
-            string address = comboBoxAddressDelete.SelectedItem.ToString();
-            dataAccessLayer.RemoveBuilding(address);
-            dataAccessLayer.CloseConnection();
-
-            labelFeedbackForDeletingBuilding.Text = "Building has been removed!";
-            UpdateBuildingData();
+                labelFeedbackForDeletingBuilding.Text = "Building has been removed!";
+                UpdateBuildingData();
+            }
+            catch (NullReferenceException)
+            {
+                labelFeedbackForDeletingBuilding.Text = "Please select a building to remove.";
+            }
+            
         }
         /*****************.
                          *  Button             viewOffices
@@ -322,8 +331,15 @@ namespace SmartOfficeApplication
         {
             labelFeedbackForViewingOffices.ResetText();
             labelFeedbackLabelForDeletingOffice.ResetText();
-
-            string buildingAddress = comboBoxOfficeAddress.SelectedItem.ToString(); //retrieves address
+            string buildingAddress = "";
+            try
+            {
+                buildingAddress = comboBoxOfficeAddress.SelectedItem.ToString(); //retrieves address
+            }
+            catch (NullReferenceException)
+            {
+                labelFeedbackForOffices.Text = "Please select an address";
+            }
             string ventilationSetting = comboBoxVentilationSetting.SelectedItem.ToString(); //retrieves ventilation setting
             int temperatureSetting = trackBarTemperature.Value;
 

@@ -128,13 +128,20 @@ namespace SmartOfficeApplication
 
             labelFeedbackForBuildings.ResetText();
             labelFeedbackForDeletingBuilding.ResetText();
+            
+            try
+            {
+                string address = comboBoxAddressDelete.SelectedItem.ToString();
+                dataAccessLayer.RemoveBuilding(address);
+                dataAccessLayer.CloseConnection();
+                labelFeedbackForDeletingBuilding.Text = "Building has been removed!";
+                UpdateBuildingData();
+            }
+            catch (NullReferenceException exception)
+            {
 
-            string address = comboBoxAddressDelete.SelectedItem.ToString();
-            dataAccessLayer.RemoveBuilding(address);
-            dataAccessLayer.CloseConnection();
-
-            labelFeedbackForDeletingBuilding.Text = "Building has been removed!";
-            UpdateBuildingData();
+                labelFeedbackForDeletingBuilding.Text = "Please select a valid address to delete this building";
+            }
         }
 
         private void buttonViewOffices_Click(object sender, EventArgs e) //Displays all offices on a selected address. If no address is selected, an error message is displayed in a text label at the bottom of the frame.

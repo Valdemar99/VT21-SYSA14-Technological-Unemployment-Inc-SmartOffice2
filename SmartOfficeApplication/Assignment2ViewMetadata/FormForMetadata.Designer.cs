@@ -68,7 +68,7 @@
             this.listBoxColumns.FormattingEnabled = true;
             this.listBoxColumns.Location = new System.Drawing.Point(534, 56);
             this.listBoxColumns.Name = "listBoxColumns";
-            this.listBoxColumns.Size = new System.Drawing.Size(238, 355);
+            this.listBoxColumns.Size = new System.Drawing.Size(188, 108);
             this.listBoxColumns.TabIndex = 3;
             // 
             // label3
@@ -94,7 +94,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(780, 201);
             this.Controls.Add(this.buttonRefresh);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.listBoxColumns);

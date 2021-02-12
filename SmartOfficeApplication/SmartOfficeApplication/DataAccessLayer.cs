@@ -276,7 +276,7 @@ namespace SmartOfficeApplication
             public SqlDataReader GetOffices(string buildingAddress)
             {
                 sqlConnection = new SqlConnection(connectionString);
-                SqlCommand sqlCommand = new SqlCommand("SELECT * FROM Office WHERE buildingAddress = '" + buildingAddress + "'", sqlConnection);
+                SqlCommand sqlCommand = new SqlCommand("SELECT officeNumber, buildingAddress, temperatureSetting, ventilationSetting FROM Office WHERE buildingAddress = '" + buildingAddress + "'", sqlConnection);
 
                 try
                 {

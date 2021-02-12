@@ -38,7 +38,9 @@ namespace Assignment2ViewMetadata
             //Gets selected Table name from the combobox.
             try
             {
-                selectedTableName = comboBoxTables.SelectedItem.ToString();
+
+                string tableName = comboBoxTables.SelectedValue.ToString();
+                UpdateColumnList(tableName);
             }
             catch (NullReferenceException exception)
             {

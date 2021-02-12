@@ -17,18 +17,12 @@ namespace Assignment2ViewMetadata
         {
             InitializeComponent();
             UpdateComboBoxWithTables();
-            UpdateColumnTable();
+            UpdateColumnList();
         }
 
         private void buttonRefresh_Click(object sender, EventArgs e)
         {
             UpdateComboBoxWithTables();
-        }
-
-        private void UpdateColumnTable()
-        {
-            DataTable columnList = data.GetAllTables();
-            dataGridViewColumns.DataSource = columnList;
         }
 
         private void UpdateComboBoxWithTables()
@@ -38,18 +32,13 @@ namespace Assignment2ViewMetadata
             comboBoxTables.DisplayMember = "tableName";
             comboBoxTables.ValueMember = "tableName";
         }
-        private void UpdateColumnList(string tableName)
+        private void UpdateColumnList()
         {
-            DataTable columnList = data.GetAllColumns(tableName);
-            listBoxColumns.DataSource = columnList;
-            listBoxColumns.DisplayMember = "name";
-            listBoxColumns.ValueMember = "name";
-        }
-
-        private void comboBoxTables_SelectedIndexChanged(object sender, EventArgs e)
-        {
+            string selectedTableName = "";
+            //Gets selected Table name from the combobox.
             try
             {
+
                 string tableName = comboBoxTables.SelectedValue.ToString();
                 UpdateColumnList(tableName);
             }
@@ -58,6 +47,29 @@ namespace Assignment2ViewMetadata
                 Console.WriteLine("was null");
             }
 
+            //Gets a dataset with columns for the given tableName.
+            if (!selectedTableName.Equals(""))
+            {
+                DataTable columnList = data.GetColumnsForTable(selectedTableName);
+                listBoxColumns.DataSource = columnList;
+                listBoxColumns.DisplayMember = "name";
+                listBoxColumns.ValueMember = "name";
+            }
+            
+            else {
+                Console.WriteLine("No selected table name.");
+            }
+        }
+
+        private void comboBoxTables_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateColumnList();
+        }
+        private void updateAmountOfRowsLabel()
+        {
+            string selectedTableName = comboBoxTables.SelectedValue.ToString();
+            int rowCount = data.GetRowCountForTable(selectedTableName);
+            labelAmountOfRows.Text = "This table has " + rowCount + " rows";
         }
     }
 }

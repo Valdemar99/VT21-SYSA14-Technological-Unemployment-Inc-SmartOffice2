@@ -41,15 +41,15 @@ namespace Assignment2ViewMetadata
             }
             return officeTable;
         }
-        public DataTable GetAllColumns(string tableName)
+        public DataTable GetColumnsForTable(string selectedTableName)
         {
             /*
-            // SELECT *
-            //         FROM sys.columns c
-            //WHERE c.object_id = (
-            //    SELECT o.object_id
-            //    FROM sys.objects o
-            //    WHERE o.name = 'tableName')
+             * SELECT name
+                FROM sys.columns c
+                WHERE c.object_id = (
+                SELECT o.object_id
+                FROM sys.objects o
+                WHERE o.name = 'tableName')
              */
             String query = "SELECT name FROM sys.columns c " +
                 "WHERE c.object_id = (SELECT o.object_id FROM sys.objects o WHERE o.name = '" + tableName + "')";
@@ -75,18 +75,15 @@ namespace Assignment2ViewMetadata
             }
             return columnTable;
         }
-
-        public DataTable GetAllTables()
+        public int GetRowCountForTable(string selectedTableName)
         {
-            //            SELECT c.name, o.name
-            //         FROM sys.columns c
-            //WHERE c.object_id = (
-            //    SELECT o.object_id
-            //    FROM sys.objects o)
-	
-            String query = "SELECT * FROM sys.columns c " +
-                "WHERE c.object_id = (SELECT o.object_id FROM sys.objects o)";
-            DataTable tableTable = new DataTable();
+            /*
+             * SELECT COUNT(*)
+                FROM selectedTableName;
+             */
+            String query = "SELECT COUNT(*) " +
+                "FROM " + selectedTableName + ";";
+            int amountOfRows = 0;
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
                 using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
@@ -96,8 +93,10 @@ namespace Assignment2ViewMetadata
                         sqlConnection.Open();
                         using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
                         {
-                            tableTable.Load(dataReader);
-                            return tableTable;
+                            if (dataReader.Read())
+                            {
+                                amountOfRows = dataReader.GetInt32();
+                            } 
                         }
                     }
                     catch (SqlException)
@@ -106,7 +105,8 @@ namespace Assignment2ViewMetadata
                     }
                 }
             }
-            return tableTable;
+            return amountOfRows;
         }
+
     }
 }

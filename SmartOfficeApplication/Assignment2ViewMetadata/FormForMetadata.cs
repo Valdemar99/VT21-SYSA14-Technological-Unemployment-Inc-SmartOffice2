@@ -13,36 +13,51 @@ namespace Assignment2ViewMetadata
     public partial class FormForMetadata : Form
     {
         DataAccessLayerForMetaData data = new DataAccessLayerForMetaData();
-        public void UpdateTablesOfInterest()
-        {
-            dataGridViewTablesOfInterest.DataSource = data.GetTablesOfInterest();
-        }
         public FormForMetadata()
         {
             InitializeComponent();
-            UpdateTablesOfInterest();
-           // UpdateTables();
+            UpdateComboBoxWithTables();
+            UpdateColumnTable();
         }
 
         private void buttonRefresh_Click(object sender, EventArgs e)
         {
-           // UpdateTables();
+            UpdateComboBoxWithTables();
         }
 
-        //private void UpdateTables()
-        //{
-        //    DataTable tableNames = data.GetTablesOfInterest();
-        //    comboBoxTables.DataSource = tableNames;
-        //    comboBoxTables.DisplayMember = "Name";
-        //    comboBoxTables.ValueMember = "Name";
-        //}
-        //private void UpdateColumns(string tableName)
-        //{
-            
-        //    DataTable dt = data.GetAllColumns(selectedTableName)
-        //    cbxparameter.DataSource = dt;
-        //    cbxparameter.DisplayMember = "ItemName";
-        //    cbxparameter.ValueMember = "ItemName";
-        //}
+        private void UpdateColumnTable()
+        {
+            DataTable columnList = data.GetAllTables();
+            dataGridViewColumns.DataSource = columnList;
+        }
+
+        private void UpdateComboBoxWithTables()
+        {
+            DataTable tableNames = data.GetTablesOfInterest();
+            comboBoxTables.DataSource = tableNames;
+            comboBoxTables.DisplayMember = "tableName";
+            comboBoxTables.ValueMember = "tableName";
+        }
+        private void UpdateColumnList(string tableName)
+        {
+            DataTable columnList = data.GetAllColumns(tableName);
+            listBoxColumns.DataSource = columnList;
+            listBoxColumns.DisplayMember = "name";
+            listBoxColumns.ValueMember = "name";
+        }
+
+        private void comboBoxTables_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string tableName = comboBoxTables.SelectedItem.ToString();
+                UpdateColumnList(tableName);
+            }
+            catch (NullReferenceException exception)
+            {
+                Console.WriteLine("was null");
+            }
+
+        }
     }
 }

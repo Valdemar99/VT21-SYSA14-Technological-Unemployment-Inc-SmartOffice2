@@ -44,11 +44,15 @@ namespace Assignment2ViewMetadata
         public DataTable GetAllColumns(string tableName)
         {
             /*
-             * SELECT COLUMN_NAME 
-             * FROM INFORMATION_SCHEMA.COLUMNS 
-             * WHERE TABLE_NAME = 'tableName'
+            // SELECT *
+            //         FROM sys.columns c
+            //WHERE c.object_id = (
+            //    SELECT o.object_id
+            //    FROM sys.objects o
+            //    WHERE o.name = 'tableName')
              */
-            String query = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '" + tableName + "'";
+            String query = "SELECT * FROM sys.columns c " +
+                "WHERE c.object_id = (SELECT o.object_id FROM sys.objects o WHERE o.name = '" + tableName + "')";
             DataTable columnTable = new DataTable();
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
@@ -71,5 +75,38 @@ namespace Assignment2ViewMetadata
             }
             return columnTable;
         }
-}
+
+        public DataTable GetAllTables()
+        {
+            //            SELECT c.name, o.name
+            //         FROM sys.columns c
+            //WHERE c.object_id = (
+            //    SELECT o.object_id
+            //    FROM sys.objects o)
+	
+            String query = "SELECT * FROM sys.columns c " +
+                "WHERE c.object_id = (SELECT o.object_id FROM sys.objects o)";
+            DataTable tableTable = new DataTable();
+            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                {
+                    try
+                    {
+                        sqlConnection.Open();
+                        using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+                        {
+                            tableTable.Load(dataReader);
+                            return tableTable;
+                        }
+                    }
+                    catch (SqlException)
+                    {
+                        Console.WriteLine("Exception!");
+                    }
+                }
+            }
+            return tableTable;
+        }
+    }
 }

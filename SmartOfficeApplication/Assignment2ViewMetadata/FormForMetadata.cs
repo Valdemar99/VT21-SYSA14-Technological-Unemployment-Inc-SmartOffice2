@@ -34,13 +34,13 @@ namespace Assignment2ViewMetadata
         }
         private void UpdateColumnList()
         {
+            //Declaring a default selectedTableName string.
             string selectedTableName = "";
             //Gets selected Table name from the combobox.
             try
             {
-
-                string tableName = comboBoxTables.SelectedValue.ToString();
-                UpdateColumnList(tableName);
+                selectedTableName = comboBoxTables.SelectedValue.ToString();
+                updateAmountOfRowsLabel();
             }
             catch (NullReferenceException exception)
             {
@@ -57,6 +57,7 @@ namespace Assignment2ViewMetadata
             }
             
             else {
+                //TO-DO - improve error handling.
                 Console.WriteLine("No selected table name.");
             }
         }

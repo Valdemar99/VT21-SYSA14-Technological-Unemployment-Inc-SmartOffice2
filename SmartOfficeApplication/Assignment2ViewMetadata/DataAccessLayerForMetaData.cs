@@ -52,7 +52,7 @@ namespace Assignment2ViewMetadata
                 WHERE o.name = 'tableName')
              */
             String query = "SELECT name FROM sys.columns c " +
-                "WHERE c.object_id = (SELECT o.object_id FROM sys.objects o WHERE o.name = '" + tableName + "')";
+                "WHERE c.object_id = (SELECT o.object_id FROM sys.objects o WHERE o.name = '" + selectedTableName + "')";
             DataTable columnTable = new DataTable();
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
@@ -95,7 +95,7 @@ namespace Assignment2ViewMetadata
                         {
                             if (dataReader.Read())
                             {
-                                amountOfRows = dataReader.GetInt32();
+                                amountOfRows = dataReader.GetInt32(0);
                             } 
                         }
                     }

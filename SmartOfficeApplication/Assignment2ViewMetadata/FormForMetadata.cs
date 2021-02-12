@@ -50,7 +50,7 @@ namespace Assignment2ViewMetadata
         {
             try
             {
-                string tableName = comboBoxTables.SelectedItem.ToString();
+                string tableName = comboBoxTables.SelectedValue.ToString();
                 UpdateColumnList(tableName);
             }
             catch (NullReferenceException exception)

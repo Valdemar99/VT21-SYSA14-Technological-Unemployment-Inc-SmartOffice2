@@ -107,7 +107,6 @@ namespace SmartOfficeApplication
                     try
                     {
                         sqlConnection.Open();
-                        //int result = - kan användas senare för error handling
                         sqlCommand.ExecuteNonQuery();
 
                     }
@@ -142,7 +141,6 @@ namespace SmartOfficeApplication
                     try
                     {
                         sqlConnection.Open();
-                        //int result = - kan användas senare för error handling
                         sqlCommand.ExecuteNonQuery();
 
                     }
@@ -176,7 +174,6 @@ namespace SmartOfficeApplication
                     try
                     {
                         sqlConnection.Open();
-                        //int result = - kan användas senare för error handling
                         sqlCommand.ExecuteNonQuery();
 
                     }
@@ -286,7 +283,6 @@ namespace SmartOfficeApplication
                 }
                     catch (SqlException e)
                 {
-
                     throw e;
 
                 }
@@ -378,7 +374,6 @@ namespace SmartOfficeApplication
                         try
                         {
                             sqlConnection.Open();
-                            //int result = - kan användas senare för error handling
                             sqlCommand.ExecuteNonQuery();
 
                         }
@@ -410,10 +405,10 @@ namespace SmartOfficeApplication
                 {
                     using (SqlCommand sqlCommand = new SqlCommand("UPDATE Office SET ventilationSetting = '" + ventilationSetting + "', temperatureSetting = " + temperatureSetting + " WHERE officeNumber = '" + officeNumber + "' AND buildingAddress = '" + buildingAddress + "'", sqlConnection))
                     {
+
                         try
                         {
                             sqlConnection.Open();
-                            //int result = - kan användas senare för error handling
                             sqlCommand.ExecuteNonQuery();
 
                         }
@@ -430,8 +425,43 @@ namespace SmartOfficeApplication
                 }
 
             }
+        /*****************.
+              *  Function             PerformQuery
+              *   Description         Method that implements a generic form of errorhandling
+              *    Parameters         sqlConnection and sqlCommand
+              *     Returns           void
+              ***********/
+        public void PerformQuery(string queryString)
+        {
+            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand sqlCommand = new SqlCommand(queryString, sqlConnection))
+                {
+
+                    try
+                    {
+                        sqlConnection.Open();
+                        sqlCommand.ExecuteNonQuery();
+
+                    }
+                    catch (SqlException e)
+                    {
+                        throw e;
+                    }
+                    catch (Exception e)
+                    {
+                        throw e;
+                    }
+                }
+
+            }
+
         }
+
+
+
     }
+}
 
 
 

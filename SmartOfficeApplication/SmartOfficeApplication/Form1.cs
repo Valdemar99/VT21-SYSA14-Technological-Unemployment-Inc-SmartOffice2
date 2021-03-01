@@ -25,18 +25,24 @@ namespace SmartOfficeApplication
 
             listBoxBuildings.Items.Clear();
 
-            SqlDataReader buildingReader = dataAccessLayer.GetBuildings(); //Fetch data and hold it in buildingList.
-            while (buildingReader.Read())
+            DataTable buildingTable = dataAccessLayer.GetBuildings(); //Fetch data and hold it in buildingTable.
+
+            //Here we go through every column and row in the datatable and add them to all relevant comboBoxes 
+            for(int i = 0; i < buildingTable.Rows.Count; i ++)
             {
-                comboBoxOfficeAddress.Items.Add(buildingReader.GetString(0));
-                comboBoxOfficeAddressDelete.Items.Add(buildingReader.GetString(0));
-                comboBoxAddressViewOffices.Items.Add(buildingReader.GetString(0));
-                comboBoxOldAddress.Items.Add(buildingReader.GetString(0));
-                comboBoxAddressDelete.Items.Add(buildingReader.GetString(0));
-                listBoxBuildings.Items.Add(buildingReader.GetString(0));
+                for (int j = 0; j < buildingTable.Columns.Count; j++)
+                {
+                    //Converts each cell to a string
+                    string s = buildingTable.Rows[i].ItemArray[j].ToString();
+
+                    comboBoxOfficeAddress.Items.Add(s);
+                    comboBoxOfficeAddressDelete.Items.Add(s);
+                    comboBoxAddressViewOffices.Items.Add(s);
+                    comboBoxOldAddress.Items.Add(s);
+                    comboBoxAddressDelete.Items.Add(s);
+                    listBoxBuildings.Items.Add(s);
+                }
             }
-            buildingReader.Close();
-            dataAccessLayer.CloseConnection();
         }
 
         public Form1()
@@ -147,7 +153,6 @@ namespace SmartOfficeApplication
             {
                 string address = comboBoxAddressDelete.SelectedItem.ToString();
                 dataAccessLayer.RemoveBuilding(address);
-                dataAccessLayer.CloseConnection();
 
                 labelFeedbackForDeletingBuilding.Text = "Building has been removed!";
                 UpdateBuildingData();
@@ -173,12 +178,8 @@ namespace SmartOfficeApplication
             try
             {
                 string selectedAddress = comboBoxAddressViewOffices.SelectedItem.ToString();
-                SqlDataReader offices = dataAccessLayer.GetOffices(selectedAddress);
-                DataTable officeTable = new DataTable();
-                officeTable.Load(offices);
+                DataTable officeTable  = dataAccessLayer.GetOffices(selectedAddress);
                 dataGridViewOffices.DataSource = officeTable;
-                offices.Close();
-                dataAccessLayer.CloseConnection();
             }
             catch (NullReferenceException exception)
             {
@@ -257,13 +258,16 @@ namespace SmartOfficeApplication
         {
 
             officeNumberComboBox.Items.Clear();
-            SqlDataReader officeReader = dataAccessLayer.GetOffices(buildingAddress); //Fetch data and hold it in buildingList.
-            while (officeReader.Read())
+            DataTable officeTable = dataAccessLayer.GetOffices(buildingAddress); //Fetch data and hold it in buildingList.
+            for (int i = 0; i < officeTable.Rows.Count; i++)
             {
-                officeNumberComboBox.Items.Add(officeReader.GetString(0));
+                for (int j = 0; j < 1; j++)
+                {
+                    //Converts each cell to a string
+                    string s = officeTable.Rows[i].ItemArray[j].ToString();
+                    officeNumberComboBox.Items.Add(s);
+                }
             }
-            officeReader.Close();
-            dataAccessLayer.CloseConnection();
         }
 
         //Update all office number comboboxes.
@@ -349,22 +353,27 @@ namespace SmartOfficeApplication
             {
                 try
                 {
-                     if (ventilationSetting.Equals(""))
+                    if (ventilationSetting.Equals(""))
                     {
                         labelFeedbackForOffices.Text = "To add a new office, please choose a ventilation setting.";
                     }
                     dataAccessLayer.AddOffice(buildingAddress, temperatureSetting, ventilationSetting);
+
                     string officeNumber = dataAccessLayer.GetMostRecentOfficeNumber();
                     string feedbackString = "The office with officenumber '" + officeNumber + "'\nand address '" + buildingAddress + "' has been successfully added.";
-                    labelFeedbackForOffices.Text = feedbackString;
-                    UpdateOfficeNumberComboBoxes();
-                }
-                
-                catch (NullReferenceException exception) {
-                labelFeedbackForOffices.Text = "To add a new office, please insert an address.";
-            }
-        }
 
+                    labelFeedbackForOffices.Text = feedbackString;
+
+                    UpdateOfficeNumberComboBoxes();
+
+                    dataAccessLayer.CloseConnection();
+                }
+                catch (NullReferenceException exception)
+                {
+                    labelFeedbackForOffices.Text = "To add a new office, please insert an address.";
+                }
+            }
+        
             else if (radioButtonEditOffice.Checked == true) //If edit building is chosen
             {
                 object officeNumberObject = comboBoxOfficeNumber.SelectedItem;

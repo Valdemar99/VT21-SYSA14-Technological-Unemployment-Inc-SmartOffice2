@@ -16,17 +16,6 @@ namespace SmartOfficeApplication
         public SqlConnection SqlConnection { get => SqlConnection; set => SqlConnection = value; }
 
         /*****************.
-            *  Function             closeConnection()
-            *   Description         Method that closes the SqlConnection object of this instance.
-            *    Parameters
-            *     Returns           
-            ***********/
-        public void CloseConnection()
-        {
-            sqlConnection.Close();
-        }
-
-        /*****************.
             *  Function             getBuildings
             *   Description         Method that, if successful, returns an sqlDataReader with all associated information from database
             *    Parameters
@@ -267,7 +256,6 @@ namespace SmartOfficeApplication
             string queryString = "UPDATE Office SET ventilationSetting = '" + ventilationSetting + "', temperatureSetting = " + temperatureSetting +
                 " WHERE officeNumber = '" + officeNumber + "' AND buildingAddress = '" + buildingAddress + "'";
             PerformQuery(queryString);
-            CloseConnection();
         }
 
         /*****************.

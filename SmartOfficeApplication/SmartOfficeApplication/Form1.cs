@@ -365,8 +365,6 @@ namespace SmartOfficeApplication
                     labelFeedbackForOffices.Text = feedbackString;
 
                     UpdateOfficeNumberComboBoxes();
-
-                    dataAccessLayer.CloseConnection();
                 }
                 catch (NullReferenceException exception)
                 {

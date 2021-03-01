@@ -183,7 +183,7 @@ namespace SmartOfficeApplication
             }
             catch (NullReferenceException exception)
             {
-                labelFeedbackForOffices.Text = "Please select a valid address to display its offices. If there are no addresses please create one.";
+                labelFeedbackForViewingOffices.Text = "Please select a valid address to display its offices.";
             }
         }
 
@@ -200,28 +200,33 @@ namespace SmartOfficeApplication
         {
             labelFeedbackForOffices.ResetText();
             labelFeedbackForViewingOffices.ResetText();
-            
-            if (comboBoxOfficeNumberDelete.SelectedIndex != -1)
-            {
-                string number = comboBoxOfficeNumberDelete.SelectedItem.ToString();
-                string address = comboBoxOfficeAddressDelete.SelectedItem.ToString();
-                dataAccessLayer.RemoveOffice(number, address);
-                UpdateOfficeNumberComboBoxes();
-                labelFeedbackLabelForDeletingOffice.Text = "Office deleted.";
-                
-            }
-            else
-            {
-                if (comboBoxOfficeNumberDelete.Items.Count > 0)
+            try {
+                if (comboBoxOfficeNumberDelete.SelectedIndex != -1)
                 {
-                    labelFeedbackLabelForDeletingOffice.Text = "Please select an office to delete.";
+                    string number = comboBoxOfficeNumberDelete.SelectedItem.ToString();
+                    string address = comboBoxOfficeAddressDelete.SelectedItem.ToString();
+                    dataAccessLayer.RemoveOffice(number, address);
+                    UpdateOfficeNumberComboBoxes();
+                    labelFeedbackLabelForDeletingOffice.Text = "Office deleted.";
+
                 }
                 else
                 {
-                    labelFeedbackLabelForDeletingOffice.Text = "No offices left to delete.";
+                    if (comboBoxOfficeNumberDelete.Items.Count > 0)
+                    {
+                        labelFeedbackLabelForDeletingOffice.Text = "Please select an office to delete.";
+                    }
+                    else
+                    {
+                        labelFeedbackLabelForDeletingOffice.Text = "No offices left to delete.";
+                    }
                 }
+            }catch(NullReferenceException)
+            {
+                labelFeedbackLabelForDeletingOffice.Text = "Choose what office within chosen building to delete.";
             }
         }
+            
 
    
         private void comboBoxOfficeAddressDelete_SelectedIndexChanged(object sender, EventArgs e)

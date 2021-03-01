@@ -34,6 +34,7 @@
             this.listBoxColumns = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
             this.buttonRefresh = new System.Windows.Forms.Button();
+            this.labelFeedback = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // comboBoxTables
@@ -90,11 +91,21 @@
             this.buttonRefresh.UseVisualStyleBackColor = true;
             this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
             // 
+            // labelFeedback
+            // 
+            this.labelFeedback.AutoSize = true;
+            this.labelFeedback.Location = new System.Drawing.Point(126, 103);
+            this.labelFeedback.Name = "labelFeedback";
+            this.labelFeedback.Size = new System.Drawing.Size(77, 13);
+            this.labelFeedback.TabIndex = 7;
+            this.labelFeedback.Text = "labelFeedback";
+            // 
             // FormForMetadata
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(780, 201);
+            this.Controls.Add(this.labelFeedback);
             this.Controls.Add(this.buttonRefresh);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.listBoxColumns);
@@ -116,6 +127,7 @@
         private System.Windows.Forms.ListBox listBoxColumns;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button buttonRefresh;
+        private System.Windows.Forms.Label labelFeedback;
     }
 }
 

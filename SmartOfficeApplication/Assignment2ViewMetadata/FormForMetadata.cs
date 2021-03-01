@@ -15,9 +15,16 @@ namespace Assignment2ViewMetadata
         DataAccessLayerForMetaData data = new DataAccessLayerForMetaData();
         public FormForMetadata()
         {
-            InitializeComponent();
-            UpdateComboBoxWithTables();
-            UpdateColumnList();
+            try
+            {
+                InitializeComponent();
+                UpdateComboBoxWithTables();
+                UpdateColumnList();
+            }catch(ArgumentException)
+            {
+                labelFeedback.Text = "Please check your VPN connection.";
+            }
+            
         }
 
         private void buttonRefresh_Click(object sender, EventArgs e)
@@ -27,13 +34,22 @@ namespace Assignment2ViewMetadata
 
         private void UpdateComboBoxWithTables()
         {
-            DataTable tableNames = data.GetTablesOfInterest();
-            comboBoxTables.DataSource = tableNames;
-            comboBoxTables.DisplayMember = "tableName";
-            comboBoxTables.ValueMember = "tableName";
+            try
+            {
+                DataTable tableNames = data.GetTablesOfInterest();
+                comboBoxTables.DataSource = tableNames;
+                comboBoxTables.DisplayMember = "tableName";
+                comboBoxTables.ValueMember = "tableName";
+
+            }catch(ArgumentException)
+            {
+                labelFeedback.Text = "Please check your VPN connection.";
+            }
+            
         }
         private void UpdateColumnList()
         {
+            labelFeedback.Text = "";
             //Declaring a default selectedTableName string.
             string selectedTableName = "";
             //Gets selected Table name from the combobox.
@@ -42,9 +58,13 @@ namespace Assignment2ViewMetadata
                 selectedTableName = comboBoxTables.SelectedValue.ToString();
                 updateAmountOfRowsLabel();
             }
-            catch (NullReferenceException exception)
+            catch (NullReferenceException)
             {
-                Console.WriteLine("was null");
+                labelFeedback.Text = "Please check your VPN.";
+            }
+            catch (ArgumentException)
+            {
+                labelFeedback.Text = "Please check your VPN.";
             }
 
             //Gets a dataset with columns for the given tableName.

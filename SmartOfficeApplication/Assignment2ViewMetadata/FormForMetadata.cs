@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -60,11 +61,11 @@ namespace Assignment2ViewMetadata
             }
             catch (NullReferenceException)
             {
-                labelFeedback.Text = "Please check your VPN.";
+                labelFeedback.Text = "Please check your VPN connection";
             }
             catch (ArgumentException)
             {
-                labelFeedback.Text = "Please check your VPN.";
+                labelFeedback.Text = "Please check your VPN connection";
             }
 
 
@@ -86,11 +87,11 @@ namespace Assignment2ViewMetadata
             }
             catch (NullReferenceException)
             {
-                labelFeedback.Text = "Please check your VPN.";
+                labelFeedback.Text = "Please check your VPN connection";
             }
             catch (ArgumentException)
             {
-                labelFeedback.Text = "Please check your VPN.";
+                labelFeedback.Text = "Please check your VPN connection";
             }
         }
 
@@ -100,9 +101,17 @@ namespace Assignment2ViewMetadata
         }
         private void updateAmountOfRowsLabel()
         {
-            string selectedTableName = comboBoxTables.SelectedValue.ToString();
-            int rowCount = data.GetRowCountForTable(selectedTableName);
-            labelAmountOfRows.Text = "This table has " + rowCount + " rows";
+            try
+            {
+                string selectedTableName = comboBoxTables.SelectedValue.ToString();
+                int rowCount = data.GetRowCountForTable(selectedTableName);
+                labelAmountOfRows.Text = "This table has " + rowCount + " rows";
+
+            } catch(SqlException exe)
+            {
+                labelFeedback.Text = "Please check your VPN connection";
+            }
+            
         }
     }
 }

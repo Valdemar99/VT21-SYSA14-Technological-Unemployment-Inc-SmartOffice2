@@ -67,7 +67,6 @@ namespace Assignment2ViewMetadata
                     }
                 }
             }
-            return columnTable;
         }
         public int GetRowCountForTable(string selectedTableName)
         {
@@ -75,23 +74,30 @@ namespace Assignment2ViewMetadata
              * SELECT COUNT(*)
                 FROM selectedTableName;
              */
-            String query = "SELECT COUNT(*) " +
-                "FROM " + selectedTableName + ";";
+            String query = "SELECT COUNT(*) FROM " + selectedTableName + ";";
             int amountOfRows = 0;
-            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            try
             {
-                using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
                 {
-                    sqlConnection.Open();
-                    using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
                     {
-                        if (dataReader.Read())
+                        sqlConnection.Open();
+                        using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
                         {
-                            amountOfRows = dataReader.GetInt32(0);
-                        } 
+                            if (dataReader.Read())
+                            {
+                                amountOfRows = dataReader.GetInt32(0);
+                            } 
+                        }
                     }
                 }
+
+            }catch(SqlException exe)
+            {
+                throw exe;
             }
+            
             return amountOfRows;
         }
 

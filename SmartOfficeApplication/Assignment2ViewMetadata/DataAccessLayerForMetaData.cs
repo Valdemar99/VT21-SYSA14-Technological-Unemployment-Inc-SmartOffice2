@@ -33,9 +33,10 @@ namespace Assignment2ViewMetadata
                             return officeTable;
                         }
                     }
-                    catch (SqlException)
+                    catch (SqlException exe)
                     {
-                        Console.WriteLine("Exception!");
+                        //message to programmer but not to the user 
+                        Console.WriteLine("No connection to VPN");
                     }
                 }
             }
@@ -58,18 +59,11 @@ namespace Assignment2ViewMetadata
             {
                 using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
                 {
-                    try
+                    sqlConnection.Open();
+                    using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
                     {
-                        sqlConnection.Open();
-                        using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
-                        {
-                            columnTable.Load(dataReader);                      
-                            return columnTable;
-                        }
-                    }
-                    catch (SqlException)
-                    {
-                        Console.WriteLine("Exception!");
+                        columnTable.Load(dataReader);                      
+                        return columnTable;
                     }
                 }
             }
@@ -88,20 +82,13 @@ namespace Assignment2ViewMetadata
             {
                 using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
                 {
-                    try
+                    sqlConnection.Open();
+                    using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
                     {
-                        sqlConnection.Open();
-                        using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+                        if (dataReader.Read())
                         {
-                            if (dataReader.Read())
-                            {
-                                amountOfRows = dataReader.GetInt32(0);
-                            } 
-                        }
-                    }
-                    catch (SqlException)
-                    {
-                        Console.WriteLine("Exception!");
+                            amountOfRows = dataReader.GetInt32(0);
+                        } 
                     }
                 }
             }

@@ -67,18 +67,30 @@ namespace Assignment2ViewMetadata
                 labelFeedback.Text = "Please check your VPN.";
             }
 
-            //Gets a dataset with columns for the given tableName.
-            if (!selectedTableName.Equals(""))
+
+            try
             {
-                DataTable columnList = data.GetColumnsForTable(selectedTableName);
-                listBoxColumns.DataSource = columnList;
-                listBoxColumns.DisplayMember = "name";
-                listBoxColumns.ValueMember = "name";
-            }
+                    //Gets a dataset with columns for the given tableName.
+                    if (!selectedTableName.Equals(""))
+                {
+                    DataTable columnList = data.GetColumnsForTable(selectedTableName);
+                    listBoxColumns.DataSource = columnList;
+                    listBoxColumns.DisplayMember = "name";
+                    listBoxColumns.ValueMember = "name";
+                }
             
-            else {
-                //TO-DO - improve error handling.
-                Console.WriteLine("No selected table name.");
+                else {
+                    //TO-DO - improve error handling.
+                    Console.WriteLine("No selected table name.");
+                }
+            }
+            catch (NullReferenceException)
+            {
+                labelFeedback.Text = "Please check your VPN.";
+            }
+            catch (ArgumentException)
+            {
+                labelFeedback.Text = "Please check your VPN.";
             }
         }
 

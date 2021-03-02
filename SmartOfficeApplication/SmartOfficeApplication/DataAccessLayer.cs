@@ -302,14 +302,13 @@ namespace SmartOfficeApplication
             {
                 using (SqlCommand sqlCommand = new SqlCommand(queryString, sqlConnection))
                 {
-                    var table = new DataTable();
+                    DataTable table = new DataTable();
 
                     try
                     {
                         sqlConnection.Open();
                         SqlDataReader dataReader = sqlCommand.ExecuteReader();
                         table.Load(dataReader);
-                       
                     }
                     catch (SqlException e)
                     {

@@ -35,7 +35,7 @@ namespace SmartOfficeApplication
             *    Parameters         string address
             *     Returns           bool
             ***********/
-        public bool checkIfBuildingExists(string address)
+        public bool CheckIfBuildingExists(string address)
         {
             using (sqlConnection = new SqlConnection(connectionString))
             {

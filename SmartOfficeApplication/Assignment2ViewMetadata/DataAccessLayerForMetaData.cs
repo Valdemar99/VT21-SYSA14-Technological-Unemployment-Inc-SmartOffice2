@@ -19,7 +19,7 @@ namespace Assignment2ViewMetadata
 
         public DataTable GetTablesOfInterest()
         {
-            DataTable officeTable = new DataTable();
+            DataTable tablesOfInterest = new DataTable();
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
                 using (SqlCommand sqlCommand = new SqlCommand("SELECT * FROM TablesOfInterest", sqlConnection))
@@ -29,18 +29,16 @@ namespace Assignment2ViewMetadata
                         sqlConnection.Open();
                         using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
                         {
-                            officeTable.Load(dataReader);
-                            return officeTable;
+                            tablesOfInterest.Load(dataReader);
+                            return tablesOfInterest;
                         }
                     }
                     catch (SqlException exe)
                     {
-                        //message to programmer but not to the user 
-                        Console.WriteLine("No connection to VPN");
+                        throw exe;
                     }
                 }
             }
-            return officeTable;
         }
         public DataTable GetColumnsForTable(string selectedTableName)
         {

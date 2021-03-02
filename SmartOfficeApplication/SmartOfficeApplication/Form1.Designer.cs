@@ -209,7 +209,6 @@
             this.comboBoxAddressDelete.Name = "comboBoxAddressDelete";
             this.comboBoxAddressDelete.Size = new System.Drawing.Size(187, 22);
             this.comboBoxAddressDelete.TabIndex = 6;
-            this.comboBoxAddressDelete.SelectedIndexChanged += new System.EventHandler(this.comboBoxAddressDelete_SelectedIndexChanged);
             // 
             // labelAddress
             // 

@@ -83,8 +83,7 @@ namespace SmartOfficeApplication
                     {
                         labelFeedbackForBuildings.Text = "This building with inserted address already exists in our database.";
                     }
-                    if (dataAccessLayer.checkIfBuildingExists(newAddress) != true) //Checks if the address doesn't exist in the database, if so, adds a new building
-                    {
+                    else { //Checks if the address doesn't exist in the database, if so, adds a new building
                         dataAccessLayer.AddBuilding(newAddress);
                         labelFeedbackForBuildings.Text = "The building with address'" + newAddress + "'\nhas been successfully added to database.";
                         UpdateBuildingData();
@@ -93,7 +92,7 @@ namespace SmartOfficeApplication
                 }
             }
 
-           if (radioButtonEditBuilding.Checked == true) //If edit building is chosen
+           else if (radioButtonEditBuilding.Checked == true) //If edit building is chosen
             {
                 try
                 {
@@ -113,12 +112,11 @@ namespace SmartOfficeApplication
                                 labelFeedbackForBuildings.Text = "This building with inserted new address already exists\n in our database. Please try another another address.";
                             }
 
-                            if(dataAccessLayer.checkIfBuildingExists(newAddress) != true)
+                            else
                             {
                                 dataAccessLayer.EditBuilding(oldAddress, newAddress);
                                 labelFeedbackForBuildings.Text = "The building with address'" + oldAddress + "' has been successfully \nchanged into '" + newAddress + "' within the database.";
                                 UpdateBuildingData();
-
                             }
 
                         }
@@ -132,10 +130,6 @@ namespace SmartOfficeApplication
 
                 }
             }
-        }
-          private void comboBoxAddressDelete_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
         /*****************.
                   *  Button             deleteBuilding
@@ -258,6 +252,7 @@ namespace SmartOfficeApplication
             VentilationSetting vS = new VentilationSetting();
             comboBoxVentilationSetting.DataSource = vS.VentilationSettingList.ToList<string>();
         }
+
         //Fill an officeNumber ComboBox given a selected building address.
         private void FillOfficeNumberComboBox(string buildingAddress, ComboBox officeNumberComboBox)
         {
@@ -372,6 +367,9 @@ namespace SmartOfficeApplication
                     UpdateOfficeNumberComboBoxes();
                 }
                 catch (NullReferenceException exception)
+                {
+                    labelFeedbackForOffices.Text = "To add a new office, please insert an address.";
+                } catch (SqlException)
                 {
                     labelFeedbackForOffices.Text = "To add a new office, please insert an address.";
                 }

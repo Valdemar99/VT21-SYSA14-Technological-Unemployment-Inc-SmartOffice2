@@ -45,8 +45,11 @@ namespace Assignment2ViewMetadata
             }catch(ArgumentException)
             {
                 labelFeedback.Text = "Please check your VPN connection.";
+            } catch (SqlException)
+            {
+                labelFeedback.Text = "Please check your VPN connection.";
             }
-            
+
         }
         private void UpdateColumnList()
         {
@@ -81,8 +84,7 @@ namespace Assignment2ViewMetadata
                 }
             
                 else {
-                    //TO-DO - improve error handling.
-                    Console.WriteLine("No selected table name.");
+                    labelFeedback.Text = "No selected table name.";
                 }
             }
             catch (NullReferenceException)
@@ -111,7 +113,10 @@ namespace Assignment2ViewMetadata
             {
                 labelFeedback.Text = "Please check your VPN connection";
             }
-            
+            catch (ArgumentException)
+            {
+                labelFeedback.Text = "Please check your VPN connection";
+            }
         }
     }
 }
